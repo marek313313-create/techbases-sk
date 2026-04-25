@@ -83,7 +83,7 @@ export default function TechbasesHomepage() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex flex-col items-start gap-2">
             <img
-              src="/techbase-logo.png"
+              src="/techbase-logo-v2.png"
               alt="TechBases logo"
               className="h-10 w-auto object-contain sm:h-12"
             />
@@ -273,4 +273,5 @@ export default function TechbasesHomepage() {
     </div>
   );
 }
+
 
