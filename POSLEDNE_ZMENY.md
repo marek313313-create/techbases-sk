@@ -4,9 +4,9 @@ Aktualizované: 2026-04-25
 
 ## Najnovšie commity
 
-1. `ff3b485` - Update contact email to marek313313@gmail.com
+1. `ff3b485` - Update contact email to kontakt@techbases.sk
    - `app/page.tsx`
-   - zmena kontaktného e-mailu na `marek313313@gmail.com`
+   - zmena kontaktného e-mailu na `kontakt@techbases.sk`
 
 2. `17af33c` - Fix Slovak text encoding on homepage
    - `app/page.tsx`

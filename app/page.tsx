@@ -248,10 +248,10 @@ export default function TechbasesHomepage() {
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
-                href="mailto:marek313313@gmail.com"
+                href="mailto:kontakt@techbases.sk"
                 className="rounded-2xl bg-blue-600 px-5 py-3 font-medium shadow-lg shadow-blue-900/30 transition hover:bg-blue-500"
               >
-                marek313313@gmail.com
+                kontakt@techbases.sk
               </a>
               <a
                 href="tel:+421948684756"
