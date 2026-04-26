@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   title: 'TechBases.sk | Dáta a interné nástroje pre výrobu, údržbu a sklad',
   description:
     'Pomáham výrobným a technickým firmám prepájať dáta z rôznych zdrojov a tvoriť interné prehľady a nástroje pre výrobu, údržbu a sklad.',
+  alternates: {
+    canonical: '/',
+  },
+  icons: {
+    icon: '/mini-logo.png',
+    shortcut: '/mini-logo.png',
+    apple: '/mini-logo.png',
+  },
   openGraph: {
     title: 'TechBases.sk',
     description: 'Dáta a interné nástroje pre výrobu, údržbu a sklad.',
@@ -13,6 +21,18 @@ export const metadata: Metadata = {
     siteName: 'TechBases.sk',
     locale: 'sk_SK',
     type: 'website',
+    images: [
+      {
+        url: '/techbase-logo-v2.png',
+        alt: 'TechBases.sk',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'TechBases.sk',
+    description: 'Dáta a interné nástroje pre výrobu, údržbu a sklad.',
+    images: ['/techbase-logo-v2.png'],
   },
   robots: {
     index: true,

@@ -76,9 +76,31 @@ const typicalProblems: string[] = [
   'Existujúci software nepokrýva špecifický problém firmy a univerzálne riešenie by bolo zbytočne drahé alebo nešikovné.',
 ];
 
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'TechBases.sk',
+  url: 'https://techbases.sk',
+  image: 'https://techbases.sk/techbase-logo-v2.png',
+  description:
+    'Prepájanie dát a interné nástroje pre výrobu, údržbu a sklad.',
+  email: 'kontakt@techbases.sk',
+  telephone: '+421948684756',
+  areaServed: 'Slovakia',
+  serviceType: [
+    'Prehľady skladu',
+    'Prepájanie dát z viacerých zdrojov',
+    'Interné nástroje pre výrobu, údržbu a sklad',
+  ],
+};
+
 export default function TechbasesHomepage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <header className="border-b border-slate-800 bg-slate-950/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex flex-col items-start gap-2">
