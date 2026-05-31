@@ -1,11 +1,17 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
+import { RevealOnScroll } from './components/reveal-on-scroll';
+import { SiteFooter } from './components/site-footer';
+import { SiteHeader } from './components/site-header';
 import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://techbases.sk'),
-  title: 'TechBases.sk | Dáta a interné nástroje pre výrobu, údržbu a sklad',
+  title: {
+    default: 'TechBases.sk | ERP dáta pre údržbu, sklad a výrobu',
+    template: '%s | TechBases.sk',
+  },
   description:
-    'Pomáham výrobným a technickým firmám prepájať dáta z rôznych zdrojov a tvoriť interné prehľady a nástroje pre výrobu, údržbu a sklad.',
+    'TechBases spája ERP exporty, sklad, výdaje, objednávky, prestoje a plánovanie do jedného pracovného pohľadu pre údržbu, sklad a výrobu.',
   alternates: {
     canonical: '/',
   },
@@ -16,7 +22,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'TechBases.sk',
-    description: 'Dáta a interné nástroje pre výrobu, údržbu a sklad.',
+    description:
+      'Pracovný pohľad nad ERP dátami pre výrobu, údržbu, sklad náhradných dielov a plánovanie prác.',
     url: 'https://techbases.sk',
     siteName: 'TechBases.sk',
     locale: 'sk_SK',
@@ -31,12 +38,20 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'TechBases.sk',
-    description: 'Dáta a interné nástroje pre výrobu, údržbu a sklad.',
+    description:
+      'Pracovný pohľad nad ERP dátami pre výrobu, údržbu, sklad náhradných dielov a plánovanie prác.',
     images: ['/techbase-logo-v2.png'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
   },
 };
 
@@ -47,7 +62,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sk">
-      <body>{children}</body>
+      <body className="bg-slate-950 text-slate-100 antialiased">
+        <div className="min-h-screen bg-slate-950 text-slate-100">
+          <SiteHeader />
+          <RevealOnScroll />
+          {children}
+          <SiteFooter />
+        </div>
+      </body>
     </html>
   );
 }
