@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/poznamky/erp-data-excel-udrzba',
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function ErpDataExcelMaintenanceNotePage() {

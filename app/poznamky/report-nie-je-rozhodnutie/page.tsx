@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     absolute: 'Report nie je rozhodnutie | TechBases.sk',
   },
   description:
-    'Poznámka sa pripravuje: reporting, pracovný pohľad, rozhodovanie a konkrétny prevádzkový krok.',
+    'Report ukáže hodnotu skladu, počet objednávok alebo trend výdajov. Údržba a plánovanie však potrebujú vedieť, ktorý diel chýba, ktorá objednávka mešká a čo môže zdržať plánovanú prácu.',
   alternates: {
     canonical: '/poznamky/report-nie-je-rozhodnutie',
   },

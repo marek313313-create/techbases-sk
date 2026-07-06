@@ -30,8 +30,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/techbase-logo-v2.png',
-        alt: 'TechBases.sk',
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'TechBases.sk — pracovný pohľad nad ERP dátami pre údržbu, sklad a výrobu',
       },
     ],
   },
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
     title: 'TechBases.sk',
     description:
       'Pracovný pohľad nad ERP dátami pre výrobu, údržbu, sklad náhradných dielov a plánovanie prác.',
-    images: ['/techbase-logo-v2.png'],
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,

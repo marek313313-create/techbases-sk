@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/poznamky/nepohybliva-zasoba',
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function SlowMovingStockNotePage() {

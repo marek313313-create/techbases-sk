@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { practiceNotes } from './poznamky/poznamky-data';
 
 const siteUrl = 'https://techbases.sk';
-const lastModified = new Date('2026-05-31');
+const staticLastModified = new Date('2026-07-06');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         note.slug === '/poznamky/jedna-polozka-cela-zostava'
           ? 0.82
           : 0.65,
+      lastModified: new Date(note.dateModified),
     })),
     { path: '/o-mne', priority: 0.8 },
     { path: '/kontakt', priority: 0.8 },
@@ -26,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes.map((route) => ({
     url: `${siteUrl}${route.path}`,
-    lastModified,
+    lastModified: 'lastModified' in route ? route.lastModified : staticLastModified,
     changeFrequency: 'weekly',
     priority: route.priority,
   }));

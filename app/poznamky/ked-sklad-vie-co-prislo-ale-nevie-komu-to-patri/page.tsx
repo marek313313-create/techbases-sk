@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { getPracticeNote } from '../poznamky-data';
 
+const note = getPracticeNote('/poznamky/ked-sklad-vie-co-prislo-ale-nevie-komu-to-patri');
 const canonicalUrl = 'https://techbases.sk/poznamky/ked-sklad-vie-co-prislo-ale-nevie-komu-to-patri';
 const pageTitle = 'Keď sklad vie, čo prišlo, ale nevie, komu to patrí | TechBases';
 const pageDescription =
@@ -55,7 +57,7 @@ const articleStructuredData = {
   description: pageDescription,
   image: [`https://techbases.sk${pageImage}`],
   mainEntityOfPage: canonicalUrl,
-  dateModified: '2026-06-04',
+  dateModified: note.dateModified,
   author: {
     '@type': 'Person',
     name: 'Marek Belko',

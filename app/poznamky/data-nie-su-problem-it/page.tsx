@@ -1,6 +1,8 @@
 ﻿import type { Metadata } from 'next';
 import Link from 'next/link';
+import { getPracticeNote } from '../poznamky-data';
 
+const note = getPracticeNote('/poznamky/data-nie-su-problem-it');
 const canonicalUrl = 'https://techbases.sk/poznamky/data-nie-su-problem-it';
 const pageTitle = 'Dáta nie sú problém IT. Dáta sú problém prevádzky | TechBases.sk';
 const pageDescription =
@@ -55,7 +57,7 @@ const articleStructuredData = {
   description: pageDescription,
   image: [`https://techbases.sk${pageImage}`],
   mainEntityOfPage: canonicalUrl,
-  dateModified: '2026-05-31',
+  dateModified: note.dateModified,
   author: {
     '@type': 'Person',
     name: 'Marek Belko',
