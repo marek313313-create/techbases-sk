@@ -251,7 +251,7 @@ export default function TechbasesHomepage() {
           <p className="mt-5 text-2xl font-semibold leading-snug text-slate-100">
             „Ručná aktualizácia plánovacej knihy trvala týždeň až týždeň a pol.
             Po prepojení existujúcich dát sa rovnaká kontrola skrátila
-            na niekoľko minút."
+            na niekoľko minút.“
           </p>
           <footer className="mt-4 text-sm text-blue-200/70">
             — Anonymizovaný pilot, výrobná firma, sklad náhradných dielov

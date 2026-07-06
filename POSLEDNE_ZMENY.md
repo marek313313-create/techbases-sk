@@ -1,8 +1,19 @@
 # Posledné zmeny
 
-Aktualizované: 2026-04-25
+Aktualizované: 2026-07-06
 
 ## Najnovšie commity
+
+0. Séria 2026-07-06 — výkon, SEO, formulár, UX, poriadok v repe
+   - obrázky konvertované na WebP (~15 MB → ~1,1 MB), ASCII názvy, lazy loading
+   - SEO: zaradený osirotený článok, noindex na placeholder poznámky,
+     dateModified per poznámka, vlastný OG obrázok 1200×630
+   - Cloudflare Web Analytics (čaká na token — viď TODO.md)
+   - kontaktný formulár na /kontakt + /api/kontakt cez Resend (čaká na API kľúč)
+   - mobilné hamburger menu, focus trap v lightboxe, video rešpektuje
+     prefers-reduced-motion
+   - ESLint + Prettier, bezpečnostné hlavičky, zdrojové grafiky v assets-src/
+   - manuálne kroky: TODO.md
 
 1. `ff3b485` - Update contact email to kontakt@techbases.sk
    - `app/page.tsx`

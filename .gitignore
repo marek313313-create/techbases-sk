@@ -1,5 +1,7 @@
 .next/
 node_modules/
+assets-src/
+.env*.local
 .npm-cache/
 .open-next/
 .wrangler/
