@@ -9,6 +9,15 @@ export type PracticeNote = {
 
 export const practiceNotes: PracticeNote[] = [
   {
+    title: 'Keď sklad vie, čo prišlo, ale nevie, komu to patrí',
+    slug: '/poznamky/ked-sklad-vie-co-prislo-ale-nevie-komu-to-patri',
+    description:
+      'Bez kontextu je nepohyblivá zásoba len zoznam položiek. Keď sa prepojí sklad, príjemka a objednávací návrh, dá sa zistiť, kto materiál potreboval a čo s ním má zmysel urobiť ďalej.',
+    tags: ['nepohyblivá zásoba', 'ERP dáta', 'SAP', 'sklad', 'objednávacie návrhy', 'dátová stopa'],
+    image: '/Keď sklad vie, čo prišlo, ale nevie, komu to patrí.png',
+    imageAlt: 'Ilustračný vizuál k poznámke o sklade, príjemke a dohľadávaní pôvodnej potreby materiálu',
+  },
+  {
     title: 'Keď jedna položka v ERP znamená celú zostavu',
     slug: '/poznamky/jedna-polozka-cela-zostava',
     description:
@@ -54,8 +63,8 @@ export const practiceNotes: PracticeNote[] = [
 ];
 
 export const latestPracticeNoteSlugs = [
+  '/poznamky/ked-sklad-vie-co-prislo-ale-nevie-komu-to-patri',
   '/poznamky/jedna-polozka-cela-zostava',
-  '/poznamky/data-nie-su-problem-it',
 ];
 
 export const latestPracticeNotes = practiceNotes.filter((note) =>

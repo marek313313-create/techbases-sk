@@ -58,6 +58,14 @@ const erpAnswers = [
   'rozpad zostavy na sklad, rezervácie a chýbajúce množstvá',
 ];
 
+const freeExportCheckPoints = [
+  'stačia 2-3 anonymizované exporty alebo ukážky tabuliek',
+  'ideálne súvisiace údaje, napríklad sklad + výdaje + objednávky',
+  'bez zásahu do ERP, SAP, WMS alebo CMMS',
+  'bez záväzku a bez veľkej implementácie',
+  'cieľom je zistiť, či má z dát zmysel vytvoriť pracovný nástroj',
+];
+
 const targetFit = [
   'výrobné firmy s údržbou a skladom náhradných dielov',
   'firmy, ktoré majú ERP/SAP, ale ľudia stále skladajú odpovede v Exceli',
@@ -167,6 +175,56 @@ export default function TechbasesHomepage() {
               >
                 Pozrieť ukážky
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-8">
+        <div className="rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-900 p-8 shadow-2xl md:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+            <div>
+              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+                Prvý krok bez implementácie
+              </div>
+              <h2 className="mt-4 text-3xl font-bold">Bezplatná kontrola 2-3 exportov</h2>
+              <p className="mt-4 leading-8 text-slate-300">
+                Máte exporty zo skladu, výdajov, objednávok alebo údržby a neviete,
+                či sa z nich dá spraviť použiteľný pracovný prehľad?
+              </p>
+              <p className="mt-4 leading-8 text-slate-300">
+                Pošlite anonymizované ukážky z 2-3 súvisiacich exportov. Pozriem sa,
+                či medzi nimi vidno konkrétny problém — napríklad nepohyblivú zásobu,
+                chýbajúce diely, stav objednávok, duplicity alebo spotrebu podľa
+                údržby.
+              </p>
+              <p className="mt-4 leading-8 text-slate-400">
+                Ak tam nebude jasný prínos, poviem rovno, že to nemá zmysel riešiť.
+              </p>
+              <div className="mt-8">
+                <Link
+                  href="/kontakt"
+                  className="inline-flex rounded-xl bg-blue-600 px-5 py-3 font-medium shadow-lg shadow-blue-900/30 transition hover:bg-blue-500"
+                >
+                  Chcem skontrolovať exporty
+                </Link>
+              </div>
+              <p className="mt-4 text-sm leading-6 text-slate-400">
+                Neposielajte citlivé alebo kompletné firemné dáta. Na prvé
+                posúdenie stačia anonymizované ukážky.
+              </p>
+            </div>
+
+            <div className="grid gap-4">
+              {freeExportCheckPoints.map((item) => (
+                <div
+                  key={item}
+                  className="flex gap-3 rounded-2xl border border-slate-800 bg-slate-950/70 p-5 leading-7 text-slate-300"
+                >
+                  <MiniLogoBullet />
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
