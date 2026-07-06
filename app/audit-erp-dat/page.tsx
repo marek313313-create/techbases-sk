@@ -164,7 +164,7 @@ export default function ErpDataAuditPage() {
           </div>
 
           <div className="rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-950 p-6 shadow-2xl">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+            <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
               Základná otázka
             </div>
             <h2 className="mt-4 text-2xl font-bold leading-tight md:text-3xl">
@@ -260,7 +260,7 @@ export default function ErpDataAuditPage() {
 
       <section className="mt-12 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-900 p-6 shadow-2xl md:p-7">
         <div className="max-w-3xl">
-          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+          <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
             Orientačný výpočet
           </div>
           <h2 className="mt-3 text-3xl font-bold">Ako sa dá odhadnúť prínos auditu</h2>
@@ -293,7 +293,7 @@ export default function ErpDataAuditPage() {
       <section className="mt-12 rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl md:p-7">
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div className="rounded-xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-950 p-6">
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+            <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
               Rozsah auditu
             </div>
             <h2 className="mt-4 text-3xl font-bold">Rýchly audit ERP dát</h2>

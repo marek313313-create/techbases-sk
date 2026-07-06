@@ -37,21 +37,24 @@ button {
   touch-action: manipulation;
 }
 
+/* Tichší WhatsApp: zelený akcent nesmie konkurovať primárnemu modrému CTA */
 .whatsapp-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 12px 18px;
+  border: 1px solid rgba(37, 211, 102, 0.35);
   border-radius: 12px;
-  background: #25d366;
-  color: white;
+  background: rgba(37, 211, 102, 0.08);
+  color: #d1fae5;
   font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 16px 36px rgba(37, 211, 102, 0.18);
 }
 
 .whatsapp-button:hover {
-  background: #1fbd5a;
+  border-color: rgba(37, 211, 102, 0.55);
+  background: rgba(37, 211, 102, 0.16);
 }
 
 .whatsapp-button:focus-visible {
@@ -102,6 +105,35 @@ main p,
 main li,
 main a {
   overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+.kicker {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.015em;
+}
+
+/* Sekčný štítok s krátkou technickou linkou pred textom */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.kicker::before {
+  height: 1px;
+  width: 1.25rem;
+  flex-shrink: 0;
+  background: currentColor;
+  opacity: 0.55;
+  content: "";
 }
 
 .motion-ready .reveal {
@@ -173,91 +205,6 @@ main [class*="border-blue-500/20"]:hover {
   box-shadow:
     0 0 0 1px rgba(77, 166, 255, 0.22),
     0 18px 55px rgba(37, 99, 235, 0.16);
-}
-
-main [class~="py-20"] {
-  padding-top: 3.5rem;
-  padding-bottom: 3.5rem;
-}
-
-main [class~="py-16"] {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-main [class~="py-12"] {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
-main [class~="mt-16"] {
-  margin-top: 3rem;
-}
-
-main [class~="mt-12"] {
-  margin-top: 2.5rem;
-}
-
-main [class~="mt-10"] {
-  margin-top: 2rem;
-}
-
-main [class~="mt-8"] {
-  margin-top: 1.5rem;
-}
-
-main [class~="mt-7"] {
-  margin-top: 1.375rem;
-}
-
-main [class~="mt-6"] {
-  margin-top: 1.125rem;
-}
-
-main [class~="mt-5"] {
-  margin-top: 1rem;
-}
-
-main [class~="mt-4"] {
-  margin-top: 0.875rem;
-}
-
-main [class~="gap-10"] {
-  gap: 2rem;
-}
-
-main [class~="gap-8"] {
-  gap: 1.5rem;
-}
-
-main [class~="gap-6"] {
-  gap: 1.25rem;
-}
-
-main [class~="gap-5"] {
-  gap: 1rem;
-}
-
-main [class~="p-10"],
-main [class~="p-8"],
-main [class~="p-7"] {
-  padding: 1.5rem;
-}
-
-main [class~="p-6"] {
-  padding: 1.25rem;
-}
-
-main [class~="p-5"] {
-  padding: 1rem;
-}
-
-main [class~="leading-8"] {
-  line-height: 1.65;
-}
-
-main [class~="leading-7"] {
-  line-height: 1.55;
 }
 
 @media (max-width: 640px) {

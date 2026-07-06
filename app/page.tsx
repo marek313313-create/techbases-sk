@@ -151,24 +151,16 @@ export default function TechbasesHomepage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/kontakt"
-                className="rounded-xl bg-blue-600 px-5 py-3 font-medium shadow-lg shadow-blue-900/30 transition hover:bg-blue-500"
+                className="rounded-xl bg-blue-600 px-6 py-3 font-semibold shadow-lg shadow-blue-900/30 transition hover:bg-blue-500"
               >
                 Prebrať váš prípad zadarmo
               </Link>
-              <a
-                href={whatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="whatsapp-button"
+              <Link
+                href="/sluzby"
+                className="rounded-xl border border-slate-700 px-6 py-3 font-medium text-slate-300 transition hover:bg-slate-900 hover:text-white"
               >
-                Poslať ukážku exportu
-              </a>
-              <a
-                href="#ukazky-riesenia"
-                className="rounded-xl border border-slate-700 px-5 py-3 font-medium text-slate-200 transition hover:bg-slate-900"
-              >
-                Pozrieť ukážky
-              </a>
+                Pozrieť služby
+              </Link>
             </div>
           </div>
         </div>
@@ -178,7 +170,7 @@ export default function TechbasesHomepage() {
         <div className="rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-900 p-8 shadow-2xl md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <div>
-              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+              <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
                 Prvý krok bez implementácie
               </div>
               <h2 className="mt-4 text-3xl font-bold">Bezplatná kontrola 2-3 exportov</h2>
@@ -209,12 +201,9 @@ export default function TechbasesHomepage() {
               </p>
             </div>
 
-            <div className="grid gap-4">
+            <div className="grid gap-5 border-l border-slate-800 pl-6 lg:mt-2">
               {freeExportCheckPoints.map((item) => (
-                <div
-                  key={item}
-                  className="flex gap-3 rounded-2xl border border-slate-800 bg-slate-950/70 p-5 leading-7 text-slate-300"
-                >
+                <div key={item} className="flex gap-3 leading-7 text-slate-300">
                   <MiniLogoBullet />
                   <span>{item}</span>
                 </div>
@@ -245,7 +234,7 @@ export default function TechbasesHomepage() {
           ))}
         </div>
         <blockquote className="mt-16 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-900 p-6 shadow-2xl md:p-7">
-          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+          <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
             Anonymizovaný výsledok pilotu
           </div>
           <p className="mt-5 text-2xl font-semibold leading-snug text-slate-100">
@@ -266,7 +255,7 @@ export default function TechbasesHomepage() {
 
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="grid gap-8 lg:grid-cols-2">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+          <div className="rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-900 p-6 shadow-xl">
             <h3 className="text-xl font-semibold">Pre koho má TechBases zmysel</h3>
             <ul className="mt-4 grid gap-2 pl-5 text-slate-300">
               {targetFit.map((item) => (
@@ -277,8 +266,8 @@ export default function TechbasesHomepage() {
             </ul>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-            <h3 className="text-xl font-semibold">Kedy to nemá zmysel</h3>
+          <div className="rounded-2xl border border-slate-800/60 bg-slate-950/40 p-6">
+            <h3 className="text-xl font-semibold text-slate-200">Kedy to nemá zmysel</h3>
             <ul className="mt-4 grid gap-2 pl-5 text-slate-300">
               {notFit.map((item) => (
                 <li key={item} className="list-disc leading-7">
@@ -412,7 +401,7 @@ export default function TechbasesHomepage() {
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-2xl md:p-10">
           <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
             <div>
-              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+              <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
                 Odborné poznámky
               </div>
               <h2 className="mt-4 text-3xl font-bold">Poznámky z prevádzky</h2>
@@ -452,14 +441,14 @@ export default function TechbasesHomepage() {
             <img
               src="/profilovka.webp"
               alt="Marek Belko"
-              width={160}
-              height={160}
+              width={320}
+              height={320}
               loading="lazy"
               decoding="async"
-              className="h-16 w-16 rounded-full object-cover"
+              className="h-24 w-24 rounded-2xl object-cover ring-1 ring-blue-400/25 md:h-28 md:w-28"
             />
             <div>
-              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+              <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
                 Kto za TechBases stojí
               </div>
               <h2 className="mt-2 text-2xl font-bold">Marek Belko</h2>
@@ -482,7 +471,7 @@ export default function TechbasesHomepage() {
 
       <section className="mx-auto max-w-6xl px-6 py-12">
         <div className="max-w-3xl">
-          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+          <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
             Pilot
           </div>
           <h2 className="mt-4 text-3xl font-bold">Ako funguje pilot</h2>
@@ -538,14 +527,11 @@ export default function TechbasesHomepage() {
             Krátke odpovede k tomu, čo TechBases je a čo zámerne nenahrádza.
           </p>
         </div>
-        <div className="mt-10 grid gap-4">
+        <div className="mt-10 divide-y divide-slate-800 border-y border-slate-800">
           {faqItems.map((item) => (
-            <div
-              key={item.question}
-              className="rounded-2xl border border-slate-800 bg-slate-900 p-6"
-            >
+            <div key={item.question} className="py-6">
               <h3 className="text-xl font-semibold">{item.question}</h3>
-              <p className="mt-3 leading-7 text-slate-400">{item.answer}</p>
+              <p className="mt-3 max-w-3xl leading-7 text-slate-400">{item.answer}</p>
             </div>
           ))}
         </div>

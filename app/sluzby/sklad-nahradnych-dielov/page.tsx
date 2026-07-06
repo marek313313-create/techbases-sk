@@ -213,7 +213,7 @@ export default function SparePartsInventoryPage() {
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+          <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
             Typický výsledok
           </div>
           <h2 className="mt-3 text-2xl font-semibold">
@@ -279,7 +279,7 @@ export default function SparePartsInventoryPage() {
       <section className="mt-16 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-900 p-8 shadow-2xl md:p-10">
         <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+            <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
               Materiálová pripravenosť
             </div>
             <h2 className="mt-4 text-3xl font-bold">Keď je jedna položka celá zostava</h2>
@@ -335,7 +335,7 @@ export default function SparePartsInventoryPage() {
       <section className="mt-16 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-900 p-8 shadow-2xl md:p-10">
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+            <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
               Pilot
             </div>
             <h2 className="mt-4 text-3xl font-bold">Ako vyzerá prvý krok</h2>

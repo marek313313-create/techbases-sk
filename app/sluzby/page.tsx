@@ -75,7 +75,7 @@ export default function ServicesPage() {
       <section className="mt-16 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-900 p-8 md:p-10">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+            <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
               Najčastejší začiatok
             </div>
             <h2 className="mt-4 text-3xl font-bold">Pilot pracovného pohľadu</h2>
@@ -133,7 +133,7 @@ export default function ServicesPage() {
       <section className="mt-16 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-900 p-8 shadow-2xl md:p-10">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+            <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
               Pred pilotom
             </div>
             <h2 className="mt-4 text-3xl font-bold">

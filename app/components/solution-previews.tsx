@@ -90,7 +90,7 @@ export function SolutionPreviews() {
   return (
     <section id="ukazky-riesenia" className="mt-16">
       <div className="max-w-3xl">
-        <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+        <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
           Ukážkové pracovné pohľady
         </div>
         <h2 className="mt-3 text-3xl font-bold">

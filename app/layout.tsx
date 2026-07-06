@@ -1,9 +1,17 @@
 import type { Metadata } from 'next';
+import { Space_Grotesk } from 'next/font/google';
 import Script from 'next/script';
 import { RevealOnScroll } from './components/reveal-on-scroll';
 import { SiteFooter } from './components/site-footer';
 import { SiteHeader } from './components/site-header';
 import './globals.css';
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['500', '600', '700'],
+  variable: '--font-heading',
+  display: 'swap',
+});
 
 // Cloudflare Web Analytics: token sa nastavuje cez NEXT_PUBLIC_CF_ANALYTICS_TOKEN
 // (bez tokenu sa beacon nevykreslí, viď TODO.md)
@@ -68,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sk">
+    <html lang="sk" className={spaceGrotesk.variable}>
       <body className="bg-slate-950 text-slate-100 antialiased">
         <div className="min-h-screen bg-slate-950 text-slate-100">
           <SiteHeader />

@@ -58,7 +58,24 @@ export default function AboutPage() {
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl">
-          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+          <div className="flex items-center gap-4">
+            <img
+              src="/profilovka.webp"
+              alt="Marek Belko"
+              width={320}
+              height={320}
+              loading="lazy"
+              decoding="async"
+              className="h-20 w-20 rounded-2xl object-cover ring-1 ring-blue-400/25"
+            />
+            <div>
+              <div className="text-lg font-semibold text-slate-100">Marek Belko</div>
+              <div className="text-sm text-slate-400">
+                Technik v priemyselnej prevádzke
+              </div>
+            </div>
+          </div>
+          <div className="kicker mt-8 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
             Kedy má spolupráca zmysel
           </div>
           <div className="mt-5 grid gap-4">

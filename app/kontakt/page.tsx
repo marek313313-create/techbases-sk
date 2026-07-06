@@ -80,7 +80,7 @@ export default function ContactPage() {
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl">
-          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+          <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
             Prakticky
           </div>
           <div className="mt-5 grid gap-4 text-slate-300">
@@ -114,7 +114,7 @@ export default function ContactPage() {
       <section className="mt-16 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-900 p-8 shadow-2xl md:p-10">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+            <div className="kicker text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
               Bez e-mailového klienta
             </div>
             <h2 className="mt-4 text-3xl font-bold">Poslať správu priamo z webu</h2>
