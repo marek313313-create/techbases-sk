@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { RevealOnScroll } from './components/reveal-on-scroll';
 import { SiteFooter } from './components/site-footer';
 import { SiteHeader } from './components/site-header';
 import './globals.css';
+
+// Cloudflare Web Analytics: token sa nastavuje cez NEXT_PUBLIC_CF_ANALYTICS_TOKEN
+// (bez tokenu sa beacon nevykreslí, viď TODO.md)
+const cfAnalyticsToken = process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://techbases.sk'),
@@ -71,6 +76,13 @@ export default function RootLayout({
           {children}
           <SiteFooter />
         </div>
+        {cfAnalyticsToken ? (
+          <Script
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${cfAnalyticsToken}"}`}
+            strategy="afterInteractive"
+          />
+        ) : null}
       </body>
     </html>
   );
