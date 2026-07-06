@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MailIcon, PhoneIcon } from './components/contact-icons';
+import { HeroVideo } from './components/hero-video';
 import { SolutionPreviews } from './components/solution-previews';
 import { latestPracticeNotes } from './poznamky/poznamky-data';
 import { collaborationSteps, faqItems, whatsAppUrl } from './site-data';
@@ -132,18 +133,7 @@ export default function TechbasesHomepage() {
           </div>
         </div>
         <div className="hero-video-panel">
-          <video
-            className="hero-video"
-            autoPlay
-            muted
-            playsInline
-            loop
-            preload="metadata"
-            poster="/techbase-logo-v2.webp"
-            aria-label="Animovaný vizuál značky TechBases"
-          >
-            <source src="/video.mp4" type="video/mp4" />
-          </video>
+          <HeroVideo />
 
           <div className="relative z-10 mx-auto max-w-4xl text-center">
             <h1 className="text-4xl font-bold leading-tight md:text-5xl">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type SolutionPreview = {
   title: string;
@@ -38,6 +38,9 @@ const solutionPreviews: SolutionPreview[] = [
 
 export function SolutionPreviews() {
   const [activePreview, setActivePreview] = useState<SolutionPreview | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!activePreview) {
@@ -47,15 +50,40 @@ export function SolutionPreviews() {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         setActivePreview(null);
+        return;
+      }
+
+      // Focus trap: Tab cykluje vnútri modalu
+      if (event.key === 'Tab') {
+        const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        );
+
+        if (!focusable || focusable.length === 0) {
+          return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     }
 
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
+    closeButtonRef.current?.focus();
 
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
+      triggerRef.current?.focus();
     };
   }, [activePreview]);
 
@@ -83,7 +111,10 @@ export function SolutionPreviews() {
           >
             <button
               type="button"
-              onClick={() => setActivePreview(preview)}
+              onClick={(event) => {
+                triggerRef.current = event.currentTarget;
+                setActivePreview(preview);
+              }}
               className="group block w-full overflow-hidden bg-slate-950 text-left"
               aria-label={`Otvoriť náhľad: ${preview.title}`}
             >
@@ -119,6 +150,7 @@ export function SolutionPreviews() {
           onClick={() => setActivePreview(null)}
         >
           <div
+            ref={dialogRef}
             className="max-h-[92vh] w-full max-w-6xl overflow-hidden rounded-2xl border border-slate-700 bg-slate-950 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
@@ -132,6 +164,7 @@ export function SolutionPreviews() {
                 </h3>
               </div>
               <button
+                ref={closeButtonRef}
                 type="button"
                 onClick={() => setActivePreview(null)}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 text-xl text-slate-200 transition hover:border-blue-400 hover:bg-slate-900"
