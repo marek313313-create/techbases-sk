@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ContactForm } from '../components/contact-form';
 import { MailIcon, PhoneIcon } from '../components/contact-icons';
 import { whatsAppUrl } from '../site-data';
 
@@ -107,6 +108,27 @@ export default function ContactPage() {
               dnes overujete dostupnosť dielov a potrebu objednania.
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mt-16 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 to-slate-900 p-8 shadow-2xl md:p-10">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+              Bez e-mailového klienta
+            </div>
+            <h2 className="mt-4 text-3xl font-bold">Poslať správu priamo z webu</h2>
+            <p className="mt-4 leading-8 text-slate-300">
+              Ak vám nefunguje odkaz na e-mail alebo je to jednoduchšie, napíšte
+              správu priamo tu. Príde na kontakt@techbases.sk a odpoveď dostanete
+              na e-mail, ktorý uvediete.
+            </p>
+            <p className="mt-4 leading-8 text-slate-400">
+              Neposielajte citlivé alebo kompletné firemné dáta. Na prvé posúdenie
+              stačí opis problému — anonymizované ukážky exportov si dohodneme neskôr.
+            </p>
+          </div>
+          <ContactForm />
         </div>
       </section>
 

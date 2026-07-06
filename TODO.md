@@ -7,6 +7,18 @@
 3. V projekte vytvoriť `.env.local` (podľa `.env.example`) s `NEXT_PUBLIC_CF_ANALYTICS_TOKEN=<token>`.
 4. Znova nasadiť: `npm run deploy`. Bez tokenu sa beacon skript nevykreslí.
 
+## 0b. Resend API kľúč pre kontaktný formulár
+
+Formulár na /kontakt posiela cez `/api/kontakt` → Resend API. Kým kľúč nie je
+nastavený, formulár vráti zrozumiteľnú chybu s odkazom na e-mail (nič sa nerozbije).
+
+1. Na [resend.com](https://resend.com) vytvoriť účet (free tier: 100 e-mailov/deň).
+2. **Domains → Add domain** → `techbases.sk` → pridať DNS záznamy (SPF/DKIM) v Cloudflare
+   a overiť. Odosielateľ v kóde je `web@techbases.sk` (app/api/kontakt/route.ts).
+3. **API Keys → Create API key** a nastaviť ako Cloudflare secret:
+   `npx wrangler secret put RESEND_API_KEY`
+4. Znova nasadiť: `npm run deploy` a otestovať formulár.
+
 ## 1. Kompresia videa (ffmpeg nie je v prostredí dostupné)
 
 `public/video.mp4` má ~3 MB. Po nainštalovaní ffmpeg (napr. `winget install Gyan.FFmpeg`)
