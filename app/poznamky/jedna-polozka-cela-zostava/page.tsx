@@ -61,8 +61,11 @@ export default function AssemblyItemNotePage() {
 
         <figure className="mt-8 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl">
           <img
-            src="/Keď jedna položka v ERP znamená celaú zostavu.png"
+            src="/jedna-polozka-cela-zostava.webp"
             alt="Ilustračný vizuál k poznámke o zostave, kusovníku a ERP dátach"
+            width={1672}
+            height={941}
+            decoding="async"
             className="w-full object-cover"
           />
         </figure>

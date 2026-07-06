@@ -107,8 +107,11 @@ export default function ErpIsNotTheProblemNotePage() {
 
         <figure className="mt-8 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl">
           <img
-            src="/ERP nie je problém. Problém je, keď z neho nevzniká odpoveď.png"
+            src="/erp-nie-je-problem.webp"
             alt="Ilustračný vizuál k poznámke o ERP dátach, ručnom dohľadávaní a pracovnom pohľade"
+            width={1535}
+            height={1024}
+            decoding="async"
             className="w-full object-cover"
           />
         </figure>

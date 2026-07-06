@@ -5,7 +5,7 @@ const canonicalUrl = 'https://techbases.sk/poznamky/data-nie-su-problem-it';
 const pageTitle = 'Dáta nie sú problém IT. Dáta sú problém prevádzky | TechBases.sk';
 const pageDescription =
   'Prečo zrelá práca s dátami začína tým, že prevádzka rozumie vlastným ERP dátam, pravidlám, výnimkám a rozhodnutiam, ktoré z nich majú vzniknúť.';
-const pageImage = '/Dáta nie sú problém IT. Sú problem prevádzky..png';
+const pageImage = '/data-nie-su-problem-it.webp';
 
 export const metadata: Metadata = {
   title: {
@@ -134,8 +134,11 @@ export default function DataOwnershipNotePage() {
 
         <figure className="mt-8 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl">
           <img
-            src="/Dáta nie sú problém IT. Sú problem prevádzky..png"
+            src={pageImage}
             alt="Ilustračný vizuál k poznámke o ERP dátach, prevádzke a rozhodovaní"
+            width={1672}
+            height={941}
+            decoding="async"
             className="w-full object-cover"
           />
         </figure>

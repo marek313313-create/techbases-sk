@@ -28,8 +28,11 @@ export function SiteHeader() {
       <div className="relative mx-auto flex max-w-6xl flex-col gap-2.5 px-5 py-2.5 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
         <Link href="/" className="flex shrink-0 items-center self-start lg:self-center">
           <img
-            src="/techbase-logo-v2.png"
+            src="/techbase-logo-v2.webp"
             alt="TechBases logo"
+            width={347}
+            height={112}
+            decoding="async"
             className="h-12 w-auto object-contain sm:h-14"
           />
         </Link>

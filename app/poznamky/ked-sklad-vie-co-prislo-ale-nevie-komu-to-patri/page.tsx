@@ -5,7 +5,7 @@ const canonicalUrl = 'https://techbases.sk/poznamky/ked-sklad-vie-co-prislo-ale-
 const pageTitle = 'Keď sklad vie, čo prišlo, ale nevie, komu to patrí | TechBases';
 const pageDescription =
   'Nepohyblivá zásoba nie je len zoznam položiek bez pohybu. Bez dohľadania pôvodnej potreby neviete, či ide o zbytočný nákup, rezervu, duplicitu alebo materiál, ktorý len stratil kontext.';
-const pageImage = '/Keď sklad vie, čo prišlo, ale nevie, komu to patrí.png';
+const pageImage = '/ked-sklad-vie-co-prislo.webp';
 
 export const metadata: Metadata = {
   title: {
@@ -183,6 +183,9 @@ export default function StockContextNotePage() {
           <img
             src={pageImage}
             alt="Ilustračný vizuál k poznámke o sklade, príjemke a dohľadávaní pôvodnej potreby materiálu"
+            width={1672}
+            height={941}
+            decoding="async"
             className="w-full object-cover"
           />
         </figure>

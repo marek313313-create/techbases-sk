@@ -5,6 +5,8 @@ export type PracticeNote = {
   tags: string[];
   image?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 };
 
 export const practiceNotes: PracticeNote[] = [
@@ -14,8 +16,10 @@ export const practiceNotes: PracticeNote[] = [
     description:
       'Bez kontextu je nepohyblivá zásoba len zoznam položiek. Keď sa prepojí sklad, príjemka a objednávací návrh, dá sa zistiť, kto materiál potreboval a čo s ním má zmysel urobiť ďalej.',
     tags: ['nepohyblivá zásoba', 'ERP dáta', 'SAP', 'sklad', 'objednávacie návrhy', 'dátová stopa'],
-    image: '/Keď sklad vie, čo prišlo, ale nevie, komu to patrí.png',
+    image: '/ked-sklad-vie-co-prislo.webp',
     imageAlt: 'Ilustračný vizuál k poznámke o sklade, príjemke a dohľadávaní pôvodnej potreby materiálu',
+    imageWidth: 1672,
+    imageHeight: 941,
   },
   {
     title: 'Keď jedna položka v ERP znamená celú zostavu',
@@ -23,8 +27,10 @@ export const practiceNotes: PracticeNote[] = [
     description:
       'Prečo pri zostave nestačí pozrieť jednu skladovú kartu a ako sa z ERP dát dá rýchlo zistiť, čo je skladom, čo je rezervované a čo treba objednať.',
     tags: ['zostava', 'kusovník', 'rezervácie', 'objednávky'],
-    image: '/Keď jedna položka v ERP znamená celaú zostavu.png',
+    image: '/jedna-polozka-cela-zostava.webp',
     imageAlt: 'Ilustračný vizuál k poznámke o zostave, kusovníku a ERP dátach',
+    imageWidth: 1672,
+    imageHeight: 941,
   },
   {
     title: 'ERP dáta samé o sebe nevytvoria rozhodnutie',
@@ -32,8 +38,10 @@ export const practiceNotes: PracticeNote[] = [
     description:
       'Sklad môže ukazovať kusy, objednávka môže existovať a výdaj môže byť zaevidovaný. Otázka je, čo z toho platí pre konkrétnu opravu, zákazku alebo odstávku.',
     tags: ['ERP dáta', 'prevádzka', 'zodpovednosť za dáta', 'rozhodovanie'],
-    image: '/Dáta nie sú problém IT. Sú problem prevádzky..png',
+    image: '/data-nie-su-problem-it.webp',
     imageAlt: 'Ilustračný vizuál k poznámke o ERP dátach, prevádzke a rozhodovaní',
+    imageWidth: 1672,
+    imageHeight: 941,
   },
   {
     title: 'ERP nie je problém. Problém je, keď z neho nevzniká odpoveď.',
@@ -41,9 +49,11 @@ export const practiceNotes: PracticeNote[] = [
     description:
       'ERP môže byť správny zdroj dát. Ak však človek v prevádzke stále hľadá odpoveď cez viac obrazoviek, exportov a tabuliek, chýba pracovný pohľad medzi systémom a rozhodnutím.',
     tags: ['ERP dáta', 'prevádzka', 'ručné dohľadávanie', 'pracovný pohľad'],
-    image: '/ERP nie je problém. Problém je, keď z neho nevzniká odpoveď.png',
+    image: '/erp-nie-je-problem.webp',
     imageAlt:
       'Ilustračný vizuál k poznámke o ERP dátach, ručnom dohľadávaní a pracovnom pohľade',
+    imageWidth: 1535,
+    imageHeight: 1024,
   },
   {
     title: 'Nepohyblivá zásoba: ponechať, preradiť, vydať alebo zošrotovať',
@@ -57,8 +67,10 @@ export const practiceNotes: PracticeNote[] = [
       'údržba',
       'rozhodnutie z dát',
     ],
-    image: '/Nepohyblivá zásoba ponechať, preradiť, vydať alebo zošrotovať.png',
+    image: '/nepohybliva-zasoba-co-s-polozkami.webp',
     imageAlt: 'Ilustračný vizuál k poznámke o nepohyblivej zásobe a rozhodovaní o položkách',
+    imageWidth: 1254,
+    imageHeight: 1254,
   },
 ];
 

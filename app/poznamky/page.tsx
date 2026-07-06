@@ -70,6 +70,10 @@ export default function PracticeNotesPage() {
                 <img
                   src={note.image}
                   alt={note.imageAlt ?? ''}
+                  width={note.imageWidth}
+                  height={note.imageHeight}
+                  loading="lazy"
+                  decoding="async"
                   className="max-h-[320px] w-full rounded-xl object-contain"
                 />
               </Link>

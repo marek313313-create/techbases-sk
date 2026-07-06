@@ -101,9 +101,13 @@ const beforeAfter = {
 function MiniLogoBullet() {
   return (
     <img
-      src="/mini-logo.png"
+      src="/mini-logo.webp"
       alt=""
       aria-hidden="true"
+      width={64}
+      height={59}
+      loading="lazy"
+      decoding="async"
       className="mt-1 h-5 w-5 shrink-0 rounded object-cover"
     />
   );
@@ -135,7 +139,7 @@ export default function TechbasesHomepage() {
             playsInline
             loop
             preload="metadata"
-            poster="/techbase-logo-v2.png"
+            poster="/techbase-logo-v2.webp"
             aria-label="Animovaný vizuál značky TechBases"
           >
             <source src="/video.mp4" type="video/mp4" />
@@ -355,8 +359,12 @@ export default function TechbasesHomepage() {
             </ul>
             <figure className="mt-6">
               <img
-                src="/Frustracia.png"
+                src="/frustracia.webp"
                 alt="Ručné skladanie dát z exportov a Excelu"
+                width={1672}
+                height={941}
+                loading="lazy"
+                decoding="async"
                 className="max-h-[360px] w-full rounded-xl border border-slate-400/25 object-cover object-center shadow-2xl"
               />
               <figcaption className="mt-3 text-sm leading-6 text-slate-400">
@@ -379,7 +387,7 @@ export default function TechbasesHomepage() {
             </ul>
             <figure className="mt-6">
               <a
-                href="/ukazky/vydaj-materialu.png"
+                href="/ukazky/vydaj-materialu.webp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative block overflow-hidden rounded-xl border border-blue-300/25 bg-slate-950/70 shadow-2xl"
@@ -389,8 +397,12 @@ export default function TechbasesHomepage() {
                   Anonymizovaná ukážka
                 </div>
                 <img
-                  src="/ukazky/vydaj-materialu.png"
+                  src="/ukazky/vydaj-materialu.webp"
                   alt="Anonymizovaný pracovný pohľad na výdaje materiálu"
+                  width={1672}
+                  height={941}
+                  loading="lazy"
+                  decoding="async"
                   className="max-h-[300px] w-full object-cover object-top transition duration-300 group-hover:scale-[1.02]"
                 />
               </a>
@@ -448,8 +460,12 @@ export default function TechbasesHomepage() {
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:items-center">
             <img
-              src="/profilovka.png"
+              src="/profilovka.webp"
               alt="Marek Belko"
+              width={160}
+              height={160}
+              loading="lazy"
+              decoding="async"
               className="h-16 w-16 rounded-full object-cover"
             />
             <div>

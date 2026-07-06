@@ -5,7 +5,7 @@ const canonicalUrl = 'https://techbases.sk/poznamky/nepohybliva-zasoba-co-s-polo
 const pageTitle = 'Nepohyblivá zásoba: čo s položkami | TechBases.sk';
 const pageDescription =
   'Nepohyblivá zásoba nie je automaticky odpad. Ako rozhodnúť, ktoré položky ponechať, preradiť, vydať na údržbu, znížiť alebo zošrotovať.';
-const pageImage = '/Nepohyblivá zásoba ponechať, preradiť, vydať alebo zošrotovať.png';
+const pageImage = '/nepohybliva-zasoba-co-s-polozkami.webp';
 
 export const metadata: Metadata = {
   title: {
@@ -211,6 +211,9 @@ export default function SlowMovingStockDecisionNotePage() {
           <img
             src={pageImage}
             alt="Ilustračný vizuál k poznámke o nepohyblivej zásobe a rozhodovaní o položkách"
+            width={1254}
+            height={1254}
+            decoding="async"
             className="w-full object-cover"
           />
         </figure>

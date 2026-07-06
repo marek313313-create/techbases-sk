@@ -13,25 +13,25 @@ const solutionPreviews: SolutionPreview[] = [
   {
     title: 'Kritické diely a objednávky',
     text: 'Ukážkový anonymizovaný pohľad: vidíte, ktoré položky chýbajú, čakajú na dodanie alebo môžu zdržať opravu.',
-    image: '/ukazky/interny-prehlad-poloziek.png',
+    image: '/ukazky/interny-prehlad-poloziek.webp',
     alt: 'Ukážkový anonymizovaný pracovný pohľad na kritické diely a objednávky',
   },
   {
     title: 'Výdaje materiálu',
     text: 'Ukážkový anonymizovaný pohľad: vidíte spotrebu materiálu podľa prác, zákaziek alebo období.',
-    image: '/ukazky/vydaj-materialu.png',
+    image: '/ukazky/vydaj-materialu.webp',
     alt: 'Ukážkový anonymizovaný pracovný pohľad na výdaje materiálu',
   },
   {
     title: 'Nepohyblivá zásoba',
     text: 'Ukážkový anonymizovaný pohľad: vidíte diely, ktoré viažu peniaze, ale dlhodobo sa nehýbu.',
-    image: '/ukazky/nepohybliva-zasoba.png',
+    image: '/ukazky/nepohybliva-zasoba.webp',
     alt: 'Ukážkový anonymizovaný pracovný pohľad na nepohyblivú zásobu',
   },
   {
     title: 'Prestoje a poruchy',
     text: 'Ukážkový anonymizovaný pohľad: vidíte opakované problémy, trendy a zariadenia s najväčším dopadom.',
-    image: '/ukazky/prestoje-priorita-zasahu.png',
+    image: '/ukazky/prestoje-priorita-zasahu.webp',
     alt: 'Ukážkový anonymizovaný pracovný pohľad na prestoje a poruchy',
   },
 ];
@@ -90,6 +90,10 @@ export function SolutionPreviews() {
               <img
                 src={preview.image}
                 alt={preview.alt}
+                width={1672}
+                height={941}
+                loading="lazy"
+                decoding="async"
                 className="aspect-[16/10] w-full object-cover object-top transition duration-300 group-hover:scale-[1.02]"
               />
             </button>
@@ -140,6 +144,9 @@ export function SolutionPreviews() {
               <img
                 src={activePreview.image}
                 alt={activePreview.alt}
+                width={1672}
+                height={941}
+                decoding="async"
                 className="w-full bg-slate-950 object-contain"
               />
               <div className="grid gap-3 border-t border-slate-800 px-5 py-4 text-sm leading-6 text-slate-400 md:grid-cols-[1fr_auto] md:items-center">
