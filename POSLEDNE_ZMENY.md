@@ -1,6 +1,51 @@
 # Posledné zmeny
 
-Aktualizované: 2026-07-06
+Aktualizované: 2026-10-21
+
+## Nasadené 2026-10-21 — dve služby pod jednou značkou
+
+Worker `techbases-sk`, verzia `707ed18a-8975-4b71-85a8-f46d7dbee3ba`; predchádzajúca
+verzia `4357e261-8b4d-4644-9eae-761322b6ff16` (návrat: `npx wrangler rollback`).
+Next.js 15.5.15 už nemá oficiálnu podporu, OpenNext preto build bez prepínača
+odmietne: `npx opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion`
+a potom `npx opennextjs-cloudflare deploy`. Prechod na Next 16 je samostatná úloha.
+
+- Úvod (`app/page.tsx`) je rozcestník: nový hero, dve ponuky (Tvorba webov →
+  `/tvorba-webov`, Firemné nástroje a dáta → `/sluzby`), sekcia `#realizacie`,
+  spoločný postup, predstavenie autora a `#kontakt` s dvoma vstupmi.
+- Nová predajná stránka `/tvorba-webov` (balík 500 – 1 200 €, postup, FAQ,
+  dopyt vs. rezervácia, JSON-LD Service + FAQPage, vlastné OG).
+- Priemyselný obsah z pôvodného úvodu (kontrola exportov, pilot, pred/po,
+  ukážky `#ukazky-riesenia`, poznámky, FAQ + FAQPage JSON-LD) je presunutý na
+  `/sluzby`. Starý odkaz `/#ukazky-riesenia` ostáva funkčný — na úvode má
+  rovnaké `id` karta anonymizovaného pilotu s odkazom na `/sluzby#ukazky-riesenia`.
+- Realizácie webov: `app/components/web-realizations.tsx` (Zrub pri Hrone – vo
+  vývoji, OslovMa.sk – spustený web; typ a stav sa pri ňom zámerne nezobrazujú).
+  Snímky obrazovky
+  živých webov z 21. 10. 2026 v `public/realizacie/` (zdrojové PNG v `assets-src/`).
+- Kontakt: `inquiryLinks` v `app/site-data.ts` (mailto s predvyplneným predmetom
+  a telom + WhatsApp text pre web aj pre dáta), komponent `InquiryCard`.
+  Formulár má voliteľnú tému (`web` / `data` / `ine`), predvyberie sa cez
+  `/kontakt?tema=web#formular`; API ju pridá do predmetu e-mailu.
+- Navigácia: Tvorba webov, Firemné nástroje, Realizácie, O mne, Kontakt;
+  poznámky, ukážky, audit a sklad ND sú v pätičke. Mobilné menu má focus trap
+  a položku Úvod. Pribudol skip link a globálny `:focus-visible`.
+- Odstránené `app/sluzby/layout.tsx` a `app/audit-erp-dat/layout.tsx` — boli to
+  šablónové root layouty z create-next-app, vnárali druhý `<html lang="en">`
+  a spôsobovali hydration error.
+- Mobil: `main .flex` sa zalamuje len bez triedy `flex-nowrap` (riadky ikona +
+  text sa už nerozpadajú); video v hero je na úzkom displeji stlmené kvôli
+  kontrastu textu.
+- Meta/OG texty pre obe služby, nový `public/og-image.png`
+  (`assets-src/make-og-image.mjs`), sitemap s `/tvorba-webov`.
+- Root layout už nenastavuje OG/Twitter titulok, popis ani `og:url` — každá
+  stránka ich preberá zo svojich metadát (predtým všetky hlásili úvod).
+- Prístupnosť po revízii: ciele kotiev (`#realizacie`, `#formular`, `#dopyt`)
+  prijímajú fokus, formulár presúva fokus na prvú chybu a na potvrdenie,
+  mobilné menu zamyká posúvanie cez `html`, kontrastnejší skip link a
+  fokus WhatsApp tlačidla, všeobecné mailto má predmet (`generalMailto`).
+- Ochrana osobných údajov: opravená nepravdivá veta, že web nemá kontaktný
+  formulár (doplnený formulár a Resend) — na kontrolu autorom.
 
 ## Najnovšie commity
 

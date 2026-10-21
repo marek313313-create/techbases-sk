@@ -4,7 +4,14 @@ const MAX_NAME_LENGTH = 120;
 const MAX_EMAIL_LENGTH = 200;
 const MAX_MESSAGE_LENGTH = 5000;
 
+const TOPIC_LABELS = new Map([
+  ['web', 'Tvorba webu'],
+  ['data', 'Firemné nástroje a dáta'],
+  ['ine', 'Iné'],
+]);
+
 type ContactPayload = {
+  topic?: unknown;
   name?: unknown;
   email?: unknown;
   message?: unknown;
@@ -28,6 +35,8 @@ export async function POST(request: Request) {
   const email = asTrimmedString(payload.email);
   const message = asTrimmedString(payload.message);
   const honeypot = asTrimmedString(payload.website);
+  // Neznáma alebo chýbajúca téma nie je chyba – správa sa len neoznačí
+  const topicLabel = TOPIC_LABELS.get(asTrimmedString(payload.topic)) ?? '';
 
   // Honeypot: botom potvrdíme úspech, ale nič neposielame
   if (honeypot) {
@@ -71,8 +80,8 @@ export async function POST(request: Request) {
       from: 'TechBases web <web@techbases.sk>',
       to: ['kontakt@techbases.sk'],
       reply_to: email,
-      subject: `Správa z webu od: ${name}`,
-      text: `Meno: ${name}\nE-mail: ${email}\n\n${message}`,
+      subject: `${topicLabel ? `[${topicLabel}] ` : ''}Správa z webu od: ${name}`,
+      text: `Téma: ${topicLabel || 'neuvedená'}\nMeno: ${name}\nE-mail: ${email}\n\n${message}`,
     }),
   });
 

@@ -6,11 +6,26 @@ export const metadata: Metadata = {
     absolute: 'O mne | Marek Belko — TechBases.sk',
   },
   description:
-    'Marek Belko — 19 rokov v údržbe, výrobe a plánovaní. TechBases vznikol z praktickej skúsenosti s tým, že odpovede v prevádzke stále vznikajú ručne napriek existujúcim ERP dátam.',
+    'Marek Belko — 19 rokov v údržbe, výrobe a plánovaní. Pod značkou TechBases tvorím firemné nástroje z ERP dát a prezentačné weby na mieru.',
   alternates: {
     canonical: '/o-mne',
   },
 };
+
+const services = [
+  {
+    title: 'Firemné nástroje a dáta',
+    text: 'Pracovné prehľady z ERP, Excelu a exportov pre údržbu, sklad, výrobu a plánovanie. Tu najviac zúročujem prax z prevádzky.',
+    href: '/sluzby',
+    cta: 'Firemné nástroje',
+  },
+  {
+    title: 'Tvorba webov',
+    text: 'Prezentačné weby na mieru pre firmy, živnostníkov, ubytovanie aj osobné projekty: prehľadná ponuka, mobilná verzia, galéria a kontakt.',
+    href: '/tvorba-webov',
+    cta: 'Tvorba webov',
+  },
+];
 
 const principles = [
   {
@@ -55,6 +70,10 @@ export default function AboutPage() {
             prevádzkový prehľad nad dátami, ktoré firma už má — aby ľudia
             v sklade, údržbe a výrobe vedeli rýchlejšie rozhodovať.
           </p>
+          <p className="mt-4 max-w-3xl leading-8 text-slate-400">
+            Popri firemných nástrojoch tvorím aj prezentačné weby na mieru. Pri
+            oboch platí to isté: robím ich sám a komunikujete priamo so mnou.
+          </p>
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-xl">
@@ -76,7 +95,7 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="kicker mt-8 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-            Kedy má spolupráca zmysel
+            Kedy má zmysel firemný nástroj
           </div>
           <div className="mt-5 grid gap-4">
             <div className="rounded-xl border border-slate-800 bg-slate-950 p-5 text-slate-300">
@@ -95,6 +114,31 @@ export default function AboutPage() {
               ktorý ukáže, či má riešenie reálny prínos.
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mt-16">
+        <div className="max-w-3xl">
+          <h2 className="text-3xl font-bold">Čo pod značkou TechBases robím</h2>
+        </div>
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {services.map((item) => (
+            <div
+              key={item.href}
+              className="flex flex-col rounded-2xl border border-blue-400/25 bg-gradient-to-br from-blue-600/10 to-slate-900 p-6 md:p-8"
+            >
+              <h3 className="text-2xl font-semibold">{item.title}</h3>
+              <p className="mt-3 leading-7 text-slate-300">{item.text}</p>
+              <div className="mt-auto pt-6">
+                <Link
+                  href={item.href}
+                  className="inline-flex rounded-xl border border-slate-600 px-4 py-2 text-sm font-medium text-slate-100 transition hover:border-blue-400/50 hover:bg-slate-950"
+                >
+                  {item.cta} →
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -133,12 +177,18 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-        <div className="mt-8">
+        <div className="mt-8 flex flex-wrap gap-4">
           <Link
             href="/kontakt"
-            className="rounded-xl bg-blue-600 px-5 py-3 font-medium shadow-lg shadow-blue-900/30 transition hover:bg-blue-500"
+            className="inline-flex rounded-xl bg-blue-600 px-5 py-3 font-medium shadow-lg shadow-blue-900/30 transition hover:bg-blue-500"
           >
             Opísať problém
+          </Link>
+          <Link
+            href="/tvorba-webov#dopyt"
+            className="inline-flex rounded-xl border border-slate-700 px-5 py-3 font-medium text-slate-200 transition hover:bg-slate-950"
+          >
+            Dopyt na web
           </Link>
         </div>
       </section>

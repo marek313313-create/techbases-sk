@@ -15,14 +15,71 @@ export type FaqItem = {
   answer: string;
 };
 
-export const whatsAppUrl =
-  'https://wa.me/421948684756?text=Dobr%C3%BD%20de%C5%88%2C%20m%C3%A1m%20z%C3%A1ujem%20o%20rie%C5%A1enie%20pre%20preh%C4%BEad%20%C3%BAdr%C5%BEby%20a%20skladu.';
+export type InquiryTopic = 'web' | 'data';
 
-export const navLinks = [
-  { href: '/', label: 'Domov' },
-  { href: '/sluzby', label: 'Služby' },
-  { href: '/#ukazky-riesenia', label: 'Ukážky' },
-  { href: '/poznamky', label: 'Poznámky' },
+export type NavLink = {
+  href: string;
+  label: string;
+  // ďalšie cesty, na ktorých má byť položka označená ako aktívna
+  activePaths?: string[];
+};
+
+export const contactEmail = 'kontakt@techbases.sk';
+
+function buildMailto(subject: string, body: string) {
+  return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function buildWhatsAppUrl(text: string) {
+  return `https://wa.me/421948684756?text=${encodeURIComponent(text)}`;
+}
+
+export const whatsAppUrl = buildWhatsAppUrl('Dobrý deň, píšem vám z webu TechBases.sk.');
+
+export const generalMailto = `mailto:${contactEmail}?subject=${encodeURIComponent('Správa z webu TechBases.sk')}`;
+
+// Dva vstupy do kontaktu: dopyt na web a opis prevádzkového problému
+export const inquiryLinks: Record<InquiryTopic, { mailto: string; whatsApp: string }> = {
+  web: {
+    mailto: buildMailto(
+      'Dopyt na tvorbu webu',
+      [
+        'Dobrý deň,',
+        '',
+        'mám záujem o prezentačný web.',
+        '',
+        'Čím sa zaoberám / čo ponúkam:',
+        'Mám už web alebo doménu (odkaz):',
+        'Podklady, ktoré mám (texty, fotografie, logo, video):',
+        'Predstava termínu:',
+        '',
+      ].join('\n'),
+    ),
+    whatsApp: buildWhatsAppUrl('Dobrý deň, mám záujem o tvorbu webu.'),
+  },
+  data: {
+    mailto: buildMailto(
+      'Opis prevádzkového problému',
+      [
+        'Dobrý deň,',
+        '',
+        'Čo dnes hľadáme ručne:',
+        'Z akých systémov alebo exportov dáta pochádzajú:',
+        'Kto by s výstupom pracoval:',
+        'Ako často sa problém opakuje:',
+        '',
+      ].join('\n'),
+    ),
+    whatsApp: buildWhatsAppUrl(
+      'Dobrý deň, mám záujem o riešenie pre prehľad údržby a skladu.',
+    ),
+  },
+};
+
+export const navLinks: NavLink[] = [
+  { href: '/tvorba-webov', label: 'Tvorba webov' },
+  { href: '/sluzby', label: 'Firemné nástroje', activePaths: ['/audit-erp-dat'] },
+  { href: '/#realizacie', label: 'Realizácie' },
   { href: '/o-mne', label: 'O mne' },
   { href: '/kontakt', label: 'Kontakt' },
 ];

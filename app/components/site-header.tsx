@@ -4,16 +4,20 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { PhoneIcon } from './contact-icons';
-import { navLinks } from '../site-data';
+import { navLinks, type NavLink } from '../site-data';
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const menuPanelRef = useRef<HTMLDivElement>(null);
   const visibleNavLinks = navLinks.filter((item) => item.href !== '/kontakt');
 
-  const isActive = (href: string) => {
+  const matchesPath = (baseHref: string) =>
+    pathname === baseHref || pathname.startsWith(`${baseHref}/`);
+
+  const isActive = ({ href, activePaths = [] }: NavLink) => {
     const baseHref = href.split('#')[0];
 
     if (href.includes('#')) {
@@ -24,7 +28,7 @@ export function SiteHeader() {
       return pathname === '/';
     }
 
-    return pathname === baseHref || pathname.startsWith(`${baseHref}/`);
+    return matchesPath(baseHref) || activePaths.some(matchesPath);
   };
 
   useEffect(() => {
@@ -40,14 +44,40 @@ export function SiteHeader() {
       if (event.key === 'Escape') {
         setMenuOpen(false);
         menuButtonRef.current?.focus();
+        return;
+      }
+
+      // Focus trap: Tab cykluje vnútri otvoreného menu
+      if (event.key === 'Tab') {
+        const focusable = menuPanelRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled])',
+        );
+
+        if (!focusable || focusable.length === 0) {
+          return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     }
 
+    // html má overflow-x: hidden, preto posúvanie stránky riadi html, nie body
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
     closeButtonRef.current?.focus();
 
     return () => {
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
@@ -62,10 +92,10 @@ export function SiteHeader() {
     <>
       <header className="relative overflow-hidden border-b border-[rgba(64,120,180,0.22)] bg-[rgba(3,8,24,0.94)] shadow-[0_12px_40px_rgba(0,0,0,0.28)] backdrop-blur-[14px] after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-[linear-gradient(90deg,transparent,rgba(0,132,255,0.8),transparent)]">
         <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-2.5 sm:px-6">
-          <Link href="/" className="flex shrink-0 items-center">
+          <Link href="/" className="flex shrink-0 items-center rounded-lg">
             <img
               src="/techbase-logo-v2.webp"
-              alt="TechBases logo"
+              alt="TechBases.sk – úvodná stránka"
               width={347}
               height={112}
               decoding="async"
@@ -74,9 +104,12 @@ export function SiteHeader() {
           </Link>
 
           <div className="hidden lg:flex lg:items-center lg:gap-4">
-            <nav className="flex flex-wrap items-center gap-1.5 rounded-xl border border-white/8 bg-slate-950/35 p-1 shadow-inner shadow-black/25">
+            <nav
+              aria-label="Hlavná navigácia"
+              className="flex flex-wrap items-center gap-1.5 rounded-xl border border-white/8 bg-slate-950/35 p-1 shadow-inner shadow-black/25"
+            >
               {visibleNavLinks.map((item) => {
-                const active = isActive(item.href);
+                const active = isActive(item);
 
                 return (
                   <Link
@@ -153,7 +186,12 @@ export function SiteHeader() {
       </header>
 
       {menuOpen ? (
-        <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
+        <div
+          className="fixed inset-0 z-50 lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+        >
           <div
             className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"
             onClick={closeMenu}
@@ -161,6 +199,7 @@ export function SiteHeader() {
           />
           <div
             id="mobile-menu"
+            ref={menuPanelRef}
             className="absolute right-0 top-0 flex h-full w-72 max-w-[85%] flex-col gap-6 overflow-y-auto border-l border-slate-800 bg-slate-950 p-6 shadow-2xl"
           >
             <div className="flex items-center justify-between">
@@ -178,9 +217,9 @@ export function SiteHeader() {
               </button>
             </div>
 
-            <nav className="grid gap-1.5">
-              {visibleNavLinks.map((item) => {
-                const active = isActive(item.href);
+            <nav aria-label="Hlavná navigácia" className="grid gap-1.5">
+              {[{ href: '/', label: 'Úvod' }, ...visibleNavLinks].map((item) => {
+                const active = isActive(item);
 
                 return (
                   <Link

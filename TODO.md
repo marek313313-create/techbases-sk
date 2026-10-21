@@ -19,7 +19,20 @@ nastavený, formulár vráti zrozumiteľnú chybu s odkazom na e-mail (nič sa n
    `npx wrangler secret put RESEND_API_KEY`
 4. Znova nasadiť: `npm run deploy` a otestovať formulár.
 
+## 0c. Realizácie webov — podklady
+
+- Snímky Zrub pri Hrone a OslovMa.sk sú z 21. 10. 2026. Pri väčšej zmene niektorého
+  webu ich obnoviť (1440×900 a 390×844 @2x, prefers-reduced-motion) a previesť
+  na WebP do `public/realizacie/` (šírka 1200 a 480 px).
+- Pred nasadením si overiť, že majiteľ Zrubu pri Hrone súhlasí so zverejnením
+  snímok a odkazu na TechBases.sk.
+- Keď bude Zrub pri Hrone hotový, zmeniť stav „Vo vývoji“ v
+  `app/components/web-realizations.tsx`.
+
 ## 1. Kompresia videa (ffmpeg nie je v prostredí dostupné)
+
+Pozn.: ffmpeg je lokálne k dispozícii v
+`E:\Marek (Dev)\Zrubprihrone.sk\.tmp\media-tools\ffmpeg.exe`.
 
 `public/video.mp4` má ~3 MB. Po nainštalovaní ffmpeg (napr. `winget install Gyan.FFmpeg`)
 spustiť z koreňa projektu:

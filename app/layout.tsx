@@ -20,11 +20,11 @@ const cfAnalyticsToken = process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN;
 export const metadata: Metadata = {
   metadataBase: new URL('https://techbases.sk'),
   title: {
-    default: 'TechBases.sk | ERP dáta pre údržbu, sklad a výrobu',
+    default: 'TechBases.sk | Webové stránky a firemné nástroje na mieru',
     template: '%s | TechBases.sk',
   },
   description:
-    'TechBases spája ERP exporty, sklad, výdaje, objednávky, prestoje a plánovanie do jedného pracovného pohľadu pre údržbu, sklad a výrobu.',
+    'Tvorím prezentačné weby na mieru pre firmy aj jednotlivcov a praktické prehľady z ERP, Excelu a exportov pre údržbu, sklad, výrobu a plánovanie.',
   alternates: {
     canonical: '/',
   },
@@ -33,11 +33,8 @@ export const metadata: Metadata = {
     shortcut: '/mini-logo.png',
     apple: '/mini-logo.png',
   },
+  // Titulok, popis a URL pre OG/Twitter si každá stránka berie zo svojich metadát
   openGraph: {
-    title: 'TechBases.sk',
-    description:
-      'Pracovný pohľad nad ERP dátami pre výrobu, údržbu, sklad náhradných dielov a plánovanie prác.',
-    url: 'https://techbases.sk',
     siteName: 'TechBases.sk',
     locale: 'sk_SK',
     type: 'website',
@@ -46,15 +43,12 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'TechBases.sk — pracovný pohľad nad ERP dátami pre údržbu, sklad a výrobu',
+        alt: 'TechBases.sk — webové stránky a firemné nástroje na mieru',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TechBases.sk',
-    description:
-      'Pracovný pohľad nad ERP dátami pre výrobu, údržbu, sklad náhradných dielov a plánovanie prác.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -78,10 +72,15 @@ export default function RootLayout({
   return (
     <html lang="sk" className={spaceGrotesk.variable}>
       <body className="bg-slate-950 text-slate-100 antialiased">
+        <a href="#obsah" className="skip-link">
+          Preskočiť na obsah
+        </a>
         <div className="min-h-screen bg-slate-950 text-slate-100">
           <SiteHeader />
           <RevealOnScroll />
-          {children}
+          <div id="obsah" tabIndex={-1} className="outline-none">
+            {children}
+          </div>
           <SiteFooter />
         </div>
         {cfAnalyticsToken ? (

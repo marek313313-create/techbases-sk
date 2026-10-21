@@ -114,7 +114,7 @@ function BulletList({ items }: { items: string[] }) {
   return (
     <ul className="mt-5 grid gap-3 text-slate-300">
       {items.map((item) => (
-        <li key={item} className="flex gap-3 leading-7">
+        <li key={item} className="flex flex-nowrap gap-3 leading-7">
           <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
           <span>{item}</span>
         </li>
@@ -190,7 +190,7 @@ export default function ErpDataAuditPage() {
           {fitItems.map((item) => (
             <div
               key={item}
-              className="flex gap-3 rounded-xl border border-slate-800 bg-slate-950/70 p-4 leading-7 text-slate-300"
+              className="flex flex-nowrap gap-3 rounded-xl border border-slate-800 bg-slate-950/70 p-4 leading-7 text-slate-300"
             >
               <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
               <span>{item}</span>

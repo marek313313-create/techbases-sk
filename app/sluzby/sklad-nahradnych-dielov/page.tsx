@@ -133,7 +133,7 @@ const breadcrumbStructuredData = {
     {
       '@type': 'ListItem',
       position: 2,
-      name: 'Služby',
+      name: 'Firemné nástroje',
       item: 'https://techbases.sk/sluzby',
     },
     {
@@ -207,7 +207,7 @@ export default function SparePartsInventoryPage() {
               href="/sluzby"
               className="rounded-xl border border-slate-700 px-5 py-3 font-medium text-slate-200 transition hover:bg-slate-900"
             >
-              Pozrieť všetky služby
+              Pozrieť všetky firemné nástroje
             </Link>
           </div>
         </div>
@@ -267,7 +267,7 @@ export default function SparePartsInventoryPage() {
           <h2 className="text-3xl font-bold">Kde to typicky bolí</h2>
           <ul className="mt-6 grid gap-3 text-slate-300">
             {painPoints.map((item) => (
-              <li key={item} className="flex gap-3 leading-7">
+              <li key={item} className="flex flex-nowrap gap-3 leading-7">
                 <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
                 <span>{item}</span>
               </li>
@@ -311,7 +311,7 @@ export default function SparePartsInventoryPage() {
           <h2 className="text-2xl font-semibold">Čo pilot ukáže</h2>
           <ul className="mt-5 grid gap-3 text-slate-400">
             {outputs.map((item) => (
-              <li key={item} className="flex gap-3 leading-7">
+              <li key={item} className="flex flex-nowrap gap-3 leading-7">
                 <MiniLogoBullet />
                 <span>{item}</span>
               </li>

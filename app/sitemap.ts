@@ -3,12 +3,14 @@ import { practiceNotes } from './poznamky/poznamky-data';
 
 const siteUrl = 'https://techbases.sk';
 const staticLastModified = new Date('2026-07-06');
+const twoServicesLastModified = new Date('2026-10-21');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
-    { path: '', priority: 1 },
+    { path: '', priority: 1, lastModified: twoServicesLastModified },
+    { path: '/tvorba-webov', priority: 0.9, lastModified: twoServicesLastModified },
     { path: '/audit-erp-dat', priority: 0.88 },
-    { path: '/sluzby', priority: 0.9 },
+    { path: '/sluzby', priority: 0.9, lastModified: twoServicesLastModified },
     { path: '/sluzby/sklad-nahradnych-dielov', priority: 0.95 },
     { path: '/poznamky', priority: 0.85 },
     ...practiceNotes.map((note) => ({
@@ -20,9 +22,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
           : 0.65,
       lastModified: new Date(note.dateModified),
     })),
-    { path: '/o-mne', priority: 0.8 },
-    { path: '/kontakt', priority: 0.8 },
-    { path: '/ochrana-osobnych-udajov', priority: 0.5 },
+    { path: '/o-mne', priority: 0.8, lastModified: twoServicesLastModified },
+    { path: '/kontakt', priority: 0.8, lastModified: twoServicesLastModified },
+    {
+      path: '/ochrana-osobnych-udajov',
+      priority: 0.5,
+      lastModified: twoServicesLastModified,
+    },
   ];
 
   return routes.map((route) => ({

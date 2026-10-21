@@ -21,7 +21,8 @@ export default function PrivacyPage() {
         </h1>
         <p className="mt-6 leading-8 text-slate-300">
           Táto stránka vysvetľuje základný spôsob spracúvania osobných údajov,
-          ak ma kontaktujete prostredníctvom e-mailu alebo telefonicky.
+          ak ma kontaktujete prostredníctvom e-mailu, telefonicky, cez WhatsApp
+          alebo cez kontaktný formulár na webe.
         </p>
       </section>
 
@@ -78,9 +79,11 @@ export default function PrivacyPage() {
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-7">
           <h2 className="text-2xl font-semibold">Doplňujúca poznámka</h2>
           <p className="mt-4 leading-8 text-slate-400">
-            Na webe momentálne nie je registračný systém ani kontaktný formulár.
-            Akékoľvek údaje mi poskytujete najmä cez e-mailový alebo telefonický
-            kontakt z vašej iniciatívy.
+            Na webe nie je registrácia ani prihlasovanie. Údaje mi poskytujete
+            z vlastnej iniciatívy, keď ma kontaktujete. Ak použijete kontaktný
+            formulár, meno, e-mail, zvolená téma a text správy sa mi doručia
+            e-mailom na kontakt@techbases.sk prostredníctvom e-mailovej služby
+            Resend.
           </p>
         </div>
       </section>
