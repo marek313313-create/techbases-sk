@@ -4,6 +4,37 @@ Stav k 1. 11. 2026: **V2 je nasadená ako hlavný web techbases.sk** (commit `17
 `main`, verzia Workera `a6fbd18d-9f0b-4a01-8352-87e11ba7f2e5`). Postup a kontroly sú
 v časti „Nasadenie V2“.
 
+## Pokračovanie (uložené 1. 11. 2026 večer)
+
+Všetko je commitnuté a pushnuté (`main` = `origin/main`), produkcia beží na verzii
+`a6fbd18d`; návrat na predchádzajúcu:
+`npx wrangler rollback fb648e34-5939-4243-8948-15eea4fd53ed`, pôvodný web `707ed18a`.
+
+**Na Marekovi (mimo kódu):**
+
+1. Search Console: odoslať `sitemap.xml`, požiadať o indexovanie `/`, `/sluzby` a štyroch
+   `/realizacie/…` (postup v „SEO a indexovanie“).
+2. Potvrdiť doručenie 3 testovacích e-mailov do `kontakt@techbases.sk` (predmety
+   „TEST nasadenia…“ z `/#dopyt`, `/kontakt`, `/sluzby#dopyt`).
+3. Rozhodnutia o podpore po spustení (body 1–6 v „Rozhodnutia pred produkčným nasadením“):
+   oprava chýb, zálohy, prístupy a odovzdanie, CMS, ceny doplnkov, platobné podmienky.
+4. Podklady: hodnotenie majiteľa Zrubu pri Hrone, prirodzene osvetlený portrét.
+
+**Ďalšie úlohy na webe (navrhnuté poradie):**
+
+1. `/sluzby/sklad-nahradnych-dielov` prerobiť do vzhľadu V2 – stále má staré náhľady
+   `/ukazky/*` (komponent `SolutionPreviews`).
+2. Obsah `/kontakt`, `/poznamky` a `/audit-erp-dat` do vzhľadu V2 (hlavička a pätička už
+   jednotné); potom odstrániť `ProductionOnly`, `RevealOnScroll` a staré triedy v `globals.css`.
+3. Prípadne ďalšie anonymizované snímky Archívu (štatistika prestojov, inšpekcie) – postup
+   anonymizácie je v „Snímky firemných nástrojov“.
+4. Technické: upgrade Next.js 16 (dnes build s `--dangerouslyUseUnsupportedNextVersion`),
+   `tsconfig.tsbuildinfo` do `.gitignore`, zmazať zlúčenú lokálnu vetvu `v2-navrh`.
+
+**Pravidlá, ktoré platia:** Techbases a Archív údržby sú „Interný nástroj“, Archív sa na
+webe opisuje len ako online (žiadne USB/offline) a nepíše sa o firemnom nasadení; deploy ide
+lokálne cez wrangler (účet TechBases), pred deployom `opennextjs-cloudflare preview`.
+
 ## Ako otvoriť
 
     npm run dev
