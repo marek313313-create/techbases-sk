@@ -22,12 +22,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: {
-      absolute: `${project.name} – realizácia | TechBases.sk (návrh V2)`,
-    },
+    title: `${project.name} – realizácia`,
     description: project.summary,
     alternates: {
-      canonical: `/v2/realizacie/${project.slug}`,
+      canonical: `/realizacie/${project.slug}`,
+    },
+    openGraph: {
+      title: `${project.name} – realizácia | TechBases.sk`,
+      description: project.summary,
+      url: `https://techbases.sk/realizacie/${project.slug}`,
+      siteName: 'TechBases.sk',
+      locale: 'sk_SK',
+      type: 'website',
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: 'TechBases.sk — webové stránky a firemné nástroje na mieru',
+        },
+      ],
     },
   };
 }
@@ -48,7 +62,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       <section className="v2-dark v2-hero">
         <div className="v2-container">
           <Link
-            href={isWebProject ? '/v2#realizacie' : '/v2#firemne-nastroje'}
+            href={isWebProject ? '/#realizacie' : '/#firemne-nastroje'}
             className="v2-link v2-small"
           >
             {isWebProject ? '← Späť na realizácie' : '← Späť na firemné nástroje'}
@@ -194,13 +208,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
-              href={isWebProject ? '/v2#dopyt' : '/kontakt?tema=data#formular'}
+              href={isWebProject ? '/#dopyt' : '/kontakt?tema=data#formular'}
               className="v2-btn v2-btn-primary"
             >
               {isWebProject ? 'Nezáväzne naceniť web' : 'Opísať problém'}
             </Link>
             <Link
-              href={isWebProject ? '/v2#realizacie' : '/sluzby'}
+              href={isWebProject ? '/#realizacie' : '/sluzby'}
               className="v2-btn v2-btn-secondary"
             >
               {isWebProject ? 'Ďalšie realizácie' : 'Firemné nástroje a dáta'}

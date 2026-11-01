@@ -5,15 +5,60 @@ import { BrowserFrame, PhoneFrame } from './components/device-frames';
 import { InquiryForm } from './components/inquiry-form';
 import { getProject, type Project } from './projects';
 
+const pageTitle = 'TechBases.sk | Webové stránky na mieru';
+const pageDescription =
+  'Webové stránky pre firmy, živnostníkov a ubytovacie zariadenia. Individuálny dizajn a priama spolupráca od návrhu až po spustenie.';
+
 export const metadata: Metadata = {
   title: {
-    absolute: 'TechBases.sk | Webové stránky na mieru (návrh V2)',
+    absolute: pageTitle,
   },
-  description:
-    'Webové stránky pre firmy, živnostníkov a ubytovacie zariadenia. Individuálny dizajn a priama spolupráca od návrhu až po spustenie.',
+  description: pageDescription,
   alternates: {
-    canonical: '/v2',
+    canonical: '/',
   },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: 'https://techbases.sk',
+    siteName: 'TechBases.sk',
+    locale: 'sk_SK',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'TechBases.sk — webové stránky a firemné nástroje na mieru',
+      },
+    ],
+  },
+};
+
+// Prevzaté z pôvodnej úvodnej stránky, aby vyhľadávače nestratili údaje o službe
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'TechBases.sk',
+  url: 'https://techbases.sk',
+  image: 'https://techbases.sk/techbase-logo-v2.png',
+  description:
+    'Tvorba prezentačných webov na mieru a pracovné prehľady nad ERP exportmi, skladom náhradných dielov, výdajmi, objednávkami, prestojmi a plánovaním údržby.',
+  email: 'kontakt@techbases.sk',
+  telephone: '+421948684756',
+  areaServed: 'Slovakia',
+  founder: {
+    '@type': 'Person',
+    name: 'Marek Belko',
+  },
+  serviceType: [
+    'Tvorba webových stránok na mieru',
+    'Pracovný pohľad nad ERP dátami',
+    'Sklad náhradných dielov',
+    'Objednávky a výdaje materiálu',
+    'Plánovanie údržby',
+    'Prestoje výroby a opakované poruchy',
+  ],
 };
 
 // Úvod drží len stručné, porovnateľné body; podrobnosti sú v detailoch realizácií.
@@ -197,7 +242,7 @@ function FeaturedProject({
       </div>
 
       <Link
-        href={`/v2/realizacie/${project.slug}`}
+        href={`/realizacie/${project.slug}`}
         className="v2-shot-link relative mt-2 block pb-8"
         aria-label={`Detail realizácie ${project.name}`}
       >
@@ -210,7 +255,7 @@ function FeaturedProject({
       </Link>
 
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-        <Link href={`/v2/realizacie/${project.slug}`} className="v2-link">
+        <Link href={`/realizacie/${project.slug}`} className="v2-link">
           Detail realizácie
         </Link>
         {project.liveUrl ? (
@@ -241,6 +286,11 @@ export default function V2HomePage() {
 
   return (
     <main id="v2-obsah" className="v2-main" tabIndex={-1}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
       {/* A + B: hero – obsah a CTA hneď, ukážka práce čo najvyššie aj na mobile */}
       <section className="v2-dark v2-hero">
         <div className="v2-container grid items-center gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
@@ -252,10 +302,10 @@ export default function V2HomePage() {
               priama spolupráca od návrhu po spustenie.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 sm:mt-8">
-              <Link href="/v2#dopyt" className="v2-btn v2-btn-primary">
+              <Link href="/#dopyt" className="v2-btn v2-btn-primary">
                 Nezáväzne naceniť web
               </Link>
-              <Link href="/v2#realizacie" className="v2-link">
+              <Link href="/#realizacie" className="v2-link">
                 Pozrieť realizácie
               </Link>
             </div>
@@ -274,7 +324,7 @@ export default function V2HomePage() {
             </div>
             <figcaption className="v2-muted v2-small mt-3 sm:mt-4">
               Realizácia: Zrub pri Hrone, web pre ubytovanie v Brezne.{' '}
-              <Link href="/v2/realizacie/zrub-pri-hrone" className="v2-link">
+              <Link href="/realizacie/zrub-pri-hrone" className="v2-link">
                 Pozrieť realizáciu
               </Link>
             </figcaption>
@@ -410,7 +460,7 @@ export default function V2HomePage() {
                 ))}
               </ul>
               <Link
-                href="/v2#dopyt"
+                href="/#dopyt"
                 className="v2-btn v2-btn-primary mt-6 w-full sm:w-auto"
               >
                 Nezáväzne naceniť web
@@ -460,7 +510,7 @@ export default function V2HomePage() {
               <Link href="/sluzby" className="v2-btn v2-btn-secondary">
                 Firemné nástroje a dáta
               </Link>
-              <Link href={`/v2/realizacie/${tool.slug}`} className="v2-link">
+              <Link href={`/realizacie/${tool.slug}`} className="v2-link">
                 Ukážky aplikácie Techbases
               </Link>
             </div>
@@ -488,7 +538,7 @@ export default function V2HomePage() {
                   {archiv.highlight} Údaje na snímke sú anonymizované.
                 </p>
                 <Link
-                  href={`/v2/realizacie/${archiv.slug}`}
+                  href={`/realizacie/${archiv.slug}`}
                   className="v2-link v2-small mt-3 inline-block"
                 >
                   Ukážky v mobile

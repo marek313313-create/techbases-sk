@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 const navItems = [
-  { href: '/v2#ponuka', label: 'Tvorba webov' },
-  { href: '/v2#realizacie', label: 'Realizácie' },
-  { href: '/v2#spolupraca', label: 'Spolupráca' },
-  { href: '/v2#o-mne', label: 'O mne' },
-  { href: '/v2#kontakt', label: 'Kontakt' },
+  { href: '/#ponuka', label: 'Tvorba webov' },
+  { href: '/#realizacie', label: 'Realizácie' },
+  { href: '/#spolupraca', label: 'Spolupráca' },
+  { href: '/#o-mne', label: 'O mne' },
+  { href: '/#kontakt', label: 'Kontakt' },
 ];
 
 // Druhá špecializácia ostáva na existujúcej adrese pôvodného webu
@@ -64,13 +64,13 @@ export function V2Header() {
     <header className="v2-header">
       <div className="v2-container v2-header-inner">
         <Link
-          href="/v2"
+          href="/"
           className="flex shrink-0 items-center"
           onClick={() => setMenuOpen(false)}
         >
           <img
             src="/techbase-logo-v2.webp"
-            alt="TechBases.sk – úvod návrhu V2"
+            alt="TechBases.sk – úvodná stránka"
             width={347}
             height={112}
             decoding="async"
@@ -91,7 +91,7 @@ export function V2Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link href="/v2#dopyt" className="v2-btn v2-btn-primary v2-btn-small">
+          <Link href="/#dopyt" className="v2-btn v2-btn-primary v2-btn-small">
             Naceniť web
           </Link>
           <button
@@ -138,7 +138,7 @@ export function V2Header() {
           </nav>
           <div className="mt-8 grid gap-3">
             <Link
-              href="/v2#dopyt"
+              href="/#dopyt"
               className="v2-btn v2-btn-primary"
               onClick={() => setMenuOpen(false)}
             >

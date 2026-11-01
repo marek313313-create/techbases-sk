@@ -100,6 +100,7 @@ const packageIncluded = [
   'individuálne spracovaný dizajn',
   'prispôsobenie pre mobil',
   'galéria fotografií',
+  'kontaktné údaje a jednoduchý dopytový formulár',
   'vloženie dodaného videa podľa zadania',
   'základná úprava dodaných textov a fotografií',
   'základné technické SEO: titulky, popisy a štruktúra stránky pre vyhľadávače',
@@ -112,7 +113,7 @@ const packageSeparate = [
   'platené služby tretích strán',
   'rozsiahle retuše fotografií',
   'výroba videa',
-  'rezervačný systém',
+  'rozšírené formuláre, rezervácie a platby',
 ];
 
 const faqItems = [
@@ -124,7 +125,7 @@ const faqItems = [
   {
     question: 'Čo ak budem chcieť web neskôr upraviť?',
     answer:
-      'Pred spustením sú v cene dve kolá súhrnných pripomienok. Neskoršie zmeny, napríklad nové texty, fotografie alebo sekcie, si dohodneme podľa rozsahu.',
+      'Pred spustením sú v cene dve kolá súhrnných pripomienok. Neskoršie zmeny, napríklad nové texty, fotografie, sekcie alebo rozšírené formuláre, si dohodneme podľa rozsahu.',
   },
   {
     question: 'Budem si môcť obsah meniť sám?',

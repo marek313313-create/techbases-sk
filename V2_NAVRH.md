@@ -1,16 +1,17 @@
 # Návrh V2 – interné poznámky
 
-Stav k 1. 11. 2026: návrh na posúdenie na vetve `v2-navrh`. **Nenasadený.**
-Pôvodný web (produkcia) ostáva bez zmeny.
+Stav k 1. 11. 2026: na vetve `v2-navrh` je V2 pripravená ako hlavný web (úvod na `/`,
+realizácie na `/realizacie/…`, indexovateľné). **Nepushnuté, nenasadené** – produkcia
+na techbases.sk je stále pôvodná verzia.
 
 ## Ako otvoriť
 
     npm run dev
 
-- http://localhost:3000/v2 – hlavná stránka V2
-- http://localhost:3000/v2/porovnanie – odkazy na obe verzie a prehľad zmien
-- http://localhost:3000/v2/realizacie/zrub-pri-hrone, `/oslovma`, `/prevadzkove-prehlady` (Techbases),
-  `/archiv-udrzby` – detaily
+- http://localhost:3000/ – nová úvodná stránka (V2)
+- http://localhost:3000/realizacie/zrub-pri-hrone, `/oslovma`, `/prevadzkove-prehlady` (Techbases),
+  `/archiv-udrzby` – detaily realizácií
+- `/tvorba-webov`, `/sluzby`, `/kontakt`, `/o-mne`, `/poznamky` … – pôvodné stránky v pôvodnom vzhľade
 
 ## Obsah V2
 
@@ -51,25 +52,43 @@ Modelový rozpočet 1 500 € zo zadania V2 nie je schválená cena a na webe ni
 - **Firemné nástroje:** staré ukážky z `/ukazky/*` už V2 nepoužíva. Sekcia na úvode ukazuje
   graf prestojov zo skutočnej desktopovej aplikácie Techbases a pod ním kompaktne mobilnú
   aplikáciu Archív údržby s vlastným štítkom. Detail `/prevadzkove-prehlady` má tri snímky
-  Techbases, nový detail `/archiv-udrzby` tri snímky z telefónu.
+  Techbases, nový detail `/realizacie/archiv-udrzby` tri snímky z telefónu.
 - **Štítky:** obe aplikácie sú „Interný nástroj“ (produkcia ich opisuje ako „interný
   pracovný pohľad“ / „interný portál“), nie klientska zákazka ani pilot pre klienta.
   Techbases a Archív údržby sú označené samostatne. Spoločný systém nie je overený, Archív
   len preberá katalóg výkresov zo súborov Techbases (README Archívu), preto ich web nespája.
 
+### Prechod na hlavný web (1. 11. 2026, tretí prechod)
+
+- `app/v2/` → skupina trás `app/(v2)/` (v adrese sa nezobrazuje): úvod `/`, detaily
+  `/realizacie/[slug]`. Pôvodná úvodná stránka `app/page.tsx`, pracovná stránka
+  `/v2/porovnanie` a nepoužitý `hero-video.tsx` sú odstránené (ostávajú v histórii Gitu).
+  `public/video.mp4` (~3 MB) už nič nepoužíva; ponechaný, zmazať podľa rozhodnutia.
+- Bez `noindex`; titulky bez „(návrh V2)“; canonical a `og:url`: `/` a `/realizacie/<slug>`.
+  Štruktúrované dáta `ProfessionalService` prevzaté z pôvodného úvodu.
+- Sitemap: `/` a štyri `/realizacie/…` (lastmod 1. 11. 2026); `/v2` v nej nie je a vracia 404
+  (V2 nebola nikdy nasadená, presmerovanie netreba).
+- Hlavička a pätička V2 odkazujú na `/#…`; z pätičky zmizol odkaz na porovnanie a text
+  „Návrh V2 na posúdenie – neindexovaný“.
+- `/tvorba-webov` zjednotená s úvodom: v balíku „kontaktné údaje a jednoduchý dopytový
+  formulár“, osobitne „rozšírené formuláre, rezervácie a platby“, v otázke o neskorších
+  zmenách aj rozšírené formuláre.
+- Pôvodné stránky (`/tvorba-webov`, `/sluzby`, `/kontakt`, `/o-mne`, `/poznamky`, `/audit-erp-dat`,
+  ochrana osobných údajov, 404) majú pôvodnú hlavičku a pätičku a vzhľad sa nemenil.
+  Ich odkaz „Realizácie“ (`/#realizacie`) vedie na sekciu nového úvodu.
+
 ## Technické riešenie a izolácia
 
-- Všetko pre V2 je v `app/v2/` (layout, stránky, komponenty, `projects.ts`, `v2.css`).
-- `v2.css`: všetky pravidlá sú pod triedou `.v2`, takže po klientskej navigácii na pôvodný
-  web nič nepresakuje. `html:has(.v2)` mení `overflow-x` na `clip`, inak by globálne
+- Úvod a realizácie sú v `app/(v2)/` (layout, stránky, komponenty, `projects.ts`, `v2.css`).
+- `v2.css`: všetky pravidlá sú pod triedou `.v2`, takže po klientskej navigácii na pôvodné
+  stránky nič nepresakuje. `html:has(.v2)` mení `overflow-x` na `clip`, inak by globálne
   `overflow-x: hidden` vyplo sticky hlavičku.
 - Písmo tela V2 je Inter (`next/font`), nadpisy ostávajú Space Grotesk.
-- `app/components/production-only.tsx`: na `/v2` sa nevykreslí hlavička, pätička, skip link
-  ani `RevealOnScroll` pôvodného webu (V2 nemá animácie odďaľujúce obsah).
+- `app/components/production-only.tsx`: na `/` a `/realizacie/…` sa nevykreslí hlavička,
+  pätička, skip link ani `RevealOnScroll` pôvodného webu (V2 nemá animácie odďaľujúce obsah).
+  Ostáva, kým majú ostatné stránky pôvodný vzhľad.
 - `app/globals.css`: mobilné pravidlá pre `main` platia len pre `main:not(:where(.v2-main))`.
   `:where` zachováva špecificitu, pôvodný web sa správa rovnako (overené: H1 35 px pri 390 px).
-- `noindex, nofollow` (aj `googlebot`) v `app/v2/layout.tsx`, vlastný canonical na každej
-  stránke, V2 nie je v sitemap.
 - `/api/kontakt` má nový `GET` → `{ sending: boolean }` (či je nastavený `RESEND_API_KEY`,
   hodnotu nevracia). Formulár V2 podľa toho pravdivo upozorní, že nič neodošle. `POST`
   je bez zmeny – rovnaká validácia, honeypot, téma „Tvorba webu“.
@@ -83,14 +102,14 @@ Modelový rozpočet 1 500 € zo zadania V2 nie je schválená cena a na webe ni
 
 ## Snímky firemných nástrojov (1. 11. 2026)
 
-| Súbor (`public/v2/`)                | Rozmer              | Kde je použitý                                                       |
-| ----------------------------------- | ------------------- | -------------------------------------------------------------------- |
-| `techbases-prestoje.webp`           | 1600 × 1044, 106 kB | úvod `/v2#firemne-nastroje`, detail `/prevadzkove-prehlady` (Ukážky) |
-| `techbases-prehlad-poloziek.webp`   | 1600 × 1044, 142 kB | detail `/prevadzkove-prehlady` (úvodná snímka)                       |
-| `techbases-vydaje-materialu.webp`   | 1600 × 1044, 139 kB | detail `/prevadzkove-prehlady` (Ukážky)                              |
-| `archiv-udrzby-karta-agregatu.webp` | 540 × 1147, 39 kB   | úvod `/v2#firemne-nastroje` (telefón), detail `/archiv-udrzby`       |
-| `archiv-udrzby-prehlad.webp`        | 540 × 1147, 33 kB   | detail `/archiv-udrzby`                                              |
-| `archiv-udrzby-historia.webp`       | 540 × 1147, 43 kB   | detail `/archiv-udrzby`                                              |
+| Súbor (`public/v2/`)                | Rozmer              | Kde je použitý                                                                |
+| ----------------------------------- | ------------------- | ----------------------------------------------------------------------------- |
+| `techbases-prestoje.webp`           | 1600 × 1044, 106 kB | úvod `/#firemne-nastroje`, detail `/realizacie/prevadzkove-prehlady` (Ukážky) |
+| `techbases-prehlad-poloziek.webp`   | 1600 × 1044, 142 kB | detail `/realizacie/prevadzkove-prehlady` (úvodná snímka)                     |
+| `techbases-vydaje-materialu.webp`   | 1600 × 1044, 139 kB | detail `/realizacie/prevadzkove-prehlady` (Ukážky)                            |
+| `archiv-udrzby-karta-agregatu.webp` | 540 × 1147, 39 kB   | úvod `/#firemne-nastroje` (telefón), detail `/realizacie/archiv-udrzby`       |
+| `archiv-udrzby-prehlad.webp`        | 540 × 1147, 33 kB   | detail `/realizacie/archiv-udrzby`                                            |
+| `archiv-udrzby-historia.webp`       | 540 × 1147, 43 kB   | detail `/realizacie/archiv-udrzby`                                            |
 
 PNG zdroje (2880 × 1880 a 1080 × 2294) sú v `assets-src/v2/firemne-nastroje/` pod rovnakými
 názvami. Každá snímka má spodný pás „Anonymizované ukážkové údaje · …“. Alt texty a popisy
@@ -129,6 +148,9 @@ Náhrady sú konzistentné v rámci snímky a zjavne ukážkové:
   v celom DOM (aj v skrytých častiach a atribútoch) bez nálezu, zoznam mien v DOM po náhrade bez
   osôb, potom vizuálna kontrola každej snímky v plnom rozlíšení a výrezov pri zväčšení.
 
+Zverejnenie anonymizovaných snímok oboch aplikácií schválil autor aplikácií Marek Belko
+(1. 11. 2026); ukážky ostávajú vo V2.
+
 Surové zábery s internými údajmi sú iba v dočasnom pracovnom priečinku mimo repozitára
 (`%TEMP%\claude\…\scratchpad`). Nie sú v `public/`, v `assets-src/` ani v Gite; po
 odsúhlasení ich možno zmazať.
@@ -164,19 +186,17 @@ Web nerozhodnuté body zámerne formuluje neutrálne („uvediem / dohodneme v p
 5. **Doplnky** – ďalšie podstránky, jazykové verzie, tvorba textov, rozšírené formuláre,
    rezervácie, platby: orientačné ceny?
 6. **Platobné podmienky a termíny** – zatiaľ sa nezverejňujú.
-7. **Súhlas zamestnávateľa so zverejnením snímok Techbases a Archívu údržby** – aj
-   anonymizované obrazovky pochádzajú z interných nástrojov nad prevádzkovými dátami. Skoršia
-   poznámka k Archívu predpokladala súhlas pred verejnou prezentáciou. **Blokuje produkciu**
-   (nie návrh V2, ktorý je neindexovaný a nenasadený).
-8. **Štítok „Interný nástroj“** pre Techbases a Archív – potvrdiť (predtým „Anonymizovaný pilot“).
-9. **Jednoduchý formulár v základnej dodávke** je zatiaľ len vo V2. Produkčná `/tvorba-webov`
-   ho v balíku neuvádza (produkcia sa podľa pokynu nemenila); pri nasadení zjednotiť.
-10. **OslovMa.sk** – V2 ho podľa zadania V2 označuje „Vlastný produkt · Webová aplikácia“.
-    Na produkcii je označenie skryté podľa skoršieho pokynu. Podmienky na oslovma.sk
-    stále uvádzajú „bezplatný projekt v skúšobnej prevádzke“.
-11. **Zrub pri Hrone** – V2: „Spustený web, priebežne dopĺňaný“ (produkcia: „Vo vývoji“).
-12. **Druhá špecializácia** – V2 odkazuje na existujúcu `/sluzby` (iný vizuál, staré ukážky
-    `/ukazky/*`). Pri prechode na V2 rozhodnúť, či sa `/sluzby` prerobí a dostane nové snímky.
+7. **Štítok „Interný nástroj“** pre Techbases a Archív – potvrdiť (predtým „Anonymizovaný pilot“).
+8. **OslovMa.sk** – V2 ho podľa zadania V2 označuje „Vlastný produkt · Webová aplikácia“.
+   Na produkcii je označenie skryté podľa skoršieho pokynu. Podmienky na oslovma.sk
+   stále uvádzajú „bezplatný projekt v skúšobnej prevádzke“.
+9. **Zrub pri Hrone** – V2: „Spustený web, priebežne dopĺňaný“ (produkcia: „Vo vývoji“).
+10. **Druhá špecializácia** – V2 odkazuje na existujúcu `/sluzby` (pôvodný vzhľad, staré ukážky
+    `/ukazky/*`). Neskôr rozhodnúť, či sa `/sluzby` prerobí a dostane nové snímky.
+11. **`/tvorba-webov`** – obsah sa prekrýva s novým úvodom; ostáva v pôvodnom vzhľade a v
+    sitemap. Neskôr rozhodnúť: ponechať, prerobiť, alebo presmerovať na `/#ponuka`.
+
+Body 7–11 nasadenie neblokujú (web je pravdivý v súčasnom stave).
 
 ## Chýbajúce podklady
 
@@ -197,26 +217,42 @@ Web nerozhodnuté body zámerne formuluje neutrálne („uvediem / dohodneme v p
 - Next.js 15 je bez podpory; build pre Cloudflare potrebuje `--dangerouslyUseUnsupportedNextVersion`.
 - `tsconfig.tsbuildinfo` vzniká pri builde a nie je v `.gitignore`; necommitovať.
 
-## Kroky pred produkčným nasadením V2
+## Nasadenie V2
 
-Nič z tohto zatiaľ nie je urobené. Nasadenie až po rozhodnutiach vyššie (najmä bod 7).
+Body 1–6 v rozhodnutiach sú na webe formulované neutrálne, nasadenie preto neblokujú.
 
-1. **Presun obsahu:** `/v2` → `/`, `/v2/realizacie/[slug]` → napr. `/realizacie/[slug]`;
-   `/v2/porovnanie` nenasadzovať (len pracovná stránka).
-2. **Indexovanie:** odstrániť `robots: noindex, nofollow` z `app/v2/layout.tsx` (alebo z nového
-   layoutu); skontrolovať `robots.txt`.
-3. **Canonical:** prepísať `alternates.canonical` z `/v2…` na nové adresy, overiť `og:url`.
-4. **Sitemap:** pridať nové adresy realizácií, odstrániť zaniknuté; `/v2` v nej nesmie byť.
-5. **Odkazy:** nahradiť interné `/v2#…` a `/v2/realizacie/…`, odstrániť odkaz „Porovnanie
-   s pôvodnou verziou“ a text „Návrh V2 na posúdenie – neindexovaný“ v pätičke, „(návrh V2)“
-   v titulkoch; zvážiť presmerovania zo starých adries.
-6. **Izolácia:** odstrániť `ProductionOnly` a pravidlo `main:not(:where(.v2-main))`, zjednotiť
-   `v2.css` s `globals.css`.
-7. **Formulár:** na produkcii otestovať odoslanie dopytu cez `/api/kontakt` (Resend) a doručenie
-   e-mailu. **Netestované** – lokálne `sending: false`, žiadna skúšobná správa sa neodoslala.
-8. **Build a nasadenie:** `npm run build`, OpenNext s `--dangerouslyUseUnsupportedNextVersion`,
-   poznačiť ID verzie Workera a predchádzajúce ID na návrat.
-9. **Po nasadení:** odoslať sitemap v Search Console, skontrolovať indexovanie a canonical.
+**Pripravené na vetve `v2-navrh`:**
+
+1. Presun obsahu: `/v2` → `/`, `/v2/realizacie/[slug]` → `/realizacie/[slug]`, `/v2/porovnanie`
+   odstránená. Presmerovania netreba, `/v2` nebola nikdy nasadená.
+2. Indexovanie: bez `noindex`, `robots.txt` povoľuje všetko a odkazuje na sitemap.
+3. Canonical a `og:url` na nových adresách.
+4. Sitemap s úvodom a štyrmi realizáciami, bez `/v2`.
+5. Odkazy a texty návrhu odstránené (pätička, titulky, `alt` loga).
+6. Izolácia: `ProductionOnly` a `main:not(:where(.v2-main))` **zámerne ostávajú**, kým majú
+   ostatné stránky pôvodný vzhľad (zjednotenie štýlov = prerobenie týchto stránok, bod 10–11).
+7. Build: `npm run build` aj `npx opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion`
+   prešli (worker v `.open-next/`). Nič sa nenahrávalo.
+
+**Postup nasadenia (zatiaľ nevykonané):**
+
+    git checkout main
+    git merge --ff-only v2-navrh
+    git push origin main
+    npx wrangler whoami
+    npx opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion
+    npx opennextjs-cloudflare deploy
+
+- `wrangler whoami` musí ukázať účet TechBases, nie profil Zrubu. Push na GitHub build
+  nespúšťa, nasadzuje sa lokálne.
+
+- Návrat: aktuálna produkčná verzia Workera je `707ed18a-8975-4b71-85a8-f46d7dbee3ba`
+  (nasadená 21. 10. 2026) – pri probléme `npx wrangler rollback 707ed18a-8975-4b71-85a8-f46d7dbee3ba`.
+- **Po nasadení otestovať formulár** na `/#dopyt` aj `/kontakt`: odoslanie cez `/api/kontakt`
+  (Resend) a doručenie e-mailu. **Netestované** – lokálne `sending: false`, žiadna skúšobná
+  správa sa neodoslala.
+- Po nasadení: v Search Console odoslať sitemap, požiadať o indexovanie `/` a skontrolovať
+  canonical; overiť náhľad odkazu (Open Graph) na `/`.
 
 ## Vykonané kontroly (1. 11. 2026)
 
@@ -242,4 +278,16 @@ Nič z tohto zatiaľ nie je urobené. Nasadenie až po rozhodnutiach vyššie (n
 - V2: `noindex, nofollow` a vlastný canonical aj na novom detaile; V2 nepoužíva `/ukazky/*`.
 - Pôvodný web: `/`, `/tvorba-webov`, `/sluzby`, `/kontakt` – `index, follow`, žiadny odkaz
   na `/v2`, `/v2` nie je v sitemap. Súbory mimo `app/v2` sa nemenili.
+
+### Tretí prechod – V2 ako hlavný web (1. 11. 2026)
+
+- Čistý `npm run build` (27 stránok: `/`, 4× `/realizacie/…`, pôvodné stránky), `tsc --noEmit`,
+  `npm run lint`, Prettier – OK. OpenNext build pre Cloudflare – OK.
+- `next start`: `/` a `/realizacie/*` – `index, follow`, canonical a `og:url` na nových adresách,
+  titulky bez „návrh V2“, JSON-LD na `/`; `/v2` → 404; sitemap a `robots.txt` overené.
+- Pôvodné stránky (`/tvorba-webov`, `/sluzby`, `/kontakt`, `/o-mne`, `/poznamky`) – 200,
+  `index, follow`, pôvodná hlavička.
+- Chrome: úvod pri 1440 × 900 a 390 × 844 rovnaký ako predtým `/v2`; klientsky prechod
+  `/` → `/sluzby` → `/` → `/realizacie/…` prepína hlavičku, pätičku aj `overflow-x` správne;
+  9 stránok pri 390 px bez horizontálneho pretekania a bez nenačítaných obrázkov.
 - Anonymizácia: kontroly vzorov v DOM bez nálezu, vizuálna kontrola všetkých šiestich snímok.

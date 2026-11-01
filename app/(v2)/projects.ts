@@ -1,4 +1,4 @@
-// Realizácie pre návrh V2. Každé tvrdenie vychádza z podkladov projektu:
+// Realizácie na úvode a v detailoch (/realizacie/…). Každé tvrdenie vychádza z podkladov projektu:
 // Zrub pri Hrone – README a docs/stav-projektu.md projektu, snímky živého webu
 // z 28. 10. 2026; OslovMa.sk – živý web a jeho podmienky používania (prevádzkovateľ
 // Marek Belko); Techbases – nainštalovaná desktopová aplikácia 1.1.7, snímky

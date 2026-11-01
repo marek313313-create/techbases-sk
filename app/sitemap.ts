@@ -1,14 +1,21 @@
 import type { MetadataRoute } from 'next';
+import { projects } from './(v2)/projects';
 import { practiceNotes } from './poznamky/poznamky-data';
 
 const siteUrl = 'https://techbases.sk';
 const staticLastModified = new Date('2026-07-06');
 const twoServicesLastModified = new Date('2026-10-21');
+const newHomeLastModified = new Date('2026-11-01');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
-    { path: '', priority: 1, lastModified: twoServicesLastModified },
-    { path: '/tvorba-webov', priority: 0.9, lastModified: twoServicesLastModified },
+    { path: '', priority: 1, lastModified: newHomeLastModified },
+    ...projects.map((project) => ({
+      path: `/realizacie/${project.slug}`,
+      priority: 0.8,
+      lastModified: newHomeLastModified,
+    })),
+    { path: '/tvorba-webov', priority: 0.9, lastModified: newHomeLastModified },
     { path: '/audit-erp-dat', priority: 0.88 },
     { path: '/sluzby', priority: 0.9, lastModified: twoServicesLastModified },
     { path: '/sluzby/sklad-nahradnych-dielov', priority: 0.95 },

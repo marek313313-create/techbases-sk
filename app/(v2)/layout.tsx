@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { V2Footer } from './components/v2-footer';
 import { V2Header } from './components/v2-header';
@@ -10,18 +9,8 @@ const inter = Inter({
   display: 'swap',
 });
 
-// Návrh na posúdenie – vyhľadávače ho nesmú indexovať
-export const metadata: Metadata = {
-  robots: {
-    index: false,
-    follow: false,
-    googleBot: {
-      index: false,
-      follow: false,
-    },
-  },
-};
-
+// Úvod (/) a realizácie (/realizacie/…) majú vlastnú hlavičku, pätičku a štýly.
+// Indexovanie a canonical preberajú z koreňového layoutu a z metadát stránok.
 export default function V2Layout({
   children,
 }: Readonly<{

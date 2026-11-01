@@ -3,10 +3,10 @@
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 
-// Návrh V2 (/v2) má vlastnú hlavičku, pätičku a štýly. Prvky pôvodného webu
-// sa na jeho trasách nevykreslia, inde sa nič nemení.
+// Trasy v app/(v2) – úvod a realizácie – majú vlastnú hlavičku, pätičku a štýly.
+// Prvky pôvodného webu sa na nich nevykreslia, ostatné stránky sa nemenia.
 export function isV2Path(pathname: string | null) {
-  return pathname === '/v2' || Boolean(pathname?.startsWith('/v2/'));
+  return pathname === '/' || Boolean(pathname?.startsWith('/realizacie/'));
 }
 
 export function ProductionOnly({ children }: { children: ReactNode }) {

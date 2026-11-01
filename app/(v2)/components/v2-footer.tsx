@@ -2,19 +2,18 @@ import Link from 'next/link';
 import { generalMailto, whatsAppUrl } from '../../site-data';
 
 const pageLinks = [
-  { href: '/v2#ponuka', label: 'Tvorba webov' },
-  { href: '/v2#realizacie', label: 'Realizácie' },
-  { href: '/v2#spolupraca', label: 'Spolupráca' },
-  { href: '/v2#o-mne', label: 'O mne' },
-  { href: '/v2#cena', label: 'Cena a starostlivosť' },
-  { href: '/v2#kontakt', label: 'Kontakt' },
+  { href: '/#ponuka', label: 'Tvorba webov' },
+  { href: '/#realizacie', label: 'Realizácie' },
+  { href: '/#spolupraca', label: 'Spolupráca' },
+  { href: '/#o-mne', label: 'O mne' },
+  { href: '/#cena', label: 'Cena a starostlivosť' },
+  { href: '/#kontakt', label: 'Kontakt' },
 ];
 
 const moreLinks = [
   { href: '/sluzby', label: 'Firemné nástroje a dáta' },
   { href: '/poznamky', label: 'Poznámky z prevádzky' },
   { href: '/ochrana-osobnych-udajov', label: 'Ochrana osobných údajov' },
-  { href: '/v2/porovnanie', label: 'Porovnanie s pôvodnou verziou' },
 ];
 
 export function V2Footer() {
@@ -77,7 +76,7 @@ export function V2Footer() {
       <div className="border-t border-white/10">
         <div className="v2-container v2-muted v2-small flex flex-col gap-2 py-5 md:flex-row md:justify-between">
           <span>© {new Date().getFullYear()} TechBases.sk</span>
-          <span>Návrh V2 na posúdenie – neindexovaný</span>
+          <span>Webové stránky na mieru · Firemné nástroje z dát</span>
         </div>
       </div>
     </footer>
