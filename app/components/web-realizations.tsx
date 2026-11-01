@@ -23,7 +23,7 @@ const webRealizations: WebRealization[] = [
   {
     name: 'Zrub pri Hrone',
     type: 'Prezentačný web pre ubytovanie',
-    status: 'Vo vývoji',
+    status: 'Spustený web, priebežne dopĺňaný',
     intro: 'Prezentačný web pre prenájom celého dreveného zrubu pri rieke Hron v Brezne.',
     listTitle: 'Zadanie',
     list: [

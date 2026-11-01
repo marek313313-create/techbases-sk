@@ -63,7 +63,8 @@ Modelový rozpočet 1 500 € zo zadania V2 nie je schválená cena a na webe ni
 - `app/v2/` → skupina trás `app/(v2)/` (v adrese sa nezobrazuje): úvod `/`, detaily
   `/realizacie/[slug]`. Pôvodná úvodná stránka `app/page.tsx`, pracovná stránka
   `/v2/porovnanie` a nepoužitý `hero-video.tsx` sú odstránené (ostávajú v histórii Gitu).
-  `public/video.mp4` (~3 MB) už nič nepoužíva; ponechaný, zmazať podľa rozhodnutia.
+  `public/video.mp4` (~3 MB) už nič nepoužívalo, je odstránené. V `globals.css` ostali
+  nepoužité triedy `.hero-video*` (neškodia).
 - Bez `noindex`; titulky bez „(návrh V2)“; canonical a `og:url`: `/` a `/realizacie/<slug>`.
   Štruktúrované dáta `ProfessionalService` prevzaté z pôvodného úvodu.
 - Sitemap: `/` a štyri `/realizacie/…` (lastmod 1. 11. 2026); `/v2` v nej nie je a vracia 404
@@ -186,17 +187,20 @@ Web nerozhodnuté body zámerne formuluje neutrálne („uvediem / dohodneme v p
 5. **Doplnky** – ďalšie podstránky, jazykové verzie, tvorba textov, rozšírené formuláre,
    rezervácie, platby: orientačné ceny?
 6. **Platobné podmienky a termíny** – zatiaľ sa nezverejňujú.
-7. **Štítok „Interný nástroj“** pre Techbases a Archív – potvrdiť (predtým „Anonymizovaný pilot“).
-8. **OslovMa.sk** – V2 ho podľa zadania V2 označuje „Vlastný produkt · Webová aplikácia“.
-   Na produkcii je označenie skryté podľa skoršieho pokynu. Podmienky na oslovma.sk
-   stále uvádzajú „bezplatný projekt v skúšobnej prevádzke“.
-9. **Zrub pri Hrone** – V2: „Spustený web, priebežne dopĺňaný“ (produkcia: „Vo vývoji“).
-10. **Druhá špecializácia** – V2 odkazuje na existujúcu `/sluzby` (pôvodný vzhľad, staré ukážky
-    `/ukazky/*`). Neskôr rozhodnúť, či sa `/sluzby` prerobí a dostane nové snímky.
-11. **`/tvorba-webov`** – obsah sa prekrýva s novým úvodom; ostáva v pôvodnom vzhľade a v
-    sitemap. Neskôr rozhodnúť: ponechať, prerobiť, alebo presmerovať na `/#ponuka`.
+7. **Druhá špecializácia** – úvod odkazuje na existujúcu `/sluzby` (pôvodný vzhľad, staré
+   ukážky `/ukazky/*`). Neskôr rozhodnúť, či sa `/sluzby` prerobí a dostane nové snímky.
+8. **`/tvorba-webov`** – obsah sa prekrýva s novým úvodom; ostáva na svojej adrese v pôvodnom
+   vzhľade a v sitemap. Vizuálne zjednotenie ostatných stránok je samostatná úloha.
 
-Body 7–11 nasadenie neblokujú (web je pravdivý v súčasnom stave).
+Body 7–8 nasadenie neblokujú (web je pravdivý v súčasnom stave).
+
+**Rozhodnuté (Marek Belko, 1. 11. 2026):**
+
+- Techbases a Archív údržby: „Interný nástroj“; anonymizované ukážky ostávajú zverejnené.
+- OslovMa.sk: „Vlastný produkt“ (na úvode a v detaile; `/tvorba-webov` štítok nemá).
+- Zrub pri Hrone: „Spustený web, priebežne dopĺňaný“ – na úvode, v detaile aj na
+  `/tvorba-webov` (predtým tam bolo „Vo vývoji“).
+- Adresy ostatných stránok ostávajú; `public/video.mp4` odstránené (nič naň neodkazovalo).
 
 ## Chýbajúce podklady
 
