@@ -1,17 +1,19 @@
 # Návrh V2 – interné poznámky
 
-Stav k 1. 11. 2026: na vetve `v2-navrh` je V2 pripravená ako hlavný web (úvod na `/`,
-realizácie na `/realizacie/…`, indexovateľné). **Nepushnuté, nenasadené** – produkcia
-na techbases.sk je stále pôvodná verzia.
+Stav k 1. 11. 2026: **V2 je nasadená ako hlavný web techbases.sk** (commit `1ab13b6` na
+`main`, verzia Workera `9f940af5-d214-4d14-a002-67dfd76a1dac`). Postup a kontroly sú
+v časti „Nasadenie V2“.
 
 ## Ako otvoriť
 
     npm run dev
 
-- http://localhost:3000/ – nová úvodná stránka (V2)
+- http://localhost:3000/ – úvodná stránka (V2)
 - http://localhost:3000/realizacie/zrub-pri-hrone, `/oslovma`, `/prevadzkove-prehlady` (Techbases),
   `/archiv-udrzby` – detaily realizácií
-- `/tvorba-webov`, `/sluzby`, `/kontakt`, `/o-mne`, `/poznamky` … – pôvodné stránky v pôvodnom vzhľade
+- `/sluzby`, `/kontakt`, `/poznamky`, `/audit-erp-dat` … – obsah v pôvodnom vzhľade, hlavička
+  a pätička jednotné
+- `/tvorba-webov` → `/#ponuka`, `/o-mne` → `/#o-mne` (trvalé presmerovanie 308)
 
 ## Obsah V2
 
@@ -187,12 +189,9 @@ Web nerozhodnuté body zámerne formuluje neutrálne („uvediem / dohodneme v p
 5. **Doplnky** – ďalšie podstránky, jazykové verzie, tvorba textov, rozšírené formuláre,
    rezervácie, platby: orientačné ceny?
 6. **Platobné podmienky a termíny** – zatiaľ sa nezverejňujú.
-7. **Druhá špecializácia** – úvod odkazuje na existujúcu `/sluzby` (pôvodný vzhľad, staré
-   ukážky `/ukazky/*`). Neskôr rozhodnúť, či sa `/sluzby` prerobí a dostane nové snímky.
-8. **`/tvorba-webov`** – obsah sa prekrýva s novým úvodom; ostáva na svojej adrese v pôvodnom
-   vzhľade a v sitemap. Vizuálne zjednotenie ostatných stránok je samostatná úloha.
-
-Body 7–8 nasadenie neblokujú (web je pravdivý v súčasnom stave).
+7. **Obsah stránok v pôvodnom vzhľade** – `/sluzby` (staré ukážky `/ukazky/*`), `/kontakt`,
+   `/poznamky`, `/audit-erp-dat` majú jednotnú hlavičku a pätičku, no obsah v pôvodnom
+   vzhľade. Prerobenie obsahu (najmä `/sluzby` s novými snímkami) je samostatná úloha.
 
 **Rozhodnuté (Marek Belko, 1. 11. 2026):**
 
@@ -200,7 +199,10 @@ Body 7–8 nasadenie neblokujú (web je pravdivý v súčasnom stave).
 - OslovMa.sk: „Vlastný produkt“ (na úvode a v detaile; `/tvorba-webov` štítok nemá).
 - Zrub pri Hrone: „Spustený web, priebežne dopĺňaný“ – na úvode, v detaile aj na
   `/tvorba-webov` (predtým tam bolo „Vo vývoji“).
-- Adresy ostatných stránok ostávajú; `public/video.mp4` odstránené (nič naň neodkazovalo).
+- `public/video.mp4` odstránené (nič naň neodkazovalo).
+- Jednotná hlavička a pätička na všetkých stránkach; `/tvorba-webov` a `/o-mne` zrušené
+  s trvalým presmerovaním na sekcie úvodu; `/sluzby` (Firemné nástroje) ostáva.
+- Nadpis nad hlavným titulkom úvodu: „Tvorba webových stránok“ (bez „· Marek Belko“).
 
 ## Chýbajúce podklady
 
@@ -223,40 +225,39 @@ Body 7–8 nasadenie neblokujú (web je pravdivý v súčasnom stave).
 
 ## Nasadenie V2
 
-Body 1–6 v rozhodnutiach sú na webe formulované neutrálne, nasadenie preto neblokujú.
+Body 1–6 v rozhodnutiach sú na webe formulované neutrálne, nasadenie neblokovali.
 
-**Pripravené na vetve `v2-navrh`:**
+**Priebeh 1. 11. 2026** (účet Cloudflare marek313313@gmail.com, Worker `techbases-sk`;
+`origin/main` sa medzitým nezmenil, všetko fast-forward bez vynúteného pushu):
 
-1. Presun obsahu: `/v2` → `/`, `/v2/realizacie/[slug]` → `/realizacie/[slug]`, `/v2/porovnanie`
-   odstránená. Presmerovania netreba, `/v2` nebola nikdy nasadená.
-2. Indexovanie: bez `noindex`, `robots.txt` povoľuje všetko a odkazuje na sitemap.
-3. Canonical a `og:url` na nových adresách.
-4. Sitemap s úvodom a štyrmi realizáciami, bez `/v2`.
-5. Odkazy a texty návrhu odstránené (pätička, titulky, `alt` loga).
-6. Izolácia: `ProductionOnly` a `main:not(:where(.v2-main))` **zámerne ostávajú**, kým majú
-   ostatné stránky pôvodný vzhľad (zjednotenie štýlov = prerobenie týchto stránok, bod 10–11).
-7. Build: `npm run build` aj `npx opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion`
-   prešli (worker v `.open-next/`). Nič sa nenahrávalo.
+| Commit    | Verzia Workera | Čo                                                                      |
+| --------- | -------------- | ----------------------------------------------------------------------- |
+| –         | `707ed18a`     | pôvodná produkcia (21. 10. 2026) – cieľ návratu                         |
+| `bf60099` | `59ee7466`     | V2 ako hlavný web; **regresia:** `/realizacie/*` vracali 404            |
+| `abd1545` | `a2af8bcc`     | oprava: bez `dynamicParams = false` (OpenNext nemá inkrementálnu cache) |
+| `1ab13b6` | `9f940af5`     | jednotná hlavička a pätička, `/tvorba-webov` a `/o-mne` → 308 na úvod   |
 
-**Postup nasadenia (zatiaľ nevykonané):**
+Postup (pre ďalšie nasadenia):
 
-    git checkout main
-    git merge --ff-only v2-navrh
-    git push origin main
-    npx wrangler whoami
+    npx wrangler whoami        # účet TechBases, nie profil Zrubu
     npx opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion
     npx opennextjs-cloudflare deploy
 
-- `wrangler whoami` musí ukázať účet TechBases, nie profil Zrubu. Push na GitHub build
-  nespúšťa, nasadzuje sa lokálne.
+- Push na GitHub build nespúšťa, nasadzuje sa lokálne. Pred nasadením sa oplatí
+  `npx opennextjs-cloudflare preview` – regresiu s 404 by `next start` neodhalil.
+- Návrat: `npx wrangler rollback <verzia>` (pôvodný web: `707ed18a-8975-4b71-85a8-f46d7dbee3ba`).
+- `ProductionOnly` ostáva len pre `RevealOnScroll` (animácie obsahu v pôvodnom vzhľade),
+  `main:not(:where(.v2-main))` ostáva pre mobilné pravidlá tohto obsahu.
 
-- Návrat: aktuálna produkčná verzia Workera je `707ed18a-8975-4b71-85a8-f46d7dbee3ba`
-  (nasadená 21. 10. 2026) – pri probléme `npx wrangler rollback 707ed18a-8975-4b71-85a8-f46d7dbee3ba`.
-- **Po nasadení otestovať formulár** na `/#dopyt` aj `/kontakt`: odoslanie cez `/api/kontakt`
-  (Resend) a doručenie e-mailu. **Netestované** – lokálne `sending: false`, žiadna skúšobná
-  správa sa neodoslala.
-- Po nasadení: v Search Console odoslať sitemap, požiadať o indexovanie `/` a skontrolovať
-  canonical; overiť náhľad odkazu (Open Graph) na `/`.
+**Test formulárov (verzia `a2af8bcc`):** `/#dopyt` 15:02:42 UTC a `/kontakt` 15:03:29 UTC –
+`POST /api/kontakt` 200, formulár ukázal potvrdenie. Predmety: „[Tvorba webu] Správa z webu
+od: TEST nasadenia V2 – formulár /#dopyt“ a „… /kontakt“. **Doručenie do schránky
+kontakt@techbases.sk neoverené** (schránka u mx-hub ani Resend nie sú pre agenta prístupné).
+Verzia `9f940af5` mení len hlavičku a pätičku; formuláre sa znova neodosielali, overené je
+`GET /api/kontakt` → `sending: true` a vykreslenie formulára.
+
+**Zostáva:** potvrdiť doručenie oboch testovacích e-mailov; v Search Console odoslať sitemap
+a požiadať o indexovanie `/`; overiť náhľad odkazu (Open Graph) v sociálnych sieťach.
 
 ## Vykonané kontroly (1. 11. 2026)
 
@@ -291,7 +292,24 @@ Body 1–6 v rozhodnutiach sú na webe formulované neutrálne, nasadenie preto 
   titulky bez „návrh V2“, JSON-LD na `/`; `/v2` → 404; sitemap a `robots.txt` overené.
 - Pôvodné stránky (`/tvorba-webov`, `/sluzby`, `/kontakt`, `/o-mne`, `/poznamky`) – 200,
   `index, follow`, pôvodná hlavička.
+- (Kontroly tretieho prechodu boli lokálne cez `next start`; po nasadení pozri „Nasadenie V2“
+  a „Kontroly na produkcii“.)
 - Chrome: úvod pri 1440 × 900 a 390 × 844 rovnaký ako predtým `/v2`; klientsky prechod
   `/` → `/sluzby` → `/` → `/realizacie/…` prepína hlavičku, pätičku aj `overflow-x` správne;
   9 stránok pri 390 px bez horizontálneho pretekania a bez nenačítaných obrázkov.
 - Anonymizácia: kontroly vzorov v DOM bez nálezu, vizuálna kontrola všetkých šiestich snímok.
+
+### Kontroly na produkcii (techbases.sk, verzia `9f940af5`, 1. 11. 2026)
+
+- 12 stránok (`/`, 4× `/realizacie/…`, `/sluzby`, `/sluzby/sklad-nahradnych-dielov`,
+  `/audit-erp-dat`, `/kontakt`, `/poznamky`, poznámka, ochrana osobných údajov): 200,
+  `index, follow`, vlastný canonical, jednotná hlavička, žiadna stará hlavička ani text návrhu.
+- `/tvorba-webov` → 308 `/#ponuka`, `/o-mne` → 308 `/#o-mne` (v prehliadači sekcia končí pod
+  hlavičkou); `/v2`, `/video.mp4` a neznáma realizácia → 404.
+- Sitemap 17 adries, všetky dostupné; `robots.txt` povoľuje indexovanie a odkazuje na sitemap
+  (Cloudflare pred neho pridáva vlastné pravidlá pre AI crawlery).
+- Chrome 1440 × 900: 12 stránok bez nenačítaných obrázkov a bez horizontálneho pretekania;
+  390 × 844 (mobil): úvod, `/sluzby`, `/kontakt`, mobilné menu a prechody medzi stránkami.
+  Na predchádzajúcej verzii `a2af8bcc` aj 13 stránok pri 390 px.
+- Konzola: jediná chyba je beacon Cloudflare Web Analytics (499), ktorý blokuje lokálny
+  antivírus Kaspersky – nie chyba webu.
