@@ -1,0 +1,615 @@
+/*
+ * Návrh V2 – všetky pravidlá sú pod triedou .v2, aby po klientskej navigácii
+ * neovplyvnili pôvodný web. Farby vychádzajú z identity TechBases (tmavomodrá
+ * a modrá z loga); svetlé sekcie slúžia na pokojné čítanie.
+ */
+
+.v2 {
+  --v2-ink: #070c19;
+  --v2-ink-2: #0c1426;
+  --v2-ink-3: #131d33;
+  --v2-blue: #1466e0;
+  --v2-blue-hover: #0f58c8;
+  --v2-paper: #f3f5f9;
+  --v2-white: #ffffff;
+  --v2-ok: #22c55e;
+
+  /* kontextové tokeny – menia sa podľa pozadia sekcie */
+  --fg: #eef2f8;
+  --fg-muted: #a8b3c7;
+  --line: rgba(255, 255, 255, 0.12);
+  --accent: #5b9dff;
+  --surface: var(--v2-ink-2);
+
+  min-height: 100vh;
+  background: var(--v2-ink);
+  color: var(--fg);
+  font-family: var(--font-v2-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Globálne overflow-x: hidden na html/body robí z body posúvací kontajner a
+ * vypína position: sticky hlavičky. Na stránkach V2 ho nahradí clip, ktorý
+ * pretekanie skryje rovnako, no sticky nerozbije. Pôvodný web .v2 nemá.
+ */
+html:has(.v2),
+html:has(.v2) body {
+  overflow-x: clip;
+}
+
+.v2 [id] {
+  scroll-margin-top: 88px;
+}
+
+/*
+ * Pozor: tieto pravidlá nie sú vo vrstve, takže prebijú Tailwind utility.
+ * Okraje a rozmery preto nenastavujú – tie rieši preflight a utility.
+ */
+.v2 h1,
+.v2 h2,
+.v2 h3 {
+  color: var(--fg);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+/* ---------- pozadia sekcií ---------- */
+
+.v2 .v2-dark {
+  --fg: #eef2f8;
+  --fg-muted: #a8b3c7;
+  --line: rgba(255, 255, 255, 0.12);
+  --accent: #5b9dff;
+  --surface: var(--v2-ink-2);
+  background: var(--v2-ink);
+  color: var(--fg);
+}
+
+.v2 .v2-dark-2 {
+  --fg: #eef2f8;
+  --fg-muted: #a8b3c7;
+  --line: rgba(255, 255, 255, 0.12);
+  --accent: #5b9dff;
+  --surface: var(--v2-ink-3);
+  background: var(--v2-ink-2);
+  color: var(--fg);
+}
+
+.v2 .v2-paper,
+.v2 .v2-white {
+  --fg: #0b1426;
+  --fg-muted: #4b5568;
+  --line: #d9dfe8;
+  --accent: #0d5fd6;
+  --surface: var(--v2-white);
+  color: var(--fg);
+}
+
+.v2 .v2-paper {
+  background: var(--v2-paper);
+}
+
+.v2 .v2-white {
+  background: var(--v2-white);
+}
+
+/* ---------- rozloženie ---------- */
+
+.v2 .v2-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.v2 .v2-section {
+  padding-block: clamp(72px, 10vw, 128px);
+}
+
+.v2 .v2-rule {
+  height: 1px;
+  border: 0;
+  background: var(--line);
+}
+
+@media (min-width: 768px) {
+  .v2 .v2-container {
+    padding-inline: 32px;
+  }
+}
+
+/* ---------- typografia ---------- */
+
+.v2 .v2-eyebrow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.v2 .v2-eyebrow-index {
+  color: var(--fg-muted);
+  letter-spacing: 0.06em;
+}
+
+.v2 .v2-display {
+  font-size: clamp(2.6rem, 6.4vw, 4.9rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.v2 .v2-h2 {
+  font-size: clamp(2rem, 4.2vw, 3.3rem);
+  font-weight: 700;
+  line-height: 1.06;
+}
+
+.v2 .v2-h3 {
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+.v2 .v2-h4 {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+
+.v2 .v2-lead {
+  font-size: clamp(1.075rem, 1.5vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--fg-muted);
+}
+
+.v2 .v2-lead-strong {
+  color: var(--fg);
+}
+
+.v2 .v2-muted {
+  color: var(--fg-muted);
+}
+
+.v2 .v2-small {
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.v2 .v2-label-caps {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* ---------- tlačidlá a odkazy ---------- */
+
+.v2 .v2-btn {
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 0 1.4rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.v2 .v2-btn-primary {
+  background: var(--v2-blue);
+  color: #ffffff;
+}
+
+.v2 .v2-btn-primary:hover {
+  background: var(--v2-blue-hover);
+}
+
+.v2 .v2-btn-secondary {
+  border-color: var(--line);
+  color: var(--fg);
+}
+
+.v2 .v2-btn-secondary:hover {
+  border-color: var(--fg-muted);
+}
+
+.v2 .v2-btn-small {
+  min-height: 40px;
+  padding: 0 1rem;
+  font-size: 0.9375rem;
+}
+
+.v2 .v2-link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.v2 .v2-link:hover {
+  color: var(--fg);
+}
+
+.v2 a:focus-visible,
+.v2 button:focus-visible,
+.v2 input:focus-visible,
+.v2 textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- štítky ---------- */
+
+.v2 .v2-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.v2 .v2-badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--v2-ok);
+}
+
+.v2 .v2-badge-dot-neutral {
+  background: var(--fg-muted);
+}
+
+/* ---------- rámy pre snímky ---------- */
+
+.v2 .v2-browser {
+  overflow: hidden;
+  border-radius: 12px;
+  background: #0b1222;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 30px 70px -32px rgba(0, 0, 0, 0.75);
+}
+
+.v2 .v2-paper .v2-browser,
+.v2 .v2-white .v2-browser {
+  box-shadow:
+    0 0 0 1px rgba(11, 20, 38, 0.1),
+    0 28px 60px -34px rgba(11, 20, 38, 0.45);
+}
+
+.v2 .v2-browser-bar {
+  display: flex;
+  height: 34px;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 0.85rem;
+  background: #121b2f;
+}
+
+.v2 .v2-paper .v2-browser-bar,
+.v2 .v2-white .v2-browser-bar {
+  background: #e7ebf1;
+}
+
+.v2 .v2-browser-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.v2 .v2-browser-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.v2 .v2-paper .v2-browser-dots span,
+.v2 .v2-white .v2-browser-dots span {
+  background: #c3cbd7;
+}
+
+.v2 .v2-browser-url {
+  overflow: hidden;
+  flex: 1;
+  max-width: 280px;
+  border-radius: 6px;
+  padding: 0.15rem 0.6rem;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.v2 .v2-paper .v2-browser-url,
+.v2 .v2-white .v2-browser-url {
+  background: #ffffff;
+}
+
+.v2 .v2-browser img {
+  width: 100%;
+}
+
+.v2 .v2-phone {
+  overflow: hidden;
+  border-radius: 26px;
+  padding: 6px;
+  background: #05080f;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 24px 50px -20px rgba(0, 0, 0, 0.7);
+}
+
+.v2 .v2-phone img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+/* ---------- hlavička ---------- */
+
+.v2 .v2-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--v2-ink);
+}
+
+.v2 .v2-header-inner {
+  display: flex;
+  height: 68px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.v2 .v2-nav-link {
+  border-radius: 8px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #c9d2e0;
+  text-decoration: none;
+}
+
+.v2 .v2-nav-link:hover {
+  color: #ffffff;
+}
+
+.v2 .v2-nav-secondary {
+  color: #93a0b6;
+}
+
+.v2 .v2-menu-panel {
+  position: fixed;
+  inset: 68px 0 0 0;
+  z-index: 39;
+  overflow-y: auto;
+  background: var(--v2-ink);
+  padding: 1.5rem 20px 2rem;
+}
+
+.v2 .v2-menu-link {
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem 0;
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: #eef2f8;
+  text-decoration: none;
+}
+
+/* ---------- hero ---------- */
+
+.v2 .v2-hero {
+  padding-top: clamp(36px, 6vw, 80px);
+  padding-bottom: clamp(64px, 9vw, 112px);
+}
+
+.v2 .v2-hero-visual {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+
+.v2 .v2-hero-phone {
+  position: absolute;
+  right: -4px;
+  bottom: 0;
+  width: 27%;
+  max-width: 190px;
+}
+
+@media (min-width: 1024px) {
+  .v2 .v2-hero-visual {
+    margin-right: -24px;
+  }
+}
+
+/* ---------- zoznamy ---------- */
+
+.v2 .v2-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v2 .v2-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: var(--fg-muted);
+}
+
+.v2 .v2-list li::before {
+  position: absolute;
+  top: 0.78em;
+  left: 0;
+  width: 0.55rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  content: '';
+}
+
+@media (min-width: 640px) {
+  .v2 .v2-list-2col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+}
+
+.v2 .v2-deflist > div {
+  display: grid;
+  gap: 0.35rem;
+  border-top: 1px solid var(--line);
+  padding-block: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .v2 .v2-deflist > div {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
+    gap: 2rem;
+  }
+}
+
+/* ---------- kroky spolupráce ---------- */
+
+.v2 .v2-step-number {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+}
+
+/* ---------- formulár ---------- */
+
+.v2 .v2-form-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.v2 .v2-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.v2 .v2-input {
+  width: 100%;
+  border: 1px solid #c4ccd8;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 0.8rem 0.95rem;
+  font: inherit;
+  color: #0b1426;
+}
+
+.v2 .v2-input::placeholder {
+  color: #6b7587;
+}
+
+.v2 .v2-input:focus {
+  border-color: var(--accent);
+}
+
+.v2 .v2-input[aria-invalid='true'] {
+  border-color: #c2410c;
+}
+
+.v2 .v2-field-error {
+  margin-top: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #b42318;
+}
+
+.v2 .v2-notice {
+  border: 1px solid #f0c36d;
+  border-radius: 10px;
+  background: #fff8e6;
+  padding: 0.85rem 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #5c3d00;
+}
+
+.v2 .v2-alert {
+  border: 1px solid #f3b4ab;
+  border-radius: 10px;
+  background: #fff1ef;
+  padding: 0.85rem 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #8a1c10;
+}
+
+.v2 .v2-success {
+  border: 1px solid #9fd8b5;
+  border-radius: 12px;
+  background: #ecfbf2;
+  padding: 1.25rem;
+  color: #0f5132;
+  outline: none;
+}
+
+/* ---------- pätička ---------- */
+
+.v2 .v2-footer a {
+  color: #c9d2e0;
+  text-decoration: none;
+}
+
+.v2 .v2-footer a:hover {
+  color: #ffffff;
+}
+
+/* ---------- jemný pohyb len bez obmedzenia pohybu ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .v2 .v2-btn,
+  .v2 .v2-nav-link,
+  .v2 .v2-link,
+  .v2 .v2-footer a {
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease;
+  }
+
+  .v2 .v2-shot-link img {
+    transition: transform 400ms ease;
+  }
+
+  .v2 .v2-shot-link:hover img {
+    transform: scale(1.012);
+  }
+}

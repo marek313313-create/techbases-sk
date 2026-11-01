@@ -22,6 +22,24 @@ function asTrimmedString(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+function isSendingConfigured() {
+  const apiKey = process.env.RESEND_API_KEY;
+
+  return Boolean(apiKey && apiKey !== 'RESEND_API_KEY');
+}
+
+// Stav odosielania sa musí čítať pri každej požiadavke, nie pri builde
+export const dynamic = 'force-dynamic';
+
+// Len na čítanie: formulár podľa toho pravdivo ukáže, či sa v tomto
+// prostredí správa naozaj odošle. Hodnotu kľúča nikdy nevracia.
+export async function GET() {
+  return NextResponse.json(
+    { sending: isSendingConfigured() },
+    { headers: { 'Cache-Control': 'no-store' } },
+  );
+}
+
 export async function POST(request: Request) {
   let payload: ContactPayload;
 

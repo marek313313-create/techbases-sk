@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import Script from 'next/script';
+import { ProductionOnly } from './components/production-only';
 import { RevealOnScroll } from './components/reveal-on-scroll';
 import { SiteFooter } from './components/site-footer';
 import { SiteHeader } from './components/site-header';
@@ -72,16 +73,22 @@ export default function RootLayout({
   return (
     <html lang="sk" className={spaceGrotesk.variable}>
       <body className="bg-slate-950 text-slate-100 antialiased">
-        <a href="#obsah" className="skip-link">
-          Preskočiť na obsah
-        </a>
+        <ProductionOnly>
+          <a href="#obsah" className="skip-link">
+            Preskočiť na obsah
+          </a>
+        </ProductionOnly>
         <div className="min-h-screen bg-slate-950 text-slate-100">
-          <SiteHeader />
-          <RevealOnScroll />
+          <ProductionOnly>
+            <SiteHeader />
+            <RevealOnScroll />
+          </ProductionOnly>
           <div id="obsah" tabIndex={-1} className="outline-none">
             {children}
           </div>
-          <SiteFooter />
+          <ProductionOnly>
+            <SiteFooter />
+          </ProductionOnly>
         </div>
         {cfAnalyticsToken ? (
           <Script

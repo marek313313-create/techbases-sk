@@ -238,37 +238,38 @@ main [class*="border-blue-500/20"]:hover {
     max-width: 100vw;
   }
 
-  main,
-  main section,
-  main section > div,
-  main .grid,
-  main .flex {
+  /* Pravidlá nižšie platia len pre pôvodný web; návrh V2 (.v2-main) má vlastné */
+  main:not(:where(.v2-main)),
+  main:not(:where(.v2-main)) section,
+  main:not(:where(.v2-main)) section > div,
+  main:not(:where(.v2-main)) .grid,
+  main:not(:where(.v2-main)) .flex {
     max-width: 100% !important;
   }
 
   /* Riadky ikona + text (flex-nowrap) sa nesmú rozpadnúť na dva riadky */
-  main .flex:not(.flex-nowrap) {
+  main:not(:where(.v2-main)) .flex:not(.flex-nowrap) {
     flex-wrap: wrap;
   }
 
-  main h1 {
+  main:not(:where(.v2-main)) h1 {
     max-width: 100% !important;
     font-size: clamp(2rem, 9vw, 2.5rem) !important;
     line-height: 1.14 !important;
   }
 
-  main h2 {
+  main:not(:where(.v2-main)) h2 {
     max-width: 100% !important;
     font-size: clamp(1.6rem, 7vw, 2rem) !important;
     line-height: 1.18 !important;
   }
 
-  main p,
-  main li {
+  main:not(:where(.v2-main)) p,
+  main:not(:where(.v2-main)) li {
     max-width: 100% !important;
   }
 
-  main a[class*="rounded-xl"] {
+  main:not(:where(.v2-main)) a[class*="rounded-xl"] {
     display: inline-flex;
     align-items: center;
     justify-content: center;
