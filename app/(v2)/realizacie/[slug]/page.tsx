@@ -8,8 +8,8 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export const dynamicParams = false;
-
+// Bez dynamicParams = false: OpenNext na Cloudflare nemá inkrementálnu cache, takže
+// predgenerované stránky by s fallback: false vracali 404. Neznámy slug vráti 404 cez notFound().
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
