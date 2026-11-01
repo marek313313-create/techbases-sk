@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { openGraphFor } from '../../../seo';
 import { BrowserFrame, PhoneFrame } from '../../components/device-frames';
 import { getProject, projects } from '../../projects';
 
@@ -27,22 +28,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `/realizacie/${project.slug}`,
     },
-    openGraph: {
+    openGraph: openGraphFor(`/realizacie/${project.slug}`, {
       title: `${project.name} – realizácia | TechBases.sk`,
       description: project.summary,
-      url: `https://techbases.sk/realizacie/${project.slug}`,
-      siteName: 'TechBases.sk',
-      locale: 'sk_SK',
-      type: 'website',
-      images: [
-        {
-          url: '/og-image.png',
-          width: 1200,
-          height: 630,
-          alt: 'TechBases.sk — webové stránky a firemné nástroje na mieru',
-        },
-      ],
-    },
+    }),
   };
 }
 

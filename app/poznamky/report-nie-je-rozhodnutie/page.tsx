@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { openGraphFor } from '../../seo';
 
 const title = 'Keď má prevádzka report, ale odpoveď stále hľadá ručne';
 
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/poznamky/report-nie-je-rozhodnutie',
   },
+  openGraph: openGraphFor('/poznamky/report-nie-je-rozhodnutie'),
 };
 
 export default function ReportIsNotDecisionNotePage() {

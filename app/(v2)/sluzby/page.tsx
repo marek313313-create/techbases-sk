@@ -5,6 +5,7 @@ import { BrowserFrame, PhoneFrame } from '../components/device-frames';
 import { InquiryForm } from '../components/inquiry-form';
 import { SectionIntro } from '../components/section-intro';
 import { getProject } from '../projects';
+import { openGraphFor } from '../../seo';
 
 export const metadata: Metadata = {
   title: {
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/sluzby',
   },
+  openGraph: openGraphFor('/sluzby'),
 };
 
 const faqStructuredData = {

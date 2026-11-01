@@ -4,6 +4,7 @@ import { MailIcon, PhoneIcon } from '../components/contact-icons';
 import { InquiryCard } from '../components/inquiry-card';
 import { MiniLogoBullet } from '../components/mini-logo-bullet';
 import { contactEmail, generalMailto } from '../site-data';
+import { openGraphFor } from '../seo';
 
 export const metadata: Metadata = {
   title: {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/kontakt',
   },
+  openGraph: openGraphFor('/kontakt'),
 };
 
 const webQuestions = [

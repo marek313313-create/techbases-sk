@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: newHomeLastModified,
     })),
     { path: '/audit-erp-dat', priority: 0.88 },
-    { path: '/sluzby', priority: 0.9, lastModified: twoServicesLastModified },
+    { path: '/sluzby', priority: 0.9, lastModified: newHomeLastModified },
     { path: '/sluzby/sklad-nahradnych-dielov', priority: 0.95 },
     { path: '/poznamky', priority: 0.85 },
     ...practiceNotes.map((note) => ({

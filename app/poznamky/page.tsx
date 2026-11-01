@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { practiceNotes } from './poznamky-data';
+import { openGraphFor } from '../seo';
 
 export const metadata: Metadata = {
   title: {
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/poznamky',
   },
+  openGraph: openGraphFor('/poznamky'),
 };
 
 export default function PracticeNotesPage() {

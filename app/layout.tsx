@@ -5,6 +5,7 @@ import { V2Footer } from './(v2)/components/v2-footer';
 import { V2Header } from './(v2)/components/v2-header';
 import { ProductionOnly } from './components/production-only';
 import { RevealOnScroll } from './components/reveal-on-scroll';
+import { baseOpenGraph } from './seo';
 import './globals.css';
 import './(v2)/v2.css';
 
@@ -36,25 +37,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  // štvorcové ikony (Google vo výsledkoch vyžaduje štvorec, násobok 48 px)
   icons: {
-    icon: '/mini-logo.png',
-    shortcut: '/mini-logo.png',
-    apple: '/mini-logo.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
   // Titulok, popis a URL pre OG/Twitter si každá stránka berie zo svojich metadát
-  openGraph: {
-    siteName: 'TechBases.sk',
-    locale: 'sk_SK',
-    type: 'website',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'TechBases.sk — webové stránky a firemné nástroje na mieru',
-      },
-    ],
-  },
+  // (openGraphFor v app/seo.ts)
+  openGraph: baseOpenGraph,
   twitter: {
     card: 'summary_large_image',
     images: ['/og-image.png'],

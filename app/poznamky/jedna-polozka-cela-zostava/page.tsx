@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next';
 import Link from 'next/link';
+import { openGraphFor } from '../../seo';
 
 export const metadata: Metadata = {
   title: {
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/poznamky/jedna-polozka-cela-zostava',
   },
+  openGraph: openGraphFor('/poznamky/jedna-polozka-cela-zostava'),
 };
 
 const manualChecks = [

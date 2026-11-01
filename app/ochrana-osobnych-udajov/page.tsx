@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from 'next';
+import { openGraphFor } from '../seo';
 
 export const metadata: Metadata = {
   title: 'Ochrana osobných údajov',
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/ochrana-osobnych-udajov',
   },
+  openGraph: openGraphFor('/ochrana-osobnych-udajov'),
 };
 
 export default function PrivacyPage() {

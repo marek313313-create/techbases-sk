@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SolutionPreviews } from '../../components/solution-previews';
+import { openGraphFor } from '../../seo';
 
 export const metadata: Metadata = {
   title: {
@@ -11,13 +12,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/sluzby/sklad-nahradnych-dielov',
   },
-  openGraph: {
+  openGraph: openGraphFor('/sluzby/sklad-nahradnych-dielov', {
     title: 'Sklad náhradných dielov, objednávky a výdaje',
     description:
       'Pracovný pohľad nad skladom náhradných dielov, výdajmi, objednávkami, kritickými položkami a materiálovou pripravenosťou zostáv z existujúcich ERP, Excel alebo CSV exportov.',
-    url: 'https://techbases.sk/sluzby/sklad-nahradnych-dielov',
-    type: 'website',
-  },
+  }),
 };
 
 const painPoints = [

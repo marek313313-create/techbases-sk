@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next';
 import Link from 'next/link';
+import { openGraphFor } from '../seo';
 
 export const metadata: Metadata = {
   title: {
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/audit-erp-dat',
   },
+  openGraph: openGraphFor('/audit-erp-dat'),
 };
 
 const fitItems = [

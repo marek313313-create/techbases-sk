@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { openGraphFor } from '../seo';
 import { inquiryLinks } from '../site-data';
 import { BrowserFrame, PhoneFrame } from './components/device-frames';
 import { InquiryForm } from './components/inquiry-form';
@@ -18,47 +19,46 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: 'https://techbases.sk',
-    siteName: 'TechBases.sk',
-    locale: 'sk_SK',
-    type: 'website',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'TechBases.sk — webové stránky a firemné nástroje na mieru',
-      },
-    ],
-  },
+  openGraph: openGraphFor('/', { title: pageTitle, description: pageDescription }),
 };
 
-// Prevzaté z pôvodnej úvodnej stránky, aby vyhľadávače nestratili údaje o službe
+// Služba prevzatá z pôvodnej úvodnej stránky; WebSite určuje názov webu vo výsledkoch Google
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'TechBases.sk',
-  url: 'https://techbases.sk',
-  image: 'https://techbases.sk/techbase-logo-v2.png',
-  description:
-    'Tvorba prezentačných webov na mieru a pracovné prehľady nad ERP exportmi, skladom náhradných dielov, výdajmi, objednávkami, prestojmi a plánovaním údržby.',
-  email: 'kontakt@techbases.sk',
-  telephone: '+421948684756',
-  areaServed: 'Slovakia',
-  founder: {
-    '@type': 'Person',
-    name: 'Marek Belko',
-  },
-  serviceType: [
-    'Tvorba webových stránok na mieru',
-    'Pracovný pohľad nad ERP dátami',
-    'Sklad náhradných dielov',
-    'Objednávky a výdaje materiálu',
-    'Plánovanie údržby',
-    'Prestoje výroby a opakované poruchy',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://techbases.sk/#website',
+      name: 'TechBases.sk',
+      alternateName: 'TechBases',
+      url: 'https://techbases.sk/',
+      inLanguage: 'sk',
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': 'https://techbases.sk/#sluzba',
+      name: 'TechBases.sk',
+      url: 'https://techbases.sk',
+      image: 'https://techbases.sk/techbase-logo-v2.png',
+      logo: 'https://techbases.sk/icon-192.png',
+      description:
+        'Tvorba prezentačných webov na mieru a pracovné prehľady nad ERP exportmi, skladom náhradných dielov, výdajmi, objednávkami, prestojmi a plánovaním údržby.',
+      email: 'kontakt@techbases.sk',
+      telephone: '+421948684756',
+      areaServed: 'Slovakia',
+      founder: {
+        '@type': 'Person',
+        name: 'Marek Belko',
+      },
+      serviceType: [
+        'Tvorba webových stránok na mieru',
+        'Pracovný pohľad nad ERP dátami',
+        'Sklad náhradných dielov',
+        'Objednávky a výdaje materiálu',
+        'Plánovanie údržby',
+        'Prestoje výroby a opakované poruchy',
+      ],
+    },
   ],
 };
 
@@ -222,7 +222,7 @@ function FeaturedProject({
       <Link
         href={`/realizacie/${project.slug}`}
         className="v2-shot-link relative mt-2 block pb-8"
-        aria-label={`Detail realizácie ${project.name}`}
+        aria-label={`Detail realizácie ${project.name} (${project.frameUrl})`}
       >
         <BrowserFrame {...desktop} url={project.frameUrl} />
         {mobile ? (
