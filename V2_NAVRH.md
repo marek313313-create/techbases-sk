@@ -1,7 +1,7 @@
 # Návrh V2 – interné poznámky
 
-Stav k 1. 11. 2026: **V2 je nasadená ako hlavný web techbases.sk** (commit `dffdf2f` na
-`main`, verzia Workera `9cb763f3-51a1-4f46-991a-245194488102`). Postup a kontroly sú
+Stav k 1. 11. 2026: **V2 je nasadená ako hlavný web techbases.sk** (commit `60fef1f` na
+`main`, verzia Workera `fb648e34-5939-4243-8948-15eea4fd53ed`). Postup a kontroly sú
 v časti „Nasadenie V2“.
 
 ## Ako otvoriť
@@ -251,6 +251,7 @@ Body 1–6 v rozhodnutiach sú na webe formulované neutrálne, nasadenie neblok
 | `1ab13b6` | `9f940af5`     | jednotná hlavička a pätička, `/tvorba-webov` a `/o-mne` → 308 na úvod       |
 | `cc90db4` | `06548b50`     | `/sluzby` vo vzhľade úvodu, všetky funkcie Archívu, texty len online, výzva |
 | `dffdf2f` | `9cb763f3`     | tlačidlo „Dohodnúť ukážku aplikácie“ pod Archívom                           |
+| `60fef1f` | `fb648e34`     | zaoblenie telefónov podľa šírky (~8 %, 8–22 px namiesto pevných 26 px)      |
 
 Nasadenie `06548b50` (16:56 SEČ): `origin/main` bez cudzích zmien, push `93fde50..cc90db4`
 fast-forward, účet overený, návratová verzia `9f940af5`. Na produkcii: 11 stránok 200 s
