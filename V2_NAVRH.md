@@ -1,7 +1,7 @@
 # Návrh V2 – interné poznámky
 
-Stav k 1. 11. 2026: **V2 je nasadená ako hlavný web techbases.sk** (commit `60fef1f` na
-`main`, verzia Workera `fb648e34-5939-4243-8948-15eea4fd53ed`). Postup a kontroly sú
+Stav k 1. 11. 2026: **V2 je nasadená ako hlavný web techbases.sk** (commit `178ea92` na
+`main`, verzia Workera `a6fbd18d-9f0b-4a01-8352-87e11ba7f2e5`). Postup a kontroly sú
 v časti „Nasadenie V2“.
 
 ## Ako otvoriť
@@ -357,3 +357,19 @@ zapisujú sa v ňom iba poruchy a inšpekcie a tie sa pri ďalšej aktualizácii
   offline režim a zápis z telefónu s neskorším prenosom patria len k súčasnej verzii pre
   jedného človeka a na webe nie sú, aby firmy nemali zmätok v tom, ako sa nahrávajú dáta.
 - Výzva „Opísať problém“ v detailoch firemných nástrojov a odkaz na úvode vedú na `/sluzby#dopyt`.
+
+### SEO a indexovanie (1. 11. 2026)
+
+- Audit 17 adries zo sitemap na produkcii: všetky 200, `index, follow`, vlastný canonical,
+  jeden H1, jazyk `sk`, úplné Open Graph (titulok, popis, `og:url`, obrázok) a Twitter karta.
+  Lighthouse (mobil): úvod aj `/sluzby` SEO 100, prístupnosť 100.
+- Opravené: štvorcové ikony (`/favicon.ico` 48 px, `/icon-192.png`, `/apple-touch-icon.png`)
+  namiesto `mini-logo.png` 302 × 280 / 183 kB; `og:url` na 8 stránkach (spoločný základ
+  `app/seo.ts`); `WebSite` + `ProfessionalService` v JSON-LD úvodu; dátum zmeny `/sluzby`.
+- **IndexNow** (kľúč `/694b120235944296afbf4a210fb80db2.txt`): odoslaných 19 adries (17 zo
+  sitemap + `/tvorba-webov`, `/o-mne` kvôli presmerovaniu), odpoveď 200 – Bing, Yandex, Seznam.
+- **Google** IndexNow nepodporuje → v Search Console (vlastník webu): Sitemapy → odoslať
+  `sitemap.xml`; Kontrola webovej adresy → požiadať o indexovanie `/`, `/sluzby` a štyroch
+  `/realizacie/…`. Nevykonané (agent nemá prístup do Search Console).
+- Ponechané: 3 popisy poznámok majú > 160 znakov (Google ich skráti), titulok
+  `/poznamky/erp-nie-je-problem` má 74 znakov.
