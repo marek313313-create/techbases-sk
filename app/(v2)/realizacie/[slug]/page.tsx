@@ -223,22 +223,25 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         <div className="v2-container flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <h2 className="v2-h2">
-              {isWebProject
-                ? 'Chcete podobne spracovaný web?'
-                : 'Riešite podobný problém?'}
+              {project.cta?.title ??
+                (isWebProject
+                  ? 'Chcete podobne spracovaný web?'
+                  : 'Riešite podobný problém?')}
             </h2>
             <p className="v2-lead mt-4">
-              {isWebProject
-                ? 'Napíšte mi pár viet o vašej firme. Ozvem sa vám a navrhnem ďalší postup aj orientačnú cenu.'
-                : 'Pošlite krátky opis problému alebo anonymizovanú ukážku exportu. Prvý rozhovor ukáže, či má zmysel overiť pilot.'}
+              {project.cta?.text ??
+                (isWebProject
+                  ? 'Napíšte mi pár viet o vašej firme. Ozvem sa vám a navrhnem ďalší postup aj orientačnú cenu.'
+                  : 'Pošlite krátky opis problému alebo anonymizovanú ukážku exportu. Prvý rozhovor ukáže, či má zmysel overiť pilot.')}
             </p>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
             <Link
               href={isWebProject ? '/#dopyt' : '/sluzby#dopyt'}
               className="v2-btn v2-btn-primary"
             >
-              {isWebProject ? 'Nezáväzne naceniť web' : 'Opísať problém'}
+              {project.cta?.button ??
+                (isWebProject ? 'Nezáväzne naceniť web' : 'Opísať problém')}
             </Link>
             <Link
               href={isWebProject ? '/#realizacie' : '/sluzby'}

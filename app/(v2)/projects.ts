@@ -33,6 +33,8 @@ export type Project = {
   featuresTitle?: string;
   // úplný zoznam funkcií po moduloch (detail, sekcia „Čo aplikácia vie“)
   modules?: { title: string; items: string[] }[];
+  // vlastná výzva na konci detailu; bez nej platí predvolená podľa služby
+  cta?: { title: string; text: string; button: string };
   result: string;
   note?: string;
   liveUrl?: string;
@@ -372,6 +374,13 @@ export const projects: Project[] = [
         ],
       },
     ],
+    // upozornenia = dlaždice a počty v aplikácii (výmeny po termíne, chýbajúce inšpekcie,
+    // na posúdenie) a upozornenie na novú správu; push ani e-mailové notifikácie aplikácia nemá
+    cta: {
+      title: 'Prehľad a kontrola nad údržbou na jednom mieste',
+      text: 'Technik v teréne, majster aj vedenie vidia online to isté. Aplikácia upozorní na výmeny po termíne, chýbajúce inšpekcie a požiadavky, ktoré čakajú na posúdenie. Napíšte mi, ako dnes evidujete údržbu, a ukážem vám, ako by to vyzeralo u vás.',
+      button: 'Mám záujem o aplikáciu',
+    },
     result:
       'Požiadavky, plán opráv, poruchy, inšpekcie, výmeny a história agregátov sú v jednej aplikácii. Je pripravená pre viac používateľov; zatiaľ ju používam vo vlastnej verzii.',
     note: 'Snímky sú zo skutočnej aplikácie. Kódy, názvy zariadení a stredísk, mená, poznámky a čísla záznamov sú nahradené ukážkovými hodnotami.',
