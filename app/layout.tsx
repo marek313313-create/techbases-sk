@@ -1,16 +1,23 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk } from 'next/font/google';
+import { Inter, Space_Grotesk } from 'next/font/google';
 import Script from 'next/script';
+import { V2Footer } from './(v2)/components/v2-footer';
+import { V2Header } from './(v2)/components/v2-header';
 import { ProductionOnly } from './components/production-only';
 import { RevealOnScroll } from './components/reveal-on-scroll';
-import { SiteFooter } from './components/site-footer';
-import { SiteHeader } from './components/site-header';
 import './globals.css';
+import './(v2)/v2.css';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin', 'latin-ext'],
   weight: ['500', '600', '700'],
   variable: '--font-heading',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-v2-body',
   display: 'swap',
 });
 
@@ -71,24 +78,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sk" className={spaceGrotesk.variable}>
+    <html lang="sk" className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <body className="bg-slate-950 text-slate-100 antialiased">
-        <ProductionOnly>
-          <a href="#obsah" className="skip-link">
-            Preskočiť na obsah
-          </a>
-        </ProductionOnly>
+        <a href="#obsah" className="skip-link">
+          Preskočiť na obsah
+        </a>
         <div className="min-h-screen bg-slate-950 text-slate-100">
+          {/* Jednotná hlavička a pätička na všetkých stránkach. Obal s .v2 dodá štýly
+              a premenné; display: contents nechá hlavičku sticky voči celej stránke. */}
+          <div className="v2 contents">
+            <V2Header />
+          </div>
           <ProductionOnly>
-            <SiteHeader />
             <RevealOnScroll />
           </ProductionOnly>
           <div id="obsah" tabIndex={-1} className="outline-none">
             {children}
           </div>
-          <ProductionOnly>
-            <SiteFooter />
-          </ProductionOnly>
+          <div className="v2 contents">
+            <V2Footer />
+          </div>
         </div>
         {cfAnalyticsToken ? (
           <Script

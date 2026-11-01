@@ -1,6 +1,6 @@
 /*
- * Návrh V2 – všetky pravidlá sú pod triedou .v2, aby po klientskej navigácii
- * neovplyvnili pôvodný web. Farby vychádzajú z identity TechBases (tmavomodrá
+ * V2 (úvod, realizácie, hlavička a pätička) – všetky pravidlá sú pod triedou .v2,
+ * aby neovplyvnili obsah stránok v pôvodnom vzhľade. Farby vychádzajú z identity TechBases (tmavomodrá
  * a modrá z loga); svetlé sekcie slúžia na pokojné čítanie.
  */
 
@@ -32,15 +32,16 @@
 
 /*
  * Globálne overflow-x: hidden na html/body robí z body posúvací kontajner a
- * vypína position: sticky hlavičky. Na stránkach V2 ho nahradí clip, ktorý
- * pretekanie skryje rovnako, no sticky nerozbije. Pôvodný web .v2 nemá.
+ * vypína position: sticky hlavičky. Clip pretekanie skryje rovnako, no sticky
+ * nerozbije. Jednotná hlavička (.v2) je na všetkých stránkach.
  */
 html:has(.v2),
 html:has(.v2) body {
   overflow-x: clip;
 }
 
-.v2 [id] {
+/* kotvy (aj na stránkach v pôvodnom vzhľade) končia pod sticky hlavičkou */
+html:has(.v2-header) [id] {
   scroll-margin-top: 88px;
 }
 

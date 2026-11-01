@@ -26,5 +26,5 @@ nastavený, formulár vráti zrozumiteľnú chybu s odkazom na e-mail (nič sa n
   na WebP do `public/realizacie/` (šírka 1200 a 480 px).
 - Pred nasadením si overiť, že majiteľ Zrubu pri Hrone súhlasí so zverejnením
   snímok a odkazu na TechBases.sk.
-- Stav Zrubu pri Hrone je „Spustený web, priebežne dopĺňaný“ (úvod aj
-  `app/components/web-realizations.tsx` na /tvorba-webov).
+- Stav Zrubu pri Hrone je „Spustený web, priebežne dopĺňaný“ (`app/(v2)/projects.ts`).
+  Stránky /tvorba-webov a /o-mne sú zrušené a trvalo presmerované na /#ponuka a /#o-mne.

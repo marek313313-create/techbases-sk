@@ -15,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       lastModified: newHomeLastModified,
     })),
-    { path: '/tvorba-webov', priority: 0.9, lastModified: newHomeLastModified },
     { path: '/audit-erp-dat', priority: 0.88 },
     { path: '/sluzby', priority: 0.9, lastModified: twoServicesLastModified },
     { path: '/sluzby/sklad-nahradnych-dielov', priority: 0.95 },
@@ -29,7 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
           : 0.65,
       lastModified: new Date(note.dateModified),
     })),
-    { path: '/o-mne', priority: 0.8, lastModified: twoServicesLastModified },
     { path: '/kontakt', priority: 0.8, lastModified: twoServicesLastModified },
     {
       path: '/ochrana-osobnych-udajov',

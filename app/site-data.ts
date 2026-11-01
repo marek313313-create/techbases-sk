@@ -17,13 +17,6 @@ export type FaqItem = {
 
 export type InquiryTopic = 'web' | 'data';
 
-export type NavLink = {
-  href: string;
-  label: string;
-  // ďalšie cesty, na ktorých má byť položka označená ako aktívna
-  activePaths?: string[];
-};
-
 export const contactEmail = 'kontakt@techbases.sk';
 
 function buildMailto(subject: string, body: string) {
@@ -76,14 +69,6 @@ export const inquiryLinks: Record<InquiryTopic, { mailto: string; whatsApp: stri
   },
 };
 
-export const navLinks: NavLink[] = [
-  { href: '/tvorba-webov', label: 'Tvorba webov' },
-  { href: '/sluzby', label: 'Firemné nástroje', activePaths: ['/audit-erp-dat'] },
-  { href: '/#realizacie', label: 'Realizácie' },
-  { href: '/o-mne', label: 'O mne' },
-  { href: '/kontakt', label: 'Kontakt' },
-];
-
 export const useCases: FeatureCard[] = [
   {
     title: 'Potrebujeme rýchlo zistiť, čo máme skladom, čo sa míňa a čo je objednané.',
@@ -98,7 +83,8 @@ export const useCases: FeatureCard[] = [
     text: 'Rýchla kontrola pripravenosti plánovaných prác podľa dostupnosti materiálu.',
   },
   {
-    title: 'Jedna položka je zostava a plánovanie potrebuje rýchlo zistiť, ktoré diely sú skladom, rezervované alebo chýbajú.',
+    title:
+      'Jedna položka je zostava a plánovanie potrebuje rýchlo zistiť, ktoré diely sú skladom, rezervované alebo chýbajú.',
     text: 'Rozpad zostavy na sklad, rezervácie a potrebu objednania bez ručného skladania tabuliek.',
   },
   {

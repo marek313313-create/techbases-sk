@@ -196,7 +196,7 @@ export default function ServicesPage() {
           Prezentačné weby na mieru robím ako samostatnú službu.
         </p>
         <Link
-          href="/tvorba-webov"
+          href="/#ponuka"
           className="inline-flex shrink-0 rounded-xl border border-blue-400/40 px-4 py-2 text-sm font-semibold text-blue-100 transition hover:bg-blue-500/10"
         >
           Tvorba webov →
@@ -703,7 +703,7 @@ export default function ServicesPage() {
             <div className="rounded-xl border border-white/10 bg-slate-950/60 p-5">
               <p className="leading-7 text-slate-300">Hľadáte skôr nový web?</p>
               <Link
-                href="/tvorba-webov"
+                href="/#ponuka"
                 className="mt-3 inline-flex text-sm font-semibold text-blue-200 underline decoration-blue-400/40 underline-offset-4 hover:text-white"
               >
                 Tvorba webov →

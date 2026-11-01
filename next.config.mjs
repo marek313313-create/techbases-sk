@@ -7,6 +7,13 @@ const __dirname = path.dirname(__filename);
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   outputFileTracingRoot: __dirname,
+  // Obsah týchto stránok je teraz v sekciách úvodu; staré adresy ostávajú funkčné
+  async redirects() {
+    return [
+      { source: '/tvorba-webov', destination: '/#ponuka', permanent: true },
+      { source: '/o-mne', destination: '/#o-mne', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

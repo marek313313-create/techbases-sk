@@ -117,7 +117,7 @@ const priceFactors = [
   'doplnkové služby mimo základnej dodávky',
 ];
 
-// Potvrdené pravidlá (zhodné s /tvorba-webov): dve kolá pripomienok, neskoršie zmeny
+// Potvrdené pravidlá (prevzaté z pôvodnej /tvorba-webov): dve kolá pripomienok, neskoršie zmeny
 // podľa rozsahu, doména a hosting mimo ceny, bez redakčného systému. Postup pri chybe,
 // zálohy a odovzdanie prístupov zatiaľ nie sú rozhodnuté – texty preto nič nesľubujú.
 const afterLaunch = [
@@ -295,7 +295,7 @@ export default function V2HomePage() {
       <section className="v2-dark v2-hero">
         <div className="v2-container grid items-center gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
           <div>
-            <div className="v2-eyebrow">Tvorba webových stránok · Marek Belko</div>
+            <div className="v2-eyebrow">Tvorba webových stránok</div>
             <h1 className="v2-display mt-4 sm:mt-5">Váš nový web. Lepší prvý dojem.</h1>
             <p className="v2-lead mt-4 max-w-xl sm:mt-6">
               Weby pre firmy, živnostníkov a ubytovacie zariadenia. Individuálny dizajn a
@@ -430,9 +430,6 @@ export default function V2HomePage() {
               v plánovaní, výrobe a údržbe. Táto prax je základom mojich firemných
               nástrojov a naučila ma začínať tým, ako veci fungujú v praxi.
             </p>
-            <Link href="/o-mne" className="v2-link mt-6 inline-block">
-              Viac o mne
-            </Link>
           </div>
         </div>
       </section>

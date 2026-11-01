@@ -19,7 +19,7 @@ const inquiryContent: Record<
     title: 'Dopyt na web',
     text: 'Pre firmu, živnostníka, ubytovanie aj osobný projekt. Napíšte, čím sa zaoberáte, či už máte web alebo doménu a aké podklady máte k dispozícii.',
     mailLabel: 'Poslať dopyt e-mailom',
-    detailHref: '/tvorba-webov',
+    detailHref: '/#ponuka',
     detailLabel: 'Čo obsahuje tvorba webu',
   },
   data: {
