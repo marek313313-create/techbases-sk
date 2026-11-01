@@ -379,7 +379,7 @@ export const projects: Project[] = [
     cta: {
       title: 'Prehľad a kontrola nad údržbou na jednom mieste',
       text: 'Technik v teréne, majster aj vedenie vidia online to isté. Aplikácia upozorní na výmeny po termíne, chýbajúce inšpekcie a požiadavky, ktoré čakajú na posúdenie. Napíšte mi, ako dnes evidujete údržbu, a ukážem vám, ako by to vyzeralo u vás.',
-      button: 'Mám záujem o aplikáciu',
+      button: 'Dohodnúť ukážku aplikácie',
     },
     result:
       'Požiadavky, plán opráv, poruchy, inšpekcie, výmeny a história agregátov sú v jednej aplikácii. Je pripravená pre viac používateľov; zatiaľ ju používam vo vlastnej verzii.',
