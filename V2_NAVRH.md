@@ -197,7 +197,8 @@ Web nerozhodnuté body zámerne formuluje neutrálne („uvediem / dohodneme v p
 s prestojmi Techbases → ukážkové pracovné pohľady (Techbases 2 snímky, Archív údržby 3,
 každý so samostatným štítkom) → ako začať (kontrola exportov zadarmo, pilot 1 200 – 2 500 €,
 audit) → anonymizovaný výsledok pilotu → časté otázky (rozbaľovacie, JSON-LD FAQ ostáva) →
-formulár s témou „Firemné nástroje a dáta“. Texty sú skrátené z pôvodnej stránky, ponuky
+formulár s témou „Firemné nástroje a dáta“. Blok Archívu ukazuje názvy všetkých modulov
+s odkazom na `/realizacie/archiv-udrzby#funkcie`. Texty sú skrátené z pôvodnej stránky, ponuky
 a ceny sa nemenili. Mobil 22 851 → 7 959 px, ~1 970 → ~530 viditeľných slov. Kotvy
 `#ukazky-riesenia`, `#kontrola-exportov`, `#pilot`, `#audit`, `#otazky`, `#kontakt` ostali.
 
@@ -321,3 +322,19 @@ a požiadať o indexovanie `/`; overiť náhľad odkazu (Open Graph) v sociálny
   Na predchádzajúcej verzii `a2af8bcc` aj 13 stránok pri 390 px.
 - Konzola: jediná chyba je beacon Cloudflare Web Analytics (499), ktorý blokuje lokálny
   antivírus Kaspersky – nie chyba webu.
+
+### Archív údržby – všetky funkcie (1. 11. 2026)
+
+Prehliadka celej aplikácie v telefóne (len navigácia, nič sa nezapisovalo): všetkých 12 položiek
+menu (Prehľad, Požiadavky, Opravy, Poruchy, Inšpekcie, Plán výmen, Agregáty, Pevné činnosti,
+Majstri agregátov, Menný zoznam, Šablóny, Audit), detaily opravy, požiadavky a poruchy,
+štatistika prestojov, plány inšpekcií, firmy, správy. Doplnené z README projektu a z textov
+aplikácie: telefón má kópiu údajov z PC (USB, „Aktualizovať telefón“), funguje bez pripojenia,
+zapisujú sa v ňom iba poruchy a inšpekcie a tie sa pri ďalšej aktualizácii prenesú do PC.
+
+- Detail `/realizacie/archiv-udrzby`: karta „V telefóne“ a nová sekcia „Čo aplikácia vie“
+  (`#funkcie`, 12 modulov, pole `modules` v `projects.ts`).
+- Aplikácia je pripravená pre viac používateľov s rolami a na prevádzku online (server vo
+  firemnej sieti alebo cloud). **Zatiaľ beží ako vlastná verzia autora** – web netvrdí firemné
+  nasadenie ani konkrétnu online adresu.
+- Výzva „Opísať problém“ v detailoch firemných nástrojov a odkaz na úvode vedú na `/sluzby#dopyt`.

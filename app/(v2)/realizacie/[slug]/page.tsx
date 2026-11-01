@@ -139,7 +139,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
           <div className="v2-form-card self-start">
             <h2 className="v2-h4">
-              {isWebProject ? 'Dodané funkcie' : 'Čo aplikácia ukazuje'}
+              {project.featuresTitle ??
+                (isWebProject ? 'Dodané funkcie' : 'Čo aplikácia ukazuje')}
             </h2>
             <ul className="v2-list mt-4">
               {project.features.map((feature) => (
@@ -149,6 +150,32 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {project.modules ? (
+        <section id="funkcie" className="v2-white v2-section">
+          <div className="v2-container">
+            <h2 className="v2-h2">Čo aplikácia vie</h2>
+            <p className="v2-muted mt-3">
+              Všetky moduly aplikácie a čo sa v nich dá robiť.
+            </p>
+            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {project.modules.map((module) => (
+                <div
+                  key={module.title}
+                  className="rounded-2xl border border-[var(--line)] p-6"
+                >
+                  <h3 className="v2-h4">{module.title}</h3>
+                  <ul className="v2-list mt-3">
+                    {module.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {firstShot ? (
         <section className="v2-white v2-section">
@@ -208,7 +235,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
-              href={isWebProject ? '/#dopyt' : '/kontakt?tema=data#formular'}
+              href={isWebProject ? '/#dopyt' : '/sluzby#dopyt'}
               className="v2-btn v2-btn-primary"
             >
               {isWebProject ? 'Nezáväzne naceniť web' : 'Opísať problém'}

@@ -149,11 +149,17 @@ export default function ServicesPage() {
               </span>
               <h3 className="v2-h3 mt-4">{archiv.name}</h3>
               <p className="v2-muted mt-3">{archiv.highlight}</p>
+              {/* stručne všetky moduly; úplný zoznam funkcií je v detaile */}
+              <p className="v2-small mt-4">
+                <span className="v2-label-caps">Moduly</span>
+                <br />
+                {archiv.modules?.map((module) => module.title).join(' · ')}
+              </p>
               <Link
-                href={`/realizacie/${archiv.slug}`}
+                href={`/realizacie/${archiv.slug}#funkcie`}
                 className="v2-link mt-5 inline-block"
               >
-                Detail aplikácie
+                Všetko, čo aplikácia vie
               </Link>
             </div>
             <div className="grid grid-cols-3 gap-3 sm:gap-6">

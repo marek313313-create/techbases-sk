@@ -29,6 +29,10 @@ export type Project = {
   brief: string;
   solution: string;
   features: string[];
+  // nadpis karty s funkciami v detaile, ak sa má líšiť od predvoleného
+  featuresTitle?: string;
+  // úplný zoznam funkcií po moduloch (detail, sekcia „Čo aplikácia vie“)
+  modules?: { title: string; items: string[] }[];
   result: string;
   note?: string;
   liveUrl?: string;
@@ -245,27 +249,130 @@ export const projects: Project[] = [
     service: 'data',
     name: 'Archív údržby',
     kind: 'Interný nástroj',
-    category: 'Mobilná aplikácia pre údržbu',
+    category: 'Aplikácia pre údržbu, online aj v mobile',
     status: 'Ukážky s anonymizovanými údajmi',
     statusDone: false,
+    // Funkcie podľa prehliadky aplikácie v telefóne (1. 11. 2026, všetkých 12 modulov)
+    // a README projektu Archív údržby; bez interných názvov a adries.
     summary:
-      'Mobilná aplikácia pre údržbu: najbližšia oprava, technická karta agregátu a história zásahov v telefóne.',
+      'Evidencia opráv a údržby od požiadavky po uzatvorenie opravy: plán, poruchy, inšpekcie, výmeny a karta agregátu. Pripravená pre celý tím online aj pre telefón bez pripojenia.',
     highlight:
-      'Najbližšia oprava, technická karta agregátu a história zásahov v telefóne. Samostatná aplikácia, oddelená od Techbases.',
+      'Požiadavky, opravy BO/SO/GO/VP, poruchy, inšpekcie, plán výmen a karta agregátu. Pre tím s rolami, online aj v telefóne bez pripojenia. Samostatná aplikácia, oddelená od Techbases.',
     briefLabel: 'Účel',
     brief:
-      'Technická karta zariadenia: opravy, poruchy, inšpekcie a výmeny na jednom mieste, dostupné aj v telefóne.',
+      'Auditovateľný proces opráv BO, SO, GO a VP: požiadavka, posúdenie, publikovaný plán, realizácia, overenie a uzatvorenie. K tomu evidencia porúch, inšpekcií a výmen.',
+    // Pripravená pre viac používateľov; zatiaľ beží ako autorova vlastná verzia
+    // (firemné nasadenie netvrdiť – Marek Belko, 1. 11. 2026).
     solution:
-      'Mobilná aplikácia s prehľadom otvorených úloh a najbližšej opravy, technickou kartou agregátu a technickou históriou s filtrom podľa obdobia, uzla a typu udalosti. Údaje prichádzajú synchronizáciou z PC.',
+      'Jedna aplikácia pre tím údržby s rolami pre pracovníkov, inšpekčných zámočníkov, majstrov, technikov a vedenie. Je pripravená na prevádzku online v prehliadači a beží v telefóne s Androidom, kde pracuje aj bez pripojenia s údajmi nahratými z PC.',
+    featuresTitle: 'V telefóne',
     features: [
-      'prehľad: požiadavky na posúdenie, výmeny po termíne, prestoj za 30 dní a inšpekcie v týždni',
-      'najbližšia oprava s publikovaným plánom a počtom prác',
-      'technická karta agregátu: stredisko, zodpovedný majster, posledná práca, najbližší plán a posledná porucha',
-      'technická história prác, výmen, porúch a inšpekcií s filtrom podľa obdobia, uzla a typu',
-      'údaje z poslednej synchronizácie s PC, karta agregátu je iba na čítanie',
+      'celá evidencia v telefóne aj bez pripojenia: prehľad, opravy, plán, karta agregátu a štatistika prestojov',
+      'údaje sa do telefónu nahrajú z PC cez USB jedným krokom „Aktualizovať telefón“',
+      'v teréne sa zapisujú poruchy s fotkami z fotoaparátu a vykonané inšpekcie',
+      'zápisy z telefónu sa pri ďalšej aktualizácii prenesú do PC; rovnaký zápis sa neprenesie dvakrát a konflikt so zmenou na PC sa odmietne s dôvodom',
+      'ostatné zmeny, výkresy a dokumenty sa robia a otvárajú na PC',
+    ],
+    modules: [
+      {
+        title: 'Prehľad',
+        items: [
+          'požiadavky na posúdenie, výmeny po termíne, prestoj za 30 dní a inšpekcie tohto týždňa',
+          'najbližšia oprava s odpočtom dní, počtom prác a stavom plánu',
+          'chýbajúce inšpekcie, blížiace sa výmeny a prestoj podľa agregátov',
+        ],
+      },
+      {
+        title: 'Požiadavky',
+        items: [
+          'zápis k agregátu a uzlu s termínom realizácie, zdrojom a prioritou',
+          'stavy koncept, na posúdenie, vrátená, schválená, zamietnutá, zrušená',
+          'otvorené, zrealizované a zamietnuté; väzby, presuny, pokračovania a história',
+        ],
+      },
+      {
+        title: 'Opravy BO, SO, GO a VP',
+        items: [
+          'posúdenie požiadaviek v oprave: schváliť alebo zamietnuť s novým termínom',
+          'publikovaný plán v nemenných verziách, začatie opravy, výsledky prác',
+          'technické overenie, uzatvorenie, neplánované práce a pokračovania',
+        ],
+      },
+      {
+        title: 'Tlačové výstupy',
+        items: [
+          'plánovaný a záverečný súpis s farebným vyhodnotením prác',
+          'pracovné listy pre každý agregát s pevnými činnosťami a zodpovedným majstrom',
+          'kontrolné protokoly',
+        ],
+      },
+      {
+        title: 'Poruchy a prestoje',
+        items: [
+          'zápis poruchy: agregát, uzol, typ, dátum, trvanie prestoja, popis, fotky, dokumenty a výkresy',
+          'štatistika prestojov podľa agregátov, typu poruchy a mesiacov',
+          'najdlhšie poruchy a filtre podľa obdobia, agregátu a typu',
+        ],
+      },
+      {
+        title: 'Inšpekcie',
+        items: [
+          'plány pravidelných kontrol týždenne alebo mesačne s prideleným zámočníkom',
+          'zoznam na vykonanie s priebehom a zápis vykonania s poznámkou',
+          'prehľad plnenia po týždňoch alebo mesiacoch',
+        ],
+      },
+      {
+        title: 'Plán výmen',
+        items: [
+          'cyklické výmeny a plánované demontáže: dopravníky, brzdy, motory, spojky',
+          'interval, posledná a ďalšia výmena; stav po termíne, blíži sa, v pláne',
+          'zaradenie do plánu opravy a história výmen každej položky',
+        ],
+      },
+      {
+        title: 'Karta agregátu',
+        items: [
+          'stredisko, zodpovedný majster a technologické uzly',
+          'posledná práca, najbližší plán, posledná porucha a počty zásahov',
+          'technická história prác, výmen, porúch a inšpekcií s filtrom',
+        ],
+      },
+      {
+        title: 'Pevné činnosti a šablóny',
+        items: [
+          'štandardné činnosti každého agregátu, ktoré idú na pracovný list',
+          'kontrolný protokol agregátu',
+          'šablóny opakovaných prác s typom opravy, opakovaním a prioritou',
+        ],
+      },
+      {
+        title: 'Ľudia a komunikácia',
+        items: [
+          'zodpovední majstri agregátov',
+          'menný zoznam opravy: vedúci, pracovný čas, vlastní zamestnanci a externé firmy',
+          '„Moje agregáty“ a správy: spoločný kanál aj súkromné konverzácie',
+        ],
+      },
+      {
+        title: 'Roly a audit',
+        items: [
+          'pracovník, inšpekčný, majster, technik, administrátor a vedenie len na čítanie',
+          'oprávnenia kontroluje server, nielen obrazovka',
+          'audit udalostí: kto, kedy, čo zmenil a s akým dôvodom',
+        ],
+      },
+      {
+        title: 'Prevádzka',
+        items: [
+          'pripravená na prevádzku online v prehliadači: server vo firemnej sieti alebo cloud',
+          'pre viac používateľov naraz, každý so svojou rolou a „Mojimi agregátmi“',
+          'telefón s Androidom aj bez pripojenia; denné zálohy s kontrolou integrity',
+        ],
+      },
     ],
     result:
-      'Prehľad opráv, karta agregátu a história zásahov sú v telefóne z poslednej synchronizácie s PC.',
+      'Požiadavky, plán opráv, poruchy, inšpekcie, výmeny a história agregátov sú v jednej aplikácii. Je pripravená pre viac používateľov; zatiaľ ju používam vo vlastnej verzii.',
     note: 'Snímky sú zo skutočnej aplikácie. Kódy, názvy zariadení a stredísk, mená, poznámky a čísla záznamov sú nahradené ukážkovými hodnotami.',
     frameUrl: 'Archív údržby',
     shotsSource:

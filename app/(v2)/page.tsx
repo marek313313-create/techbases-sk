@@ -583,7 +583,7 @@ export default function V2HomePage() {
             </dl>
             <p className="v2-muted v2-small mt-8">
               Riešite skôr prevádzkový problém s dátami?{' '}
-              <Link href="/kontakt?tema=data#formular" className="v2-link">
+              <Link href="/sluzby#dopyt" className="v2-link">
                 Opíšte ho tu
               </Link>
               .
