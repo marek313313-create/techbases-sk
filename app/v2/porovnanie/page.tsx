@@ -26,7 +26,7 @@ const changes = [
   {
     topic: 'Realizácie',
     original: 'Karty so snímkou úvodu, zadaním a stavom projektu.',
-    v2: 'Veľké ukážky s typom projektu, zadaním, riešením, funkciami a výsledkom. Každý projekt má detailnú stránku.',
+    v2: 'Veľké ukážky s označením typu projektu a krátkym opisom prínosu. Zadanie, riešenie a výsledok sú na detailnej stránke projektu.',
   },
   {
     topic: 'Čo zákazník dostane',

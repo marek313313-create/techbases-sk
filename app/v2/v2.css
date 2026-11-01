@@ -106,7 +106,7 @@ html:has(.v2) body {
 }
 
 .v2 .v2-section {
-  padding-block: clamp(72px, 10vw, 128px);
+  padding-block: clamp(56px, 9vw, 120px);
 }
 
 .v2 .v2-rule {
@@ -424,8 +424,8 @@ html:has(.v2) body {
 /* ---------- hero ---------- */
 
 .v2 .v2-hero {
-  padding-top: clamp(36px, 6vw, 80px);
-  padding-bottom: clamp(64px, 9vw, 112px);
+  padding-top: clamp(24px, 5vw, 80px);
+  padding-bottom: clamp(48px, 8vw, 112px);
 }
 
 .v2 .v2-hero-visual {
@@ -452,8 +452,6 @@ html:has(.v2) body {
 .v2 .v2-list {
   display: grid;
   gap: 0.6rem;
-  margin: 0;
-  padding: 0;
   list-style: none;
 }
 
@@ -474,36 +472,72 @@ html:has(.v2) body {
   content: '';
 }
 
-@media (min-width: 640px) {
-  .v2 .v2-list-2col {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 2rem;
-  }
+/* položky mimo základnej dodávky – rovnaký zoznam, tichší akcent */
+.v2 .v2-list-quiet li::before {
+  background: var(--fg-muted);
 }
 
-.v2 .v2-deflist > div {
-  display: grid;
-  gap: 0.35rem;
+/* ---------- rozbaľovacie odpovede (natívne details/summary) ---------- */
+
+.v2 .v2-accordion details {
   border-top: 1px solid var(--line);
-  padding-block: 1.25rem;
 }
 
-@media (min-width: 768px) {
-  .v2 .v2-deflist > div {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
-    gap: 2rem;
-  }
+.v2 .v2-accordion details:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.v2 .v2-accordion summary {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.v2 .v2-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.v2 .v2-accordion summary::after {
+  flex-shrink: 0;
+  width: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--accent);
+  content: '+';
+}
+
+.v2 .v2-accordion details[open] summary::after {
+  content: '–';
+}
+
+.v2 .v2-accordion summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.v2 .v2-accordion-body {
+  padding-bottom: 1.1rem;
+  color: var(--fg-muted);
 }
 
 /* ---------- kroky spolupráce ---------- */
 
 .v2 .v2-step-number {
   font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
-  font-size: 2.75rem;
+  font-size: 1.75rem;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.04em;
   color: var(--accent);
+}
+
+@media (min-width: 1024px) {
+  .v2 .v2-step-number {
+    font-size: 2.75rem;
+  }
 }
 
 /* ---------- formulár ---------- */

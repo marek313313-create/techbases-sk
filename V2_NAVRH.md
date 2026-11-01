@@ -21,6 +21,24 @@ a starostlivosť po spustení → firemné nástroje → dopyt s formulárom.
 Ceny sú rovnaké ako na produkcii: prezentačný web 500 – 1 200 €, pilot 1 200 – 2 500 €.
 Modelový rozpočet 1 500 € zo zadania V2 nie je schválená cena a na webe nie je.
 
+### Korekčný prechod (1. 11. 2026)
+
+- **Tmavé náhľady** na snímkach 13, 15 a 17 neboli chybou webu. V živom prehliadači sa po
+  odscrollovaní vykreslia všetky (overené na desktope aj mobile). Pri snímke celej stránky
+  naraz Chrome nevykreslil obrázky ďaleko mimo okna. Nové snímky sa robia po vynútenom
+  dekódovaní (`img.decoding = 'sync'`, `await img.decode()`).
+- **Úvod je kratší:** realizácie majú len veľkú ukážku, krátky opis prínosu (`highlight`
+  v `projects.ts`) a odkaz na detail; zadanie, riešenie a výsledok sú len v detailoch.
+  Dodávka je dvojica porovnateľných zoznamov, spolupráca má päť krokov po jednej vete,
+  podpora po spustení je v rozbaľovacích položkách so základnou odpoveďou viditeľnou hneď.
+  Anonymizovaný pilot je len v sekcii firemných nástrojov (nie dvakrát).
+- **Mobil:** kratší úvodný opis, „Pozrieť realizácie“ je textový odkaz, cena sa v hero
+  ukazuje len od 640 px, menšie rozostupy. Ukážka Zrubu je celá na prvej obrazovke
+  (začína na 464 px pri 390 × 844, predtým ~630 px). Formulár je hneď pod nadpisom kontaktu.
+- **Dĺžka:** mobil 390 px 15 557 → 10 182 px, desktop 1440 px 11 143 → 8 456 px.
+- Odstránená obhajujúca veta „Ukazujem len skutočné projekty…“; pravdivosť nesú
+  štítky pri projektoch (Klientska zákazka, Vlastný produkt, Anonymizovaný pilot).
+
 ## Technické riešenie a izolácia
 
 - Všetko pre V2 je v `app/v2/` (layout, stránky, komponenty, `projects.ts`, `v2.css`).
@@ -69,8 +87,12 @@ Web tieto body zámerne formuluje neutrálne („dohodneme v ponuke“). Treba r
 - **SURIQ / Surovec (suriq.sk)** – nezaradené. Návrh z 29. 10. 2026 beží len ako neverejný
   náhľad, značka sa strieda (SURIQ vs. Surovec), fotografia je ilustračná a v podkladoch
   chýba súhlas majiteľa so zverejnením.
-- **Citácie zákazníkov** – žiadna schválená; V2 citácie nepoužíva. Anonymizovaný citát
-  z pilotu ostáva len na `/sluzby`.
+- **Hodnotenie majiteľa Zrubu pri Hrone o spolupráci** – najvyššia priorita z chýbajúcich
+  podkladov. Treba jeho vlastné slová a súhlas so zverejnením (meno alebo len „majiteľ“).
+  Kým nie je, V2 žiadnu citáciu nepoužíva. Anonymizovaný citát z pilotu ostáva len na `/sluzby`.
+- **Portrét** – súčasná fotografia je dramatická (čiernobiela, polovica tváre v tieni). Pre
+  obchodnú prezentáciu by bola vhodnejšia prirodzene osvetlená fotografia; nižšia priorita
+  ako hodnotenie majiteľa.
 - **Video Zrubu (showcase)** – pracovná verzia na schválenie, otvorené práva k hudbe; nepoužité.
 
 ## Technické poznámky

@@ -19,6 +19,8 @@ export type Project = {
   status: string;
   statusDone: boolean;
   summary: string;
+  // krátky opis prínosu na úvodnú stránku; plné zadanie a riešenie sú v detaile
+  highlight: string;
   briefLabel: string;
   brief: string;
   solution: string;
@@ -43,6 +45,8 @@ export const projects: Project[] = [
     statusDone: true,
     summary:
       'Prezentačný web pre prenájom celého dreveného zrubu pri rieke Hron v Brezne.',
+    highlight:
+      'Hosť si pobyt predstaví z fotografií zrubu, areálu a okolia a pošle dopyt na konkrétny termín. Dopyty prichádzajú majiteľovi e‑mailom.',
     briefLabel: 'Zadanie',
     brief:
       'Ukázať zrub, oplotený areál, interiér a okolie tak, aby si hosť vedel pobyt predstaviť, a umožniť mu poslať dopyt na konkrétny termín.',
@@ -126,6 +130,8 @@ export const projects: Project[] = [
     statusDone: true,
     summary:
       'Pracovný portál naopak: ľudia si vytvoria pracovný profil a firmy ich vyhľadajú a oslovia.',
+    highlight:
+      'Firmy vyhľadávajú ľudí podľa skúseností a lokality. Kandidát sám rozhoduje, kto uvidí jeho kontakt.',
     briefLabel: 'Cieľ',
     brief:
       'Umožniť firmám nájsť skúsených ľudí aj vtedy, keď si prácu aktívne nehľadajú, a kandidátom ponechať kontrolu nad tým, kto uvidí ich kontakt.',
@@ -178,6 +184,8 @@ export const projects: Project[] = [
     statusDone: false,
     summary:
       'Pracovný pohľad nad existujúcimi exportmi z ERP a Excelu pre údržbu, sklad náhradných dielov a plánovanie.',
+    highlight:
+      'Sklad, výdaje, objednávky a plánovacia kniha v jednom pohľade nad existujúcimi exportmi, bez výmeny ERP systému.',
     briefLabel: 'Východisko',
     brief:
       'Údaje pre plánovanie a údržbu boli rozdelené vo viacerých exportoch. Bez ručného spracovania nebolo rýchlo vidieť, čo je skladom, čo je objednané a čo môže zdržať opravu.',
