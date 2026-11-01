@@ -39,15 +39,19 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const isWebProject = project.slug !== 'prevadzkove-prehlady';
+  const isWebProject = project.service === 'web';
+  // projekt len s mobilnými snímkami ich ukáže hneď v úvode namiesto okna prehliadača
   const [firstShot, ...otherShots] = project.desktopShots;
 
   return (
     <main id="v2-obsah" className="v2-main" tabIndex={-1}>
       <section className="v2-dark v2-hero">
         <div className="v2-container">
-          <Link href="/v2#realizacie" className="v2-link v2-small">
-            ← Späť na realizácie
+          <Link
+            href={isWebProject ? '/v2#realizacie' : '/v2#firemne-nastroje'}
+            className="v2-link v2-small"
+          >
+            {isWebProject ? '← Späť na realizácie' : '← Späť na firemné nástroje'}
           </Link>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <span className="v2-label-caps">
@@ -79,10 +83,26 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </a>
           ) : null}
 
-          <div className="mt-14">
-            <BrowserFrame {...firstShot} url={project.frameUrl} priority />
-            <p className="v2-muted v2-small mt-3">{firstShot.caption}</p>
-          </div>
+          {firstShot ? (
+            <div className="mt-14">
+              <BrowserFrame {...firstShot} url={project.frameUrl} priority />
+              <p className="v2-muted v2-small mt-3">{firstShot.caption}</p>
+            </div>
+          ) : (
+            <div className="mt-14">
+              <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:max-w-4xl">
+                {project.mobileShots.map((shot, index) => (
+                  <figure key={shot.src}>
+                    <PhoneFrame {...shot} priority={index === 0} />
+                    <figcaption className="v2-muted v2-small mt-3">
+                      {shot.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+              <p className="v2-muted v2-small mt-6">{project.shotsSource}</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -105,7 +125,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </div>
           <div className="v2-form-card self-start">
             <h2 className="v2-h4">
-              {isWebProject ? 'Dodané funkcie' : 'Čo prehľady ukazujú'}
+              {isWebProject ? 'Dodané funkcie' : 'Čo aplikácia ukazuje'}
             </h2>
             <ul className="v2-list mt-4">
               {project.features.map((feature) => (
@@ -116,45 +136,47 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="v2-white v2-section">
-        <div className="v2-container">
-          <h2 className="v2-h2">Ukážky</h2>
-          <p className="v2-muted mt-3">{project.shotsSource}</p>
+      {firstShot ? (
+        <section className="v2-white v2-section">
+          <div className="v2-container">
+            <h2 className="v2-h2">Ukážky</h2>
+            <p className="v2-muted mt-3">{project.shotsSource}</p>
 
-          {otherShots.length > 0 ? (
-            <div className="mt-12 grid gap-12 lg:grid-cols-2">
-              {otherShots.map((shot, index) => (
-                <figure
-                  key={shot.src}
-                  className={
-                    otherShots.length % 2 === 1 && index === otherShots.length - 1
-                      ? 'lg:col-span-2'
-                      : undefined
-                  }
-                >
-                  <BrowserFrame {...shot} url={project.frameUrl} />
-                  <figcaption className="v2-muted v2-small mt-3">
-                    {shot.caption}
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          ) : null}
+            {otherShots.length > 0 ? (
+              <div className="mt-12 grid gap-12 lg:grid-cols-2">
+                {otherShots.map((shot, index) => (
+                  <figure
+                    key={shot.src}
+                    className={
+                      otherShots.length % 2 === 1 && index === otherShots.length - 1
+                        ? 'lg:col-span-2'
+                        : undefined
+                    }
+                  >
+                    <BrowserFrame {...shot} url={project.frameUrl} />
+                    <figcaption className="v2-muted v2-small mt-3">
+                      {shot.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            ) : null}
 
-          {project.mobileShots.length > 0 ? (
-            <div className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:max-w-4xl">
-              {project.mobileShots.map((shot) => (
-                <figure key={shot.src}>
-                  <PhoneFrame {...shot} />
-                  <figcaption className="v2-muted v2-small mt-3">
-                    {shot.caption}
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          ) : null}
-        </div>
-      </section>
+            {project.mobileShots.length > 0 ? (
+              <div className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:max-w-4xl">
+                {project.mobileShots.map((shot) => (
+                  <figure key={shot.src}>
+                    <PhoneFrame {...shot} />
+                    <figcaption className="v2-muted v2-small mt-3">
+                      {shot.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
 
       <section className="v2-dark v2-section">
         <div className="v2-container flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">

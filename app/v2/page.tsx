@@ -16,14 +16,16 @@ export const metadata: Metadata = {
   },
 };
 
-// Úvod drží len stručné, porovnateľné body; podrobnosti sú v detailoch realizácií
+// Úvod drží len stručné, porovnateľné body; podrobnosti sú v detailoch realizácií.
+// Jednoduchý dopytový formulár je v základnej dodávke; rozšírené formuláre,
+// rezervácie a platby sú samostatný rozsah (rovnako v cene aj v otázkach nižšie).
 const included = [
   'návrh štruktúry stránky',
   'individuálny dizajn',
   'mobilná verzia',
   'základná úprava dodaných textov a fotografií',
   'vloženie dodaného videa',
-  'kontakt, prípadne dopytový formulár podľa rozsahu',
+  'kontaktné údaje a jednoduchý dopytový formulár',
   'rýchle načítanie a základné technické SEO',
   'dve kolá súhrnných pripomienok',
   'kontrola a spustenie webu',
@@ -34,7 +36,7 @@ const notIncluded = [
   'ďalšie podstránky a jazykové verzie',
   'tvorba kompletných textov',
   'rozsiahle retuše fotografií a výroba videa',
-  'rezervačný systém s kalendárom a platbami',
+  'rozšírené formuláre, rezervácie a platby',
   'redakčný systém na samostatné úpravy',
   'platené služby tretích strán',
   'úpravy nad rámec dvoch kôl pripomienok',
@@ -66,21 +68,25 @@ const steps = [
 const priceFactors = [
   'rozsah stránky a počet sekcií',
   'množstvo a stav dodaných podkladov',
-  'požadované funkcie, napríklad dopytový formulár',
+  'rozšírené funkcie, napríklad viac formulárov, rezervácie alebo platby',
   'doplnkové služby mimo základnej dodávky',
 ];
 
+// Potvrdené pravidlá (zhodné s /tvorba-webov): dve kolá pripomienok, neskoršie zmeny
+// podľa rozsahu, doména a hosting mimo ceny, bez redakčného systému. Postup pri chybe,
+// zálohy a odovzdanie prístupov zatiaľ nie sú rozhodnuté – texty preto nič nesľubujú.
 const afterLaunch = [
   {
     title: 'Chyba v dodanom webe',
-    answer: 'nie je nová požiadavka',
+    answer: 'postup uvediem v ponuke',
     detail:
-      'Ak niečo nefunguje tak, ako sme sa dohodli, ide o chybu dodávky, nie o novú požiadavku. Spôsob jej riešenia uvediem v cenovej ponuke.',
+      'Chyba je to, čo nefunguje podľa schváleného zadania. Nová požiadavka ide nad jeho rámec. Postup pri chybe uvediem v cenovej ponuke.',
   },
   {
     title: 'Nová požiadavka alebo zmena obsahu',
     answer: 'podľa rozsahu',
-    detail: 'Nové texty, fotografie či sekcie po spustení dohodneme podľa rozsahu.',
+    detail:
+      'Pred spustením sú v cene dve kolá súhrnných pripomienok. Neskoršie zmeny, napríklad nové texty, fotografie, sekcie alebo rozšírené formuláre, dohodneme podľa rozsahu.',
   },
   {
     title: 'Doména a hosting',
@@ -96,15 +102,15 @@ const afterLaunch = [
   },
   {
     title: 'Prístupy, vlastníctvo a odovzdanie',
-    answer: 'dohodneme pred spustením',
+    answer: 'dohodneme v ponuke',
     detail:
-      'Pred spustením si dohodneme, na koho bude doména a hosting a aké prístupy dostanete, a zapíšeme to do ponuky.',
+      'Na koho budú doména a hosting, aké prístupy dostanete a ktoré súbory odovzdám, dohodneme v cenovej ponuke ešte pred začiatkom práce.',
   },
   {
     title: 'Samostatná úprava obsahu',
     answer: 'nie je v základnej dodávke',
     detail:
-      'Základná dodávka neobsahuje redakčný systém. Zmeny obsahu robím ja podľa vašich podkladov. Ak chcete obsah upravovať sami, povedzte to pri zadaní.',
+      'Základná dodávka neobsahuje redakčný systém ani administráciu. Zmeny obsahu zapracujem ja podľa podkladov, ktoré mi pošlete. Ak chcete obsah upravovať sami, povedzte to pri zadaní.',
   },
 ];
 
@@ -227,7 +233,11 @@ function FeaturedProject({
 export default function V2HomePage() {
   const zrub = getProject('zrub-pri-hrone')!;
   const oslovma = getProject('oslovma')!;
-  const pilot = getProject('prevadzkove-prehlady')!;
+  const tool = getProject('prevadzkove-prehlady')!;
+  // na úvode graf prestojov – v malej ukážke je čitateľnejší ako tabuľky
+  const toolShot = tool.desktopShots[2];
+  // samostatná mobilná aplikácia – vlastný štítok, nie súčasť Techbases
+  const archiv = getProject('archiv-udrzby')!;
 
   return (
     <main id="v2-obsah" className="v2-main" tabIndex={-1}>
@@ -450,22 +460,42 @@ export default function V2HomePage() {
               <Link href="/sluzby" className="v2-btn v2-btn-secondary">
                 Firemné nástroje a dáta
               </Link>
-              <Link href={`/v2/realizacie/${pilot.slug}`} className="v2-link">
-                Detail pilotu
+              <Link href={`/v2/realizacie/${tool.slug}`} className="v2-link">
+                Ukážky aplikácie Techbases
               </Link>
             </div>
           </div>
-          <figure>
-            <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-              <span className="v2-label-caps">
-                {pilot.kind} · {pilot.category}
-              </span>
-            </div>
-            <BrowserFrame {...pilot.desktopShots[0]} url={pilot.frameUrl} />
-            <figcaption className="v2-muted v2-small mt-3">
-              {pilot.highlight} Ukážka používa anonymizované dáta.
-            </figcaption>
-          </figure>
+          <div>
+            <figure>
+              <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+                <span className="v2-label-caps">
+                  {tool.kind} · {tool.category}
+                </span>
+              </div>
+              <BrowserFrame {...toolShot} url={tool.frameUrl} />
+              <figcaption className="v2-muted v2-small mt-3">
+                {toolShot.caption} Údaje na snímke sú anonymizované.
+              </figcaption>
+            </figure>
+            <figure className="mt-8 grid grid-cols-[minmax(0,7.5rem)_minmax(0,1fr)] items-center gap-5 sm:grid-cols-[minmax(0,9rem)_minmax(0,1fr)] sm:gap-6">
+              <PhoneFrame {...archiv.mobileShots[1]} />
+              <figcaption>
+                <span className="v2-label-caps">
+                  {archiv.kind} · {archiv.category}
+                </span>
+                <p className="v2-h4 mt-2">{archiv.name}</p>
+                <p className="v2-muted v2-small mt-1">
+                  {archiv.highlight} Údaje na snímke sú anonymizované.
+                </p>
+                <Link
+                  href={`/v2/realizacie/${archiv.slug}`}
+                  className="v2-link v2-small mt-3 inline-block"
+                >
+                  Ukážky v mobile
+                </Link>
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 

@@ -31,7 +31,7 @@ const changes = [
   {
     topic: 'Čo zákazník dostane',
     original: 'Na samostatnej stránke /tvorba-webov.',
-    v2: 'Priamo na úvode, rozdelené na základnú dodávku a to, čo nie je automaticky v cene.',
+    v2: 'Priamo na úvode, rozdelené na základnú dodávku a to, čo nie je automaticky v cene. Jednoduchý dopytový formulár je v základnej dodávke, rozšírené formuláre, rezervácie a platby sú samostatný rozsah.',
   },
   {
     topic: 'Spolupráca',
@@ -47,6 +47,12 @@ const changes = [
     topic: 'Kto za webom stojí',
     original: 'Krátke predstavenie s malou fotografiou.',
     v2: 'Osobné predstavenie s veľkou fotografiou. Priemyselná prax vysvetlená ako základ firemných nástrojov, nie ako roky vo webe.',
+  },
+  {
+    topic: 'Firemné nástroje',
+    original:
+      'Samostatná stránka /sluzby s anonymizovanými ukážkami prevádzkových prehľadov.',
+    v2: 'Stručná sekcia na úvode so snímkami skutočných aplikácií s anonymizovanými údajmi: desktopová aplikácia Techbases a samostatne označená mobilná aplikácia Archív údržby.',
   },
   {
     topic: 'Dopyt',

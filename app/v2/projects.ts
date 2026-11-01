@@ -1,7 +1,9 @@
 // Realizácie pre návrh V2. Každé tvrdenie vychádza z podkladov projektu:
 // Zrub pri Hrone – README a docs/stav-projektu.md projektu, snímky živého webu
 // z 28. 10. 2026; OslovMa.sk – živý web a jeho podmienky používania (prevádzkovateľ
-// Marek Belko); prevádzkové prehľady – anonymizované ukážky už zverejnené na techbases.sk.
+// Marek Belko); Techbases – nainštalovaná desktopová aplikácia 1.1.7, snímky
+// z 1. 11. 2026 s údajmi anonymizovanými pred snímaním (postup vo V2_NAVRH.md);
+// Archív údržby – mobilná aplikácia v telefóne, snímky z 1. 11. 2026, rovnaký postup.
 
 export type ProjectShot = {
   src: string;
@@ -13,6 +15,8 @@ export type ProjectShot = {
 
 export type Project = {
   slug: string;
+  // web = tvorba webov, data = firemné nástroje (iný nadpis funkcií a iná výzva v detaile)
+  service: 'web' | 'data';
   name: string;
   kind: string;
   category: string;
@@ -38,6 +42,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: 'zrub-pri-hrone',
+    service: 'web',
     name: 'Zrub pri Hrone',
     kind: 'Klientska zákazka',
     category: 'Web pre ubytovanie',
@@ -123,6 +128,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'oslovma',
+    service: 'web',
     name: 'OslovMa.sk',
     kind: 'Vlastný produkt',
     category: 'Webová aplikácia',
@@ -177,62 +183,117 @@ export const projects: Project[] = [
   },
   {
     slug: 'prevadzkove-prehlady',
-    name: 'Prevádzkové prehľady pre údržbu a sklad',
-    kind: 'Anonymizovaný pilot',
-    category: 'Firemný nástroj z dát',
-    status: 'Ukážky s anonymizovanými dátami',
+    service: 'data',
+    name: 'Techbases: prehľady pre údržbu a sklad',
+    kind: 'Interný nástroj',
+    category: 'Desktopová aplikácia nad dátami z ERP',
+    status: 'Ukážky s anonymizovanými údajmi',
     statusDone: false,
     summary:
-      'Pracovný pohľad nad existujúcimi exportmi z ERP a Excelu pre údržbu, sklad náhradných dielov a plánovanie.',
+      'Desktopová aplikácia nad exportmi z ERP a súbormi CSV pre údržbu, sklad náhradných dielov a plánovanie opráv.',
     highlight:
-      'Sklad, výdaje, objednávky a plánovacia kniha v jednom pohľade nad existujúcimi exportmi, bez výmeny ERP systému.',
+      'Položky plánu so stavom skladu a objednávkami, výdaje materiálu podľa druhu opravy a prestoje podľa dopadu na jednom mieste, bez výmeny ERP systému.',
     briefLabel: 'Východisko',
     brief:
       'Údaje pre plánovanie a údržbu boli rozdelené vo viacerých exportoch. Bez ručného spracovania nebolo rýchlo vidieť, čo je skladom, čo je objednané a čo môže zdržať opravu.',
     solution:
-      'Prepojenie skladu, výdajov, objednávok a plánovacej knihy do jedného pracovného pohľadu nad existujúcimi dátami, bez výmeny ERP systému.',
+      'Desktopová aplikácia, ktorá načíta existujúce exporty a spojí ich do pracovných pohľadov: prehľad položiek, objednávky, havarijná a nepohyblivá zásoba, výdaje materiálu, prestoje a plánovanie opráv.',
     features: [
-      'kritické diely a objednávky, ktoré môžu zdržať opravu',
-      'výdaje materiálu podľa prác a období',
-      'nepohyblivá zásoba, ktorá viaže peniaze',
-      'prestoje a opakované poruchy podľa zariadení',
+      'položky plánu s agregátom, uzlom, cenou, stavom skladu, uložným miestom a naviazanými žiadankami, zákazkami a objednávkami',
+      'výdaje materiálu so súčtami podľa bežnej, strednej a generálnej opravy a s dokladom, žiadankou a zákazkou pri každom výdaji',
+      'prestoje podľa agregátov: dopad, trend za šesť mesiacov, porovnanie s vlastnou históriou a najčastejšia príčina',
+      'mesačný prehľad porúch a prestojov',
+      'ďalšie pohľady: objednávky, havarijná a nepohyblivá zásoba a plánovanie opráv',
     ],
     result:
-      'Ľudia v prevádzke vidia stav položky, posledný výdaj a otvorené objednávky na jednom mieste.',
-    note: 'Ukážky používajú anonymizované dáta. Názvy zariadení, zákaziek ani interné údaje nezverejňujem.',
-    frameUrl: 'interný pracovný prehľad',
-    shotsSource: 'Anonymizované ukážky.',
+      'Položky, výdaje a prestoje sú v jednej aplikácii nad existujúcimi exportmi, bez ručného spájania tabuliek.',
+    note: 'Snímky sú zo skutočnej aplikácie. Kódy, názvy zariadení a dielov, doklady, mená a sumy sú nahradené ukážkovými hodnotami.',
+    frameUrl: 'Techbases · desktopová aplikácia',
+    shotsSource:
+      'Snímky aplikácie Techbases z 1. 11. 2026. Všetky údaje na snímkach sú anonymizované.',
     desktopShots: [
       {
-        src: '/ukazky/interny-prehlad-poloziek.webp',
-        alt: 'Anonymizovaný pracovný pohľad na kritické diely a objednávky',
-        caption: 'Kritické diely a objednávky.',
-        width: 1672,
-        height: 941,
+        src: '/v2/techbases-prehlad-poloziek.webp',
+        alt: 'Techbases, Interný prehľad položiek: tabuľka položiek plánu s agregátom, uzlom, cenou, skladom, uložným miestom a žiadankami. Údaje sú anonymizované.',
+        caption:
+          'Interný prehľad položiek: agregát, uzol, cena, sklad, uložné miesto a naviazané žiadanky, zákazky a objednávky.',
+        width: 1600,
+        height: 1044,
       },
       {
-        src: '/ukazky/vydaj-materialu.webp',
-        alt: 'Anonymizovaný pracovný pohľad na výdaje materiálu',
-        caption: 'Výdaje materiálu podľa prác a období.',
-        width: 1672,
-        height: 941,
+        src: '/v2/techbases-vydaje-materialu.webp',
+        alt: 'Techbases, Výdaje materiálu: súčty za bežnú, generálnu a strednú opravu a zoznam výdajov s dokladom, žiadankou a zákazkou. Údaje sú anonymizované.',
+        caption:
+          'Výdaje materiálu: súčty podľa druhu opravy a jednotlivé výdaje s dokladom, žiadankou a zákazkou.',
+        width: 1600,
+        height: 1044,
       },
       {
-        src: '/ukazky/nepohybliva-zasoba.webp',
-        alt: 'Anonymizovaný pracovný pohľad na nepohyblivú zásobu',
-        caption: 'Nepohyblivá zásoba.',
-        width: 1672,
-        height: 941,
-      },
-      {
-        src: '/ukazky/prestoje-priorita-zasahu.webp',
-        alt: 'Anonymizovaný pracovný pohľad na prestoje a poruchy',
-        caption: 'Prestoje a opakované poruchy.',
-        width: 1672,
-        height: 941,
+        src: '/v2/techbases-prestoje.webp',
+        alt: 'Techbases, Prestoje: agregáty zoradené podľa dopadu s trendom, porovnaním s históriou a mesačným grafom porúch. Údaje sú anonymizované.',
+        caption:
+          'Prestoje: agregáty podľa dopadu, trend za šesť mesiacov, porovnanie s vlastnou históriou a mesačný prehľad porúch.',
+        width: 1600,
+        height: 1044,
       },
     ],
     mobileShots: [],
+  },
+  {
+    // samostatná aplikácia – zámerne nie je spojená s Techbases (spoločný systém nie je overený)
+    slug: 'archiv-udrzby',
+    service: 'data',
+    name: 'Archív údržby',
+    kind: 'Interný nástroj',
+    category: 'Mobilná aplikácia pre údržbu',
+    status: 'Ukážky s anonymizovanými údajmi',
+    statusDone: false,
+    summary:
+      'Mobilná aplikácia pre údržbu: najbližšia oprava, technická karta agregátu a história zásahov v telefóne.',
+    highlight:
+      'Najbližšia oprava, technická karta agregátu a história zásahov v telefóne. Samostatná aplikácia, oddelená od Techbases.',
+    briefLabel: 'Účel',
+    brief:
+      'Technická karta zariadenia: opravy, poruchy, inšpekcie a výmeny na jednom mieste, dostupné aj v telefóne.',
+    solution:
+      'Mobilná aplikácia s prehľadom otvorených úloh a najbližšej opravy, technickou kartou agregátu a technickou históriou s filtrom podľa obdobia, uzla a typu udalosti. Údaje prichádzajú synchronizáciou z PC.',
+    features: [
+      'prehľad: požiadavky na posúdenie, výmeny po termíne, prestoj za 30 dní a inšpekcie v týždni',
+      'najbližšia oprava s publikovaným plánom a počtom prác',
+      'technická karta agregátu: stredisko, zodpovedný majster, posledná práca, najbližší plán a posledná porucha',
+      'technická história prác, výmen, porúch a inšpekcií s filtrom podľa obdobia, uzla a typu',
+      'údaje z poslednej synchronizácie s PC, karta agregátu je iba na čítanie',
+    ],
+    result:
+      'Prehľad opráv, karta agregátu a história zásahov sú v telefóne z poslednej synchronizácie s PC.',
+    note: 'Snímky sú zo skutočnej aplikácie. Kódy, názvy zariadení a stredísk, mená, poznámky a čísla záznamov sú nahradené ukážkovými hodnotami.',
+    frameUrl: 'Archív údržby',
+    shotsSource:
+      'Snímky aplikácie Archív údržby v telefóne z 1. 11. 2026. Všetky údaje na snímkach sú anonymizované.',
+    desktopShots: [],
+    mobileShots: [
+      {
+        src: '/v2/archiv-udrzby-prehlad.webp',
+        alt: 'Archív údržby v mobile, Prehľad: požiadavky na posúdenie, výmeny po termíne, prestoj za 30 dní, inšpekcie a najbližšia oprava. Údaje sú anonymizované.',
+        caption: 'Prehľad: úlohy, prestoj a najbližšia oprava',
+        width: 540,
+        height: 1147,
+      },
+      {
+        src: '/v2/archiv-udrzby-karta-agregatu.webp',
+        alt: 'Archív údržby v mobile, technická karta agregátu: stredisko, majster, posledná práca, najbližší plán a posledná porucha. Údaje sú anonymizované.',
+        caption: 'Technická karta agregátu',
+        width: 540,
+        height: 1147,
+      },
+      {
+        src: '/v2/archiv-udrzby-historia.webp',
+        alt: 'Archív údržby v mobile, technická história agregátu: vykonané práce a inšpekcia s dátumom a uzlom. Údaje sú anonymizované.',
+        caption: 'Technická história zásahov',
+        width: 540,
+        height: 1147,
+      },
+    ],
   },
 ];
 
