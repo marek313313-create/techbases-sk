@@ -352,10 +352,18 @@ html:has(.v2-header) [id] {
   width: 100%;
 }
 
+/* zaoblenie a rámik podľa šírky telefónu (~8 %), aby malé ukážky neboli príliš okrúhle;
+   prvá hodnota je záloha pre prehliadače bez jednotiek cqw */
+.v2 .v2-phone-wrap {
+  container-type: inline-size;
+}
+
 .v2 .v2-phone {
   overflow: hidden;
-  border-radius: 26px;
-  padding: 6px;
+  border-radius: 16px;
+  border-radius: clamp(8px, 8cqw, 22px);
+  padding: 4px;
+  padding: clamp(3px, 2.2cqw, 6px);
   background: #05080f;
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.12),
@@ -364,7 +372,8 @@ html:has(.v2-header) [id] {
 
 .v2 .v2-phone img {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 12px;
+  border-radius: clamp(6px, 6.4cqw, 17px);
 }
 
 /* ---------- hlavička ---------- */

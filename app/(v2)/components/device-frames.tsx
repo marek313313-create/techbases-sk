@@ -41,17 +41,20 @@ export function BrowserFrame({
   );
 }
 
+// Obal je kontajner, aby zaoblenie rástlo so šírkou telefónu (cqw v v2.css)
 export function PhoneFrame({ src, alt, width, height, priority }: FrameImage) {
   return (
-    <div className="v2-phone">
-      <img
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
-      />
+    <div className="v2-phone-wrap">
+      <div className="v2-phone">
+        <img
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
+        />
+      </div>
     </div>
   );
 }
