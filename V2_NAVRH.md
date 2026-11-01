@@ -1,7 +1,7 @@
 # Návrh V2 – interné poznámky
 
-Stav k 1. 11. 2026: **V2 je nasadená ako hlavný web techbases.sk** (commit `1ab13b6` na
-`main`, verzia Workera `9f940af5-d214-4d14-a002-67dfd76a1dac`). Postup a kontroly sú
+Stav k 1. 11. 2026: **V2 je nasadená ako hlavný web techbases.sk** (commit `cc90db4` na
+`main`, verzia Workera `06548b50-15b0-488b-a013-ad196f2dedd2`). Postup a kontroly sú
 v časti „Nasadenie V2“.
 
 ## Ako otvoriť
@@ -243,12 +243,22 @@ Body 1–6 v rozhodnutiach sú na webe formulované neutrálne, nasadenie neblok
 **Priebeh 1. 11. 2026** (účet Cloudflare marek313313@gmail.com, Worker `techbases-sk`;
 `origin/main` sa medzitým nezmenil, všetko fast-forward bez vynúteného pushu):
 
-| Commit    | Verzia Workera | Čo                                                                      |
-| --------- | -------------- | ----------------------------------------------------------------------- |
-| –         | `707ed18a`     | pôvodná produkcia (21. 10. 2026) – cieľ návratu                         |
-| `bf60099` | `59ee7466`     | V2 ako hlavný web; **regresia:** `/realizacie/*` vracali 404            |
-| `abd1545` | `a2af8bcc`     | oprava: bez `dynamicParams = false` (OpenNext nemá inkrementálnu cache) |
-| `1ab13b6` | `9f940af5`     | jednotná hlavička a pätička, `/tvorba-webov` a `/o-mne` → 308 na úvod   |
+| Commit    | Verzia Workera | Čo                                                                          |
+| --------- | -------------- | --------------------------------------------------------------------------- |
+| –         | `707ed18a`     | pôvodná produkcia (21. 10. 2026) – cieľ návratu                             |
+| `bf60099` | `59ee7466`     | V2 ako hlavný web; **regresia:** `/realizacie/*` vracali 404                |
+| `abd1545` | `a2af8bcc`     | oprava: bez `dynamicParams = false` (OpenNext nemá inkrementálnu cache)     |
+| `1ab13b6` | `9f940af5`     | jednotná hlavička a pätička, `/tvorba-webov` a `/o-mne` → 308 na úvod       |
+| `cc90db4` | `06548b50`     | `/sluzby` vo vzhľade úvodu, všetky funkcie Archívu, texty len online, výzva |
+
+Nasadenie `06548b50` (16:56 SEČ): `origin/main` bez cudzích zmien, push `93fde50..cc90db4`
+fast-forward, účet overený, návratová verzia `9f940af5`. Na produkcii: 11 stránok 200 s
+`index, follow` a vlastným canonical, sitemap 17 dostupných adries, presmerovania 308,
+`/v2/archiv-udrzby-karta-agregatu.webp` 404 (nahradená), na webe žiadne „offline/USB/Údaje z
+PC“; 7 stránok pri 1440 aj 390 px bez nenačítaných obrázkov a pretekania. Test formulára
+`/sluzby#dopyt` (téma „Firemné nástroje a dáta“) 15:57:35 UTC: `POST /api/kontakt` 200 a
+potvrdenie vo formulári; **doručenie do schránky neoverené** (predmet „[Firemné nástroje
+a dáta] Správa z webu od: TEST nasadenia – formulár /sluzby#dopyt“).
 
 Postup (pre ďalšie nasadenia):
 
