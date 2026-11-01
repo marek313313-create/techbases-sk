@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { inquiryLinks } from '../site-data';
 import { BrowserFrame, PhoneFrame } from './components/device-frames';
 import { InquiryForm } from './components/inquiry-form';
+import { SectionIntro } from './components/section-intro';
 import { getProject, type Project } from './projects';
 
 const pageTitle = 'TechBases.sk | Webové stránky na mieru';
@@ -158,29 +159,6 @@ const afterLaunch = [
       'Základná dodávka neobsahuje redakčný systém ani administráciu. Zmeny obsahu zapracujem ja podľa podkladov, ktoré mi pošlete. Ak chcete obsah upravovať sami, povedzte to pri zadaní.',
   },
 ];
-
-function SectionIntro({
-  index,
-  eyebrow,
-  title,
-  lead,
-}: {
-  index: string;
-  eyebrow: string;
-  title: string;
-  lead?: string;
-}) {
-  return (
-    <div className="max-w-3xl">
-      <div className="v2-eyebrow">
-        <span className="v2-eyebrow-index">{index}</span>
-        {eyebrow}
-      </div>
-      <h2 className="v2-h2 mt-3 sm:mt-4">{title}</h2>
-      {lead ? <p className="v2-lead mt-4 sm:mt-5">{lead}</p> : null}
-    </div>
-  );
-}
 
 function StatusBadge({ project }: { project: Project }) {
   return (

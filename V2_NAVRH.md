@@ -189,9 +189,17 @@ Web nerozhodnuté body zámerne formuluje neutrálne („uvediem / dohodneme v p
 5. **Doplnky** – ďalšie podstránky, jazykové verzie, tvorba textov, rozšírené formuláre,
    rezervácie, platby: orientačné ceny?
 6. **Platobné podmienky a termíny** – zatiaľ sa nezverejňujú.
-7. **Obsah stránok v pôvodnom vzhľade** – `/sluzby` (staré ukážky `/ukazky/*`), `/kontakt`,
-   `/poznamky`, `/audit-erp-dat` majú jednotnú hlavičku a pätičku, no obsah v pôvodnom
-   vzhľade. Prerobenie obsahu (najmä `/sluzby` s novými snímkami) je samostatná úloha.
+7. **Obsah stránok v pôvodnom vzhľade** – `/kontakt`, `/poznamky`, `/audit-erp-dat` a
+   `/sluzby/sklad-nahradnych-dielov` (stále staré ukážky `/ukazky/*`) majú jednotnú hlavičku
+   a pätičku, no obsah v pôvodnom vzhľade. `/sluzby` je prerobená (pozri nižšie).
+
+**`/sluzby` vo vzhľade úvodu (1. 11. 2026):** stránka je v `app/(v2)/sluzby/`. Úvod
+s prestojmi Techbases → ukážkové pracovné pohľady (Techbases 2 snímky, Archív údržby 3,
+každý so samostatným štítkom) → ako začať (kontrola exportov zadarmo, pilot 1 200 – 2 500 €,
+audit) → anonymizovaný výsledok pilotu → časté otázky (rozbaľovacie, JSON-LD FAQ ostáva) →
+formulár s témou „Firemné nástroje a dáta“. Texty sú skrátené z pôvodnej stránky, ponuky
+a ceny sa nemenili. Mobil 22 851 → 7 959 px, ~1 970 → ~530 viditeľných slov. Kotvy
+`#ukazky-riesenia`, `#kontrola-exportov`, `#pilot`, `#audit`, `#otazky`, `#kontakt` ostali.
 
 **Rozhodnuté (Marek Belko, 1. 11. 2026):**
 
