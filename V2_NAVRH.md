@@ -105,16 +105,20 @@ Modelový rozpočet 1 500 € zo zadania V2 nie je schválená cena a na webe ni
 
 ## Snímky firemných nástrojov (1. 11. 2026)
 
-| Súbor (`public/v2/`)                | Rozmer              | Kde je použitý                                                                |
-| ----------------------------------- | ------------------- | ----------------------------------------------------------------------------- |
-| `techbases-prestoje.webp`           | 1600 × 1044, 106 kB | úvod `/#firemne-nastroje`, detail `/realizacie/prevadzkove-prehlady` (Ukážky) |
-| `techbases-prehlad-poloziek.webp`   | 1600 × 1044, 142 kB | detail `/realizacie/prevadzkove-prehlady` (úvodná snímka)                     |
-| `techbases-vydaje-materialu.webp`   | 1600 × 1044, 139 kB | detail `/realizacie/prevadzkove-prehlady` (Ukážky)                            |
-| `archiv-udrzby-karta-agregatu.webp` | 540 × 1147, 39 kB   | úvod `/#firemne-nastroje` (telefón), detail `/realizacie/archiv-udrzby`       |
-| `archiv-udrzby-prehlad.webp`        | 540 × 1147, 33 kB   | detail `/realizacie/archiv-udrzby`                                            |
-| `archiv-udrzby-historia.webp`       | 540 × 1147, 43 kB   | detail `/realizacie/archiv-udrzby`                                            |
+| Súbor (`public/v2/`)              | Rozmer              | Kde je použitý                                                                |
+| --------------------------------- | ------------------- | ----------------------------------------------------------------------------- |
+| `techbases-prestoje.webp`         | 1600 × 1044, 106 kB | úvod `/#firemne-nastroje`, detail `/realizacie/prevadzkove-prehlady` (Ukážky) |
+| `techbases-prehlad-poloziek.webp` | 1600 × 1044, 142 kB | detail `/realizacie/prevadzkove-prehlady` (úvodná snímka)                     |
+| `techbases-vydaje-materialu.webp` | 1600 × 1044, 139 kB | detail `/realizacie/prevadzkove-prehlady` (Ukážky)                            |
+| `archiv-udrzby-plan-vymen.webp`   | 540 × 1102, 38 kB   | úvod `/#firemne-nastroje` (telefón), `/sluzby`, detail Archívu                |
+| `archiv-udrzby-prehlad.webp`      | 540 × 1102, 31 kB   | `/sluzby`, detail `/realizacie/archiv-udrzby`                                 |
+| `archiv-udrzby-historia.webp`     | 540 × 1102, 41 kB   | `/sluzby`, detail `/realizacie/archiv-udrzby`                                 |
 
-PNG zdroje (2880 × 1880 a 1080 × 2294) sú v `assets-src/v2/firemne-nastroje/` pod rovnakými
+Mobilné snímky sú bez spodnej lišty aplikácie „Údaje z PC“ a bez karty agregátu s rámčekom
+„Offline údaje…“ (nahradená Plánom výmen): pochádzajú z autorovej vlastnej verzie s prenosom
+cez USB, kým web firmám opisuje prevádzku online (pokyn Mareka Belka, 1. 11. 2026).
+
+PNG zdroje (2880 × 1880 a 1080 × 2204) sú v `assets-src/v2/firemne-nastroje/` pod rovnakými
 názvami. Každá snímka má spodný pás „Anonymizované ukážkové údaje · …“. Alt texty a popisy
 sú v `projects.ts` a opisujú len funkcie viditeľné na snímke.
 
@@ -337,4 +341,7 @@ zapisujú sa v ňom iba poruchy a inšpekcie a tie sa pri ďalšej aktualizácii
 - Aplikácia je pripravená pre viac používateľov s rolami a na prevádzku online (server vo
   firemnej sieti alebo cloud). **Zatiaľ beží ako vlastná verzia autora** – web netvrdí firemné
   nasadenie ani konkrétnu online adresu.
+- **Web opisuje iba prevádzku online** (PC aj telefón s tými istými údajmi). Prenos cez USB,
+  offline režim a zápis z telefónu s neskorším prenosom patria len k súčasnej verzii pre
+  jedného človeka a na webe nie sú, aby firmy nemali zmätok v tom, ako sa nahrávajú dáta.
 - Výzva „Opísať problém“ v detailoch firemných nástrojov a odkaz na úvode vedú na `/sluzby#dopyt`.

@@ -255,23 +255,24 @@ export const projects: Project[] = [
     // Funkcie podľa prehliadky aplikácie v telefóne (1. 11. 2026, všetkých 12 modulov)
     // a README projektu Archív údržby; bez interných názvov a adries.
     summary:
-      'Evidencia opráv a údržby od požiadavky po uzatvorenie opravy: plán, poruchy, inšpekcie, výmeny a karta agregátu. Pripravená pre celý tím online aj pre telefón bez pripojenia.',
+      'Evidencia opráv a údržby od požiadavky po uzatvorenie opravy: plán, poruchy, inšpekcie, výmeny a karta agregátu. Beží online, na PC aj v telefóne.',
     highlight:
-      'Požiadavky, opravy BO/SO/GO/VP, poruchy, inšpekcie, plán výmen a karta agregátu. Pre tím s rolami, online aj v telefóne bez pripojenia. Samostatná aplikácia, oddelená od Techbases.',
+      'Požiadavky, opravy BO/SO/GO/VP, poruchy, inšpekcie, plán výmen a karta agregátu. Pre tím s rolami, online na PC aj v telefóne. Samostatná aplikácia, oddelená od Techbases.',
     briefLabel: 'Účel',
     brief:
       'Auditovateľný proces opráv BO, SO, GO a VP: požiadavka, posúdenie, publikovaný plán, realizácia, overenie a uzatvorenie. K tomu evidencia porúch, inšpekcií a výmen.',
     // Pripravená pre viac používateľov; zatiaľ beží ako autorova vlastná verzia
-    // (firemné nasadenie netvrdiť – Marek Belko, 1. 11. 2026).
+    // (firemné nasadenie netvrdiť – Marek Belko, 1. 11. 2026). Pre firmy sa opisuje
+    // prevádzka online; prenos cez USB patrí len k súčasnej verzii pre jedného človeka.
     solution:
-      'Jedna aplikácia pre tím údržby s rolami pre pracovníkov, inšpekčných zámočníkov, majstrov, technikov a vedenie. Je pripravená na prevádzku online v prehliadači a beží v telefóne s Androidom, kde pracuje aj bez pripojenia s údajmi nahratými z PC.',
-    featuresTitle: 'V telefóne',
+      'Jedna aplikácia pre tím údržby s rolami pre pracovníkov, inšpekčných zámočníkov, majstrov, technikov a vedenie. Beží online v prehliadači na PC aj v telefóne, takže všetci pracujú s tými istými údajmi.',
+    featuresTitle: 'Online, na PC aj v telefóne',
     features: [
-      'celá evidencia v telefóne aj bez pripojenia: prehľad, opravy, plán, karta agregátu a štatistika prestojov',
-      'údaje sa do telefónu nahrajú z PC cez USB jedným krokom „Aktualizovať telefón“',
-      'v teréne sa zapisujú poruchy s fotkami z fotoaparátu a vykonané inšpekcie',
-      'zápisy z telefónu sa pri ďalšej aktualizácii prenesú do PC; rovnaký zápis sa neprenesie dvakrát a konflikt so zmenou na PC sa odmietne s dôvodom',
-      'ostatné zmeny, výkresy a dokumenty sa robia a otvárajú na PC',
+      'všetko beží online: PC aj telefón pracujú s tými istými údajmi, nič sa neprenáša ručne',
+      'čo technik zapíše v telefóne pri zariadení, hneď vidí majster aj vedenie na PC',
+      'v teréne sa zapisujú poruchy s fotkami z fotoaparátu, vykonané inšpekcie aj nové požiadavky',
+      'každý vidí a robí len to, čo mu dovoľuje jeho rola',
+      'každá zmena je v audite s menom, časom a dôvodom',
     ],
     modules: [
       {
@@ -365,9 +366,9 @@ export const projects: Project[] = [
       {
         title: 'Prevádzka',
         items: [
-          'pripravená na prevádzku online v prehliadači: server vo firemnej sieti alebo cloud',
+          'beží online v prehliadači: na serveri vo firemnej sieti alebo v cloude',
           'pre viac používateľov naraz, každý so svojou rolou a „Mojimi agregátmi“',
-          'telefón s Androidom aj bez pripojenia; denné zálohy s kontrolou integrity',
+          'na PC aj v telefóne s rovnakými údajmi; denné zálohy s kontrolou integrity',
         ],
       },
     ],
@@ -384,21 +385,21 @@ export const projects: Project[] = [
         alt: 'Archív údržby v mobile, Prehľad: požiadavky na posúdenie, výmeny po termíne, prestoj za 30 dní, inšpekcie a najbližšia oprava. Údaje sú anonymizované.',
         caption: 'Prehľad: úlohy, prestoj a najbližšia oprava',
         width: 540,
-        height: 1147,
+        height: 1102,
       },
       {
-        src: '/v2/archiv-udrzby-karta-agregatu.webp',
-        alt: 'Archív údržby v mobile, technická karta agregátu: stredisko, majster, posledná práca, najbližší plán a posledná porucha. Údaje sú anonymizované.',
-        caption: 'Technická karta agregátu',
+        src: '/v2/archiv-udrzby-plan-vymen.webp',
+        alt: 'Archív údržby v mobile, Plán výmen: položky po termíne, blížiace sa, v pláne opravy a v poriadku, zoznam výmen podľa agregátov. Údaje sú anonymizované.',
+        caption: 'Plán výmen: po termíne, blíži sa, v pláne',
         width: 540,
-        height: 1147,
+        height: 1102,
       },
       {
         src: '/v2/archiv-udrzby-historia.webp',
         alt: 'Archív údržby v mobile, technická história agregátu: vykonané práce a inšpekcia s dátumom a uzlom. Údaje sú anonymizované.',
         caption: 'Technická história zásahov',
         width: 540,
-        height: 1147,
+        height: 1102,
       },
     ],
   },
